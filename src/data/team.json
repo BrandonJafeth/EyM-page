@@ -1,0 +1,88 @@
+[
+  {
+    "id": "roy-francisco-espinoza",
+    "slug": "roy-francisco-espinoza",
+    "name": "Lic. Roy Francisco Espinoza",
+    "role": "Socio Fundador",
+    "specialty": "Derecho Corporativo",
+    "image": "/assets/team/roy-fundador.jpg",
+    "shortBio": "Profesional en el área legal con más de 20 años de experiencia y amplia trayectoria judicial.",
+    "fullBio": "Profesional en el área legal con más de 20 años de experiencia en el ejercicio del derecho, contando con una trayectoria sólida y ampliamente reconocida en la atención, análisis y resolución de distintos tipos de procesos jurídicos. A lo largo de su carrera ha desempeñado funciones clave dentro del ámbito judicial y legal.\n\nSu práctica profesional se caracteriza por un enfoque ético, responsable y orientado a resultados, brindando asesoría y representación legal con un alto nivel de compromiso. Posee amplia capacidad para abordar casos complejos en diversas materias, ofreciendo soluciones legales claras, efectivas y adaptadas a las necesidades específicas de cada cliente, siempre priorizando la protección de sus derechos e intereses.",
+    "contact": {
+      "email": "bufete.emyasociados@gmail.com",
+      "phone": ["6021-2971", "8705-3112"]
+    },
+    "details": [
+      {
+        "title": "Perfil Profesional",
+        "content": "Profesional en el área legal con 20 años de experiencia, capacitado para la resolución de distintos tipos de materia, con una sólida trayectoria en el ejercicio del derecho y amplia experiencia en el ámbito judicial y profesional."
+      },
+      {
+        "title": "Formación Académica",
+        "content": "Licenciado en Derecho con énfasis en Derecho Corporativo. (Información pendiente de completar)"
+      },
+      {
+        "title": "Experiencia Judicial",
+        "content": "Ha desempeñado diversos cargos dentro del Poder Judicial, aportando una visión integral en la resolución de conflictos. (Información pendiente de completar)"
+      },
+      {
+        "title": "Especialidades Profesionales",
+        "content": "Derecho Corporativo, Derecho Civil, Litigio Estratégico."
+      },
+      {
+        "title": "Cursos y Capacitación Continua",
+        "content": "Participación constante en seminarios de actualización legal y congresos internacionales."
+      }
+    ]
+  },
+  {
+    "id": "maria-fernanda-mendoza",
+    "slug": "maria-fernanda-mendoza",
+    "name": "Lic. Maria Fernanda Mendoza",
+    "role": "Socia Principal",
+    "specialty": "Derecho Civil y Familia",
+    "image": "/assets/team/maria-mendoza.jpg",
+    "shortBio": "Cada miembro de nuestro equipo aporta experiencia especializada y un compromiso inquebrantable.",
+    "fullBio": "Abogada especialista en Derecho de Familia y Civil, comprometida con la defensa de los derechos de sus clientes a través de un trato humano y profesional. Su enfoque se centra en encontrar soluciones conciliatorias y efectivas para conflictos familiares y civiles.",
+    "contact": {
+      "email": "bufete.emyasociados@gmail.com"
+    },
+    "details": [
+      {
+        "title": "Perfil Profesional",
+        "content": "Abogada con sólida formación en derecho privado, especializada en la atención de casos de familia y jurisdicción civil."
+      },
+      {
+        "title": "Formación Académica",
+        "content": "Licenciada en Derecho."
+      },
+      {
+        "title": "Especialidades Profesionales",
+        "content": "Derecho de Familia, Pensiones, Divorcios, Derecho Civil."
+      }
+    ]
+  },
+  {
+    "id": "roy-francisco-espinoza-senior",
+    "slug": "roy-francisco-espinoza-senior",
+    "name": "Lic. Roy Francisco Espinoza",
+    "role": "Asociado Senior",
+    "specialty": "Derecho Laboral",
+    "image": "/assets/team/roy-senior.jpg",
+    "shortBio": "Asociado Senior con amplia experiencia en legislación laboral y defensa de derechos.",
+    "fullBio": "Abogado con vasta experiencia en el sector laboral, brindando asesoría tanto a patronos como a trabajadores. Su práctica se orienta a la prevención de conflictos y la representación letrada en sedes administrativas y judiciales.",
+    "contact": {
+      "email": "bufete.emyasociados@gmail.com"
+    },
+    "details": [
+      {
+        "title": "Perfil Profesional",
+        "content": "Especialista en Derecho Laboral con enfoque en la resolución de conflictos individuales y colectivos."
+      },
+      {
+        "title": "Especialidades Profesionales",
+        "content": "Derecho Laboral, Seguridad Social, Resolución de Conflictos."
+      }
+    ]
+  }
+]

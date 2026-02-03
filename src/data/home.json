@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "title": "Excelencia Legal con Enfoque Humano",
+    "subtitle": "Defendemos sus derechos con integridad y profesionalismo desde hace más de 20 años",
+    "cta": "AGENDA TU CONSULTA"
+  },
+  "aboutSummary": {
+    "tagline": "TUS ALIADOS LEGALES",
+    "title": "Especialistas con Experiencia que Resuelven",
+    "description": "En EyM & Asociados ofrecemos soluciones legales especializadas con un enfoque humano. Nuestro historial de éxito respalda nuestra capacidad para manejar cualquier desafío legal con profesionalismo e integridad.",
+    "cta": "CONOCER AL EQUIPO",
+    "stats": [
+      {
+        "value": "350+",
+        "label": "Casos con resultados positivos"
+      },
+      {
+        "value": "100%",
+        "label": "Acompañamiento de principio a fin"
+      },
+      {
+        "value": "20+",
+        "label": "Años de experiencia legal"
+      }
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+---
+// Componente Scroll to Top
+// Estilo adaptado: Circular, colors corporativos Navy/Gold
+---
+
+<button
+  id="scroll-to-top"
+  type="button"
+  aria-label="Volver al inicio"
+  class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full 
+         bg-white
+         border border-[#CBD5E0]
+         flex items-center justify-center
+         text-[#091723]
+         shadow-lg hover:shadow-xl
+         transition-all duration-300
+         opacity-0 invisible
+         translate-y-4
+         hover:cursor-pointer
+         hover:scale-110 hover:-translate-y-1 hover:border-[#AF9232] hover:text-[#AF9232]
+         group"
+>
+  <svg 
+    class="w-6 h-6 transition-transform duration-300" 
+    fill="none" 
+    stroke="currentColor" 
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      stroke-width="2" 
+      d="M5 10l7-7m0 0l7 7m-7-7v18" 
+    />
+  </svg>
+</button>
+
+<script>
+  function initScrollToTop() {
+    const scrollButton = document.getElementById('scroll-to-top');
+    if (!scrollButton) return;
+
+    // Mostrar/ocultar botón según scroll
+    function toggleScrollButton() {
+      if (!scrollButton) return;
+      
+      if (window.scrollY > 300) {
+        scrollButton.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+        scrollButton.classList.add('opacity-100', 'visible', 'translate-y-0');
+      } else {
+        scrollButton.classList.add('opacity-0', 'invisible', 'translate-y-4');
+        scrollButton.classList.remove('opacity-100', 'visible', 'translate-y-0');
+      }
+    }
+
+    // Scroll suave al inicio
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Event listeners
+    window.addEventListener('scroll', toggleScrollButton, { passive: true });
+    scrollButton.addEventListener('click', scrollToTop);
+
+    // Check inicial
+    toggleScrollButton();
+  }
+
+  // Inicializar
+  initScrollToTop();
+
+  // Compatibilidad con View Transitions
+  document.addEventListener('astro:page-load', initScrollToTop);
+</script>

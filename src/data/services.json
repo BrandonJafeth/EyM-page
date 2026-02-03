@@ -1,0 +1,131 @@
+[
+  {
+    "id": "civil",
+    "title": "Derecho Civil",
+    "shortDescription": "Representamos a clientes en disputas civiles, buscando soluciones favorables.",
+    "fullDescription": "Representamos a nuestros clientes en disputas civiles, buscando soluciones favorables en tribunales. Proporcionamos asesoramiento legal en asuntos civiles y asumimos la representación en procedimientos legales, cuidando siempre los intereses de nuestros clientes.",
+    "features": [
+      "Litigio",
+      "Asesorías y Representación"
+    ],
+    "icon": "scale"
+  },
+  {
+    "id": "notarial",
+    "title": "Derecho Notarial",
+    "shortDescription": "Trámites de legalización, compra y venta de bienes muebles e inmuebles.",
+    "fullDescription": "Realizamos todo tipo de trámites notariales, garantizando la legalidad y formalidad de los actos y documentos. Asesoramos y gestionamos la legalización de la compra, venta, y transferencia de bienes muebles e inmuebles.",
+    "features": [
+      "Diversidad de Trámites",
+      "Bienes Muebles e Inmuebles"
+    ],
+    "icon": "scroll-text"
+  },
+  {
+    "id": "aduanal",
+    "title": "Derecho Aduanal",
+    "shortDescription": "Asesoría en importación y exportación, asegurando cumplimiento normativo.",
+    "fullDescription": "Asesoramos a nuestros clientes en todos los aspectos legales relacionados con la importación y exportación de bienes, asegurando el cumplimiento de la normativa vigente. Brindamos orientación legal para evitar problemas aduanales y garantizar una operación comercial sin contratiempos.",
+    "features": [
+      "Importación y Exportación",
+      "Asesoría Aduanal"
+    ],
+    "icon": "container"
+  },
+  {
+    "id": "comercial",
+    "title": "Derecho Comercial",
+    "shortDescription": "Creación y gestión de sociedades, contratos y negocios comerciales.",
+    "fullDescription": "Proporcionamos servicios legales para la creación, gestión y disolución de sociedades, así como en la redacción y revisión de contratos comerciales. Adoptamos un enfoque completo que incluye desde la gestión corporativa hasta la compra y venta de negocios comerciales.",
+    "features": [
+      "Gestión Societaria",
+      "Contratos Comerciales"
+    ],
+    "icon": "briefcase"
+  },
+  {
+    "id": "resolucion-conflictos",
+    "title": "Resolución Alterna de Conflictos",
+    "shortDescription": "Mediación y arbitraje como alternativas rápidas a litigios.",
+    "fullDescription": "Ofrecemos servicios de mediación y arbitraje como alternativas rápidas y efectivas a los litigios tradicionales, ayudando a resolver conflictos de manera pacífica y consensuada.",
+    "features": [
+      "Mediación",
+      "Arbitraje",
+      "Conciliación"
+    ],
+    "icon": "handshake"
+  },
+  {
+    "id": "bienes-raices",
+    "title": "Bienes Raíces",
+    "shortDescription": "Asesoría completa en compra, venta y negociación inmobiliaria.",
+    "fullDescription": "El equipo Legal de EYM & Asociados posee una vasta experiencia liderando procesos de compra y venta. Somos una firma boutique de abogados que ofrece un servicio completo en bienes raíces, abarcando desde la negociación hasta los servicios post cierre y el cumplimiento anual.",
+    "features": [
+      "Compra y Venta",
+      "Negociación",
+      "Servicios Post Cierre"
+    ],
+    "icon": "home"
+  },
+  {
+    "id": "inmobiliario",
+    "title": "Derecho Inmobiliario",
+    "shortDescription": "Guía legal en desarrollo inmobiliario: planificación a implementación.",
+    "fullDescription": "Nos destacamos por guiar a nuestros clientes a lo largo de todo el proceso de desarrollo inmobiliario. Ofrecemos asesoramiento en aspectos legales, notariales, corporativos y tributarios. Desde la fase de planificación hasta la implementación, proporcionamos soluciones a medida.",
+    "features": [
+      "Desarrollo Inmobiliario",
+      "Aspectos Notariales y Tributarios",
+      "Planificación Legal"
+    ],
+    "icon": "building-2"
+  },
+  {
+    "id": "bancario",
+    "title": "Derecho Bancario",
+    "shortDescription": "Apertura de cuentas, financiamientos y estructuración bancaria.",
+    "fullDescription": "Somos especialistas en derecho bancario, abordando todo, desde la apertura de cuentas bancarias para empresas y particulares, hasta la negociación y estructuración de financiamientos. Nuestro enfoque integral asegura soluciones eficientes.",
+    "features": [
+      "Apertura de Cuentas",
+      "Financiamientos",
+      "Estructuración"
+    ],
+    "icon": "landmark"
+  },
+  {
+    "id": "fiscal",
+    "title": "Derecho Fiscal",
+    "shortDescription": "Planificación fiscal, patrimonial y gestión ante Administración Tributaria.",
+    "fullDescription": "Somos expertos en derecho tributario, ofreciendo servicios que van desde la planificación fiscal y patrimonial hasta la gestión de grupos empresariales familiares. Nos especializamos en la evaluación y gestión de riesgos fiscales y representación ante la Administración Tributaria.",
+    "features": [
+      "Planificación Fiscal",
+      "Gestión Patrimonial",
+      "Representación Tributaria"
+    ],
+    "icon": "receipt"
+  },
+  {
+    "id": "patrimonio",
+    "title": "Gestión de Patrimonio",
+    "shortDescription": "Protección de activos, optimización fiscal y estructuras patrimoniales.",
+    "fullDescription": "Tenemos un enfoque integral que incluye la identificación de objetivos, la evaluación de las estructuras patrimoniales y la implementación de estrategias legales y financieras para optimizar el pago de impuestos y proteger los activos.",
+    "features": [
+      "Protección de Activos",
+      "Optimización de Impuestos",
+      "Estructuras Patrimoniales"
+    ],
+    "icon": "shield-check"
+  },
+  {
+    "id": "adicionales",
+    "title": "Servicios Adicionales",
+    "shortDescription": "Apostillado, propiedad intelectual, impuestos y custodia de libros.",
+    "fullDescription": "Gestionamos el apostillado y emisión de certificaciones para documentos legales, garantizando su validez internacional. Ofrecemos asesoría legal en la protección de derechos de propiedad intelectual y en la correcta declaración y pago de impuestos. Administramos la custodia de libros legales y contables.",
+    "features": [
+      "Apostillado",
+      "Patentes",
+      "Declaración de Impuestos",
+      "Custodia de Libros"
+    ],
+    "icon": "plus-circle"
+  }
+]
