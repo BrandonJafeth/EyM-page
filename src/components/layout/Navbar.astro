@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import siteData from '../../data/site.json';
+import NavbarMobile from './NavbarMobile';
 
 const links = [
   { text: 'Inicio', href: '/' },
@@ -68,41 +70,19 @@ const headerClass = isHomePage
       </div>
 
       <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none p-2" aria-label="Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile Menu Overlay -->
-  <div id="mobile-menu" class="fixed inset-0 bg-[#091723] z-40 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col items-center justify-center space-y-8">
-    <button id="close-menu-btn" class="absolute top-6 right-6 text-white p-2">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <div class="flex flex-col items-center space-y-8 text-xl">
-      {links.map(link => (
-        <a href={link.href} class="text-white hover:text-[#AF9232] font-heading text-2xl transition-colors">
-          {link.text}
-        </a>
-      ))}
-      <a href="/contacto" class="mt-4 font-heading text-lg text-[#091723] bg-[#AF9232] border border-[#AF9232] px-8 py-3 rounded-[2px] tracking-[0.05em] transition-all">
-        CONTACTAR
-      </a>
+      <!-- Se pasa 'client:load' para que el componente React sea interactivo inmediatamente -->
+      <NavbarMobile 
+        client:load 
+        navLinks={links} 
+        currentPath={currentPath} 
+        socialLinks={siteData.social}
+      />
     </div>
   </div>
 </header>
 
 <script>
   const navbar = document.getElementById('navbar');
-  const navbarContainer = document.getElementById('navbar-container');
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const closeMenuBtn = document.getElementById('close-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
 
   // Sticky Navbar Effect
   function updateNavbar() {
@@ -124,15 +104,4 @@ const headerClass = isHomePage
 
   window.addEventListener('scroll', updateNavbar);
   updateNavbar(); // Init
-
-  // Mobile Menu Logic
-  mobileMenuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.remove('translate-x-full');
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
-  });
-
-  closeMenuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.add('translate-x-full');
-    document.body.style.overflow = '';
-  });
 </script>

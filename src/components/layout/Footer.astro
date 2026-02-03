@@ -17,33 +17,27 @@ const legalLinks = [
 ];
 ---
 
-<footer class="bg-[#091723] text-white pt-16 pb-8 border-t border-[#AF9232]/30">
-  <div class="container mx-auto px-4 md:px-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-      <!-- Brand Column -->
-      <div class="space-y-6">
+<footer class="bg-[#091723] text-white pt-12 md:pt-16 pb-8 border-t border-[#AF9232]/30">
+  <div class="container mx-auto px-6 md:px-6">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 mb-12 md:mb-16">
+      <!-- Brand Column (Full width on mobile) -->
+      <div class="col-span-2 lg:col-span-1 space-y-6">
         <a href="/" class="block">
-          <img src={siteData.logo} alt={siteData.name} class="h-16 w-auto brightness-0 invert" />
+          <img src={siteData.logo} alt={siteData.name} class="h-14 md:h-16 w-auto brightness-0 invert" />
         </a>
         <p class="text-gray-400 font-heading text-lg leading-relaxed max-w-xs">
           Excelencia legal con enfoque humano
         </p>
-        <div class="flex space-x-6 pt-2">
-            <!-- Phone Icon -->
-            <a href={`tel:${siteData.contact.phone.replace(/\s/g, '')}`} class="text-white hover:text-[#AF9232] transition-colors" aria-label="Llamar">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-            </a>
-            <!-- Facebook Icon (Placeholder) -->
-            <a href={siteData.social.facebook} class="text-white hover:text-[#AF9232] transition-colors" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+        <div class="flex space-x-4 pt-2">
+            <!-- Facebook Icon -->
+            <a href={siteData.social.facebook} class="text-gray-400 hover:text-[#AF9232] transition-colors p-2 border border-gray-700 rounded-full hover:border-[#AF9232]" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
                 </svg>
             </a>
-            <!-- Instagram Icon (Placeholder) -->
-            <a href={siteData.social.instagram} class="text-white hover:text-[#AF9232] transition-colors" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <!-- Instagram Icon -->
+            <a href={siteData.social.instagram} class="text-gray-400 hover:text-[#AF9232] transition-colors p-2 border border-gray-700 rounded-full hover:border-[#AF9232]" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
@@ -52,13 +46,13 @@ const legalLinks = [
         </div>
       </div>
 
-      <!-- Navigation -->
-      <div class="flex flex-col">
+      <!-- Navigation (Col 1 on mobile row 2) -->
+      <div class="flex flex-col col-span-1">
         <h3 class="font-heading text-sm font-bold text-[#AF9232] mb-6 uppercase tracking-[0.2em] self-start">NAVEGACIÓN</h3>
         <ul class="space-y-4">
           {navLinks.map(link => (
             <li>
-              <a href={link.href} class="text-gray-300 hover:text-white transition-colors duration-300 text-base">
+              <a href={link.href} class="text-gray-300 hover:text-white transition-colors duration-300 text-sm md:text-base">
                 {link.text}
               </a>
             </li>
@@ -66,32 +60,10 @@ const legalLinks = [
         </ul>
       </div>
 
-      <!-- Contact -->
-      <div class="flex flex-col">
-        <h3 class="font-heading text-sm font-bold text-[#AF9232] mb-6 uppercase tracking-[0.2em]">CONTACTO</h3>
-        <ul class="space-y-4 text-base text-gray-300">
-           <li>
-            <a href={`tel:${siteData.contact.phone.replace(/\s/g, '')}`} class="hover:text-white transition-colors block mb-1">
-               {siteData.contact.phone}
-            </a>
-          </li>
-          <li>
-            <a href={`mailto:${siteData.contact.email}`} class="hover:text-white transition-colors block mb-1">
-              {siteData.contact.email}
-            </a>
-          </li>
-          <li>
-            <a href={siteData.contact.maps_link} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors block leading-relaxed">
-              Liberia, Guanacaste, Costa Rica
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Legal -->
-      <div class="flex flex-col">
+      <!-- Legal (Col 2 on mobile row 2) -->
+      <div class="flex flex-col col-span-1">
           <h3 class="font-heading text-sm font-bold text-[#AF9232] mb-6 uppercase tracking-[0.2em]">LEGAL</h3>
-          <ul class="space-y-4 text-base text-gray-300">
+          <ul class="space-y-4 text-sm md:text-base text-gray-300">
             {legalLinks.map(link => (
               <li>
                 <a href={link.href} class="hover:text-white transition-colors duration-300">
@@ -101,12 +73,72 @@ const legalLinks = [
             ))}
           </ul>
       </div>
+
+      <!-- Contact (Full width on mobile) -->
+      <div class="flex flex-col col-span-2 lg:col-span-1">
+        <h3 class="font-heading text-sm font-bold text-[#AF9232] mb-6 uppercase tracking-[0.2em]">CONTACTO</h3>
+        <ul class="space-y-6">
+           <li class="flex items-start gap-4">
+             <div class="mt-1 text-[#AF9232]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+             </div>
+             <div>
+               <p class="text-[10px] uppercase text-gray-500 font-bold tracking-wider mb-0.5">EMAIL</p>
+               <a href={`mailto:${siteData.contact.email}`} class="text-gray-300 hover:text-white transition-colors text-sm break-all">
+                  {siteData.contact.email}
+               </a>
+             </div>
+          </li>
+          <li class="flex items-start gap-4">
+             <div class="mt-1 text-[#AF9232]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+             </div>
+             <div>
+               <p class="text-[10px] uppercase text-gray-500 font-bold tracking-wider mb-0.5">TELÉFONO</p>
+               <a href={`tel:${siteData.contact.phone.replace(/\s/g, '')}`} class="text-gray-300 hover:text-white transition-colors text-sm">
+                  {siteData.contact.phone}
+               </a>
+             </div>
+          </li>
+          <li class="flex items-start gap-4">
+             <div class="mt-1 text-[#AF9232]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+             </div>
+             <div>
+               <p class="text-[10px] uppercase text-gray-500 font-bold tracking-wider mb-0.5">UBICACIÓN</p>
+               <a href={siteData.contact.maps_link} target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors text-sm leading-relaxed block">
+                  Liberia, Guanacaste
+               </a>
+             </div>
+          </li>
+          <li class="flex items-start gap-4">
+             <div class="mt-1 text-[#AF9232]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+             </div>
+             <div>
+               <p class="text-[10px] uppercase text-gray-500 font-bold tracking-wider mb-0.5">HORARIO</p>
+               <span class="text-gray-300 text-sm">
+                  Lun-Vie: 8:00am - 5:00pm
+               </span>
+             </div>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- Bottom Bar -->
-    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 font-light">
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gray-500 font-light gap-4 md:gap-0">
       <p>&copy; {currentYear} {siteData.name}. Todos los derechos reservados.</p>
-      <p class="mt-4 md:mt-0">Diseñado con excelencia</p>
+      <p>Diseñado con excelencia</p>
     </div>
   </div>
 </footer>
