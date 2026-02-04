@@ -1,0 +1,122 @@
+---
+import { Image } from 'astro:assets';
+import siteData from '../../../data/site.json';
+
+// Image URL from data or existing assets (using the one from Hero for consistency)
+const teamImage = "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/18B9fYF7TJeFd7SzeM9O/media/66df62bbfb53162a111dd1c1.jpeg";
+
+---
+
+<section class="py-24 bg-[#F9FAFB] relative overflow-hidden">
+  <div class="container mx-auto px-6 md:px-[120px]">
+    
+    <!-- Header -->
+    <div class="text-center mb-12 fade-in-section">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <div class="h-[1px] w-8 md:w-12 bg-[#AF9232]"></div>
+        <span class="font-heading text-[#091723] uppercase tracking-[0.2em] text-xs md:text-sm">CONTÁCTANOS</span>
+        <div class="h-[1px] w-8 md:w-12 bg-[#AF9232]"></div>
+      </div>
+      
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl text-[#091723] mb-4 leading-[1.15]">
+        Estamos para Atenderte
+      </h2>
+      
+      <p class="text-gray-600 font-body text-lg max-w-2xl mx-auto">
+        El primer contacto gratuito para conocer tu caso y ofrecerte la mejor solución legal
+      </p>
+
+      <div class="w-16 h-[2px] bg-[#AF9232] mx-auto mt-8 opacity-50"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-stretch max-w-7xl mx-auto">
+      
+      <!-- Contact Info Column -->
+      <div class="space-y-6 md:space-y-8 fade-in-section flex flex-col justify-center py-8 md:py-10">
+        
+        <!-- Phone Card -->
+        <div class="bg-white p-6 md:p-10 shadow-sm border-l-4 border-[#AF9232] flex items-center gap-4 md:gap-6 group hover:shadow-md transition-shadow duration-300">
+          <div class="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#AF9232]/30 flex items-center justify-center text-[#AF9232] group-hover:bg-[#AF9232] group-hover:text-white transition-colors duration-300 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <span class="block font-heading text-xs md:text-sm uppercase tracking-[0.15em] text-gray-500 mb-2 md:mb-3">Teléfono</span>
+            <div class="flex flex-col gap-1 md:gap-2">
+              <a href={`tel:${siteData.contact.phone.replace(/\s/g, '')}`} class="font-heading text-lg md:text-2xl text-[#091723] hover:text-[#AF9232] transition-colors">
+                {siteData.contact.phone}
+              </a>
+               <a href="tel:+50660212971" class="font-heading text-lg md:text-2xl text-[#091723] hover:text-[#AF9232] transition-colors">
+                +506 6021-2971
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email Card -->
+        <div class="bg-white p-6 md:p-10 shadow-sm border-l-4 border-[#AF9232] flex items-center gap-4 md:gap-6 group hover:shadow-md transition-shadow duration-300">
+          <div class="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#AF9232]/30 flex items-center justify-center text-[#AF9232] group-hover:bg-[#AF9232] group-hover:text-white transition-colors duration-300 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div>
+            <span class="block font-heading text-xs md:text-sm uppercase tracking-[0.15em] text-gray-500 mb-2 md:mb-3">Email</span>
+            <a href={`mailto:${siteData.contact.email}`} class="font-heading text-lg md:text-xl lg:text-2xl text-[#091723] hover:text-[#AF9232] transition-colors break-all">
+              {siteData.contact.email}
+            </a>
+          </div>
+        </div>
+
+        <!-- Hours Card -->
+        <div class="bg-white p-6 md:p-10 shadow-sm border-l-4 border-[#AF9232] flex items-center gap-4 md:gap-6 group hover:shadow-md transition-shadow duration-300">
+           <!-- Clock Icon -->
+           <div class="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#AF9232]/30 flex items-center justify-center text-[#AF9232] group-hover:bg-[#AF9232] group-hover:text-white transition-colors duration-300 flex-shrink-0">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+           </div> 
+           <div>
+            <span class="block font-heading text-xs md:text-sm uppercase tracking-[0.15em] text-gray-500 mb-2 md:mb-3">Horario de Atención</span>
+            <div class="space-y-1 font-body text-[#091723] text-base md:text-lg">
+                <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                <p>Sábados: 9:00 AM - 1:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Image Column -->
+      <div class="relative h-full min-h-[500px] lg:min-h-full w-full fade-in-section delay-200">
+        <div class="relative h-full w-full overflow-hidden shadow-2xl">
+            <img 
+              src={teamImage}
+              alt="Equipo legal EYM" 
+              class="w-full h-full object-cover object-top transform hover:scale-105 transition-transform duration-700"
+            />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Button - Centered below -->
+    <div class="mt-16 text-center fade-in-section delay-300">
+         <a 
+          href="/contacto" 
+          class="inline-block px-10 py-4 border border-[#091723] text-[#091723] font-heading text-sm uppercase tracking-[0.2em] hover:bg-[#091723] hover:text-[#AF9232] transition-colors duration-300 shadow-lg"
+        >
+          Agendar Consulta
+        </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

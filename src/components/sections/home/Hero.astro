@@ -1,0 +1,64 @@
+---
+---
+
+<section class="relative w-full h-screen min-h-[700px] overflow-hidden bg-[#091723]">
+  <!-- Background Image - Fullscreen -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770179184/IMG-20260203-WA0040_glhgv4.jpg" 
+      alt="Equipo EYM Asociados" 
+      class="w-full h-full object-cover object-[center_35%] md:object-center"
+    />
+    
+    <!-- Overlay Gradient - Adjusted for text legibility on mobile -->
+    <div 
+      class="absolute inset-0" 
+      style="background: linear-gradient(to bottom, transparent 30%, rgba(8, 22, 34, 0.4) 60%, rgba(9, 25, 39, 0.95) 100%);"
+    ></div>
+  </div>
+
+  <!-- Content - Positioned at bottom -->
+  <div class="absolute bottom-0 left-0 right-0 z-10 w-full container mx-auto px-6 md:px-[120px] pb-32 md:pb-16">
+    
+    <div class="max-w-[800px] fade-in-up">
+      <!-- Main Headline -->
+      <h1 class="font-heading text-[38px] leading-[1.1] md:text-[64px] text-white font-normal mb-4 md:mb-6 tracking-[-0.01em] drop-shadow-md">
+        Excelencia Legal<br />con Enfoque Humano
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="font-heading text-base md:text-[19px] leading-[1.5] text-[#CBD5E0] font-normal mb-6 md:mb-8 max-w-[500px] drop-shadow-sm">
+        Defendemos sus derechos con integridad y profesionalismo desde hace más de 20 años
+      </p>
+
+      <!-- CTA -->
+      <a 
+        href="/contacto" 
+        class="group inline-block font-heading text-sm md:text-base text-white bg-transparent border border-white px-10 py-4 rounded-[2px] tracking-[0.1em] uppercase transition-all duration-300 hover:bg-white hover:text-[#091723]"
+      >
+        AGENDA TU CONSULTA
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .fade-in-delay {
+    animation: fadeInUp 1s ease-out 0.5s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

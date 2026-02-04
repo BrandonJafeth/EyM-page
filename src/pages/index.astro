@@ -1,38 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/home/Hero.astro';
+import AboutSummary from '../components/sections/home/AboutSummary.astro';
+import ServicesSummary from '../components/sections/home/ServicesSummary.astro';
+import ContactSection from '../components/sections/home/ContactSection.astro';
 import siteData from '../data/site.json';
 ---
 
 <Layout title="Inicio" description="Bufete de Abogados en Guanacaste y Cañas. Asesoría legal experta en Derecho Civil, Corporativo y Notarial.">
 	
-	<!-- Hero Placeholder (To test Navbar transparency) -->
-	<section class="relative h-screen flex items-center justify-center bg-[#091723] text-white">
-		<div class="absolute inset-0 bg-black/50 z-10"></div>
-		<!-- Simple placeholder background -->
-		<div class="absolute inset-0 bg-gradient-to-r from-[#091723] to-[#1a2e40] z-0"></div>
-		
-		<div class="container mx-auto px-4 z-20 text-center">
-			<h1 class="font-heading text-5xl md:text-7xl mb-6">
-				{siteData.name}
-			</h1>
-			<p class="text-xl md:text-2xl font-light tracking-wide text-gray-300 mb-8 max-w-2xl mx-auto">
-				Excelencia legal y compromiso ético en Guanacaste.
-			</p>
-			
-		</div>
-	</section>
+	<Hero />
+    
+    <div id="about">
+	    <AboutSummary />
+    </div>
 
-	<section class="py-20 bg-white">
-		<div class="container mx-auto px-4 text-center">
-			<h2 class="font-heading text-4xl text-[#091723] mb-4">Bienvenido al Bufete</h2>
-			<p class="text-gray-600 max-w-3xl mx-auto">
-				Contenido en construcción. Aquí irán las secciones de Sobre Nosotros, Servicios y Contacto.
-			</p>
-		</div>
-	</section>
-	
-	<section class="h-[500px] bg-gray-100 flex items-center justify-center">
-		<p class="text-gray-400 font-heading text-xl">Más contenido para probar el scroll...</p>
-	</section>
+    <ServicesSummary />
+
+    <ContactSection />
 
 </Layout>
+ 

@@ -104,7 +104,7 @@ export default function NavbarMobile({ navLinks, currentPath, socialLinks }: Nav
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
-                className={`font-heading text-4xl sm:text-5xl font-normal
+                className={`font-heading text-3xl sm:text-5xl font-normal
                           hover:scale-105 origin-center relative group
                           transition-all duration-500
                           ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
