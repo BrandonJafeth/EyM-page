@@ -60,36 +60,59 @@ const activeSections = sections.filter(section => {
 
 
 <Layout title={`${member.name} | EYM & Asociados`}>
-  <div class="bg-white pt-32 pb-20 min-h-screen">
-    <div class="container mx-auto px-4">
-      <div class="max-w-5xl mx-auto">
+  <!-- Hero / Profile Header with more distinction -->
+  <div class="relative bg-gray-50 pt-28 pb-12 overflow-hidden">
+    <!-- Decorative background pattern -->
+    <div class="absolute top-0 left-0 w-full h-1 bg-accent"></div>
+     <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#091723 1px, transparent 1px); background-size: 32px 32px;"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-6xl mx-auto">
         
-        <!-- Header Section -->
-        <div class="grid md:grid-cols-[300px_1fr] md:gap-12 lg:gap-16 mb-16 items-start">
-             <div class="aspect-[3/4] w-full overflow-hidden rounded-none group mb-8 md:mb-0 shadow-sm">
-               <img 
-                src={member.image} 
-                alt={member.name}
-                class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                transition:name={`image-${member.id}`}
-              />
+        <div class="grid md:grid-cols-[300px_1fr] gap-8 lg:gap-16 items-start">
+             <!-- Photo with Polaroid Effect - Natural -->
+             <div class="relative group mx-auto md:mx-0 w-full max-w-[280px] md:max-w-full">
+               <!-- Sombra natural suave -->
+               <div class="aspect-[3/4] bg-white p-3 shadow-lg transform rotate-1 transition-transform duration-300 hover:rotate-0 hover:scale-[1.01]">
+                 <div class="w-full h-full overflow-hidden bg-gray-100">
+                   <img 
+                    src={member.image} 
+                    alt={member.name}
+                    class="w-full h-full object-cover object-top filter contrast-[1.05]"
+                    transition:name={`image-${member.id}`}
+                  />
+                 </div>
+               </div>
             </div>
             
-            <div>
-               <span class="inline-block mb-3 font-heading text-lg text-primary/80 italic font-medium">
-                {member.role}
-              </span>
+            <div class="pt-2 md:pt-4">
+               <!-- Role - Elegant Style -->
+               <div class="flex items-center gap-4 mb-4">
+                 <span class="h-px w-8 bg-accent"></span>
+                 <span class="font-heading text-lg text-primary/80 italic font-medium tracking-wide">
+                  {member.role}
+                 </span>
+               </div>
+               
               <h1 class="font-heading text-4xl lg:text-5xl text-primary mb-6 leading-tight">
                 {member.name}
               </h1>
-               <div class="prose prose-lg text-gray-800 max-w-none text-justify leading-relaxed">
+              
+               <div class="prose prose-lg text-gray-700 max-w-none text-justify leading-relaxed font-body border-l-4 border-accent pl-6">
                 <p>{member.fullBio}</p>
               </div>
             </div>
         </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Detailed Content Section -->
+  <div class="bg-white py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
         <!-- Accordion Section -->
-        <div class="mb-16">
+        <div class="mb-12">
             <div class="space-y-4">
               {activeSections.map((section, index) => (
                 <details class="group border border-gray-100 bg-white hover:border-accent/30 transition-all duration-300 open:border-accent/30" open={index === 0}>
