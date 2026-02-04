@@ -17,29 +17,29 @@ const legalLinks = [
 ];
 ---
 
-<footer class="bg-[#091723] text-white pt-16 pb-8 border-t border-[#AF9232]/30">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+<footer class="bg-[#091723] text-white pt-12 pb-6 border-t border-[#AF9232]/30">
+  <div class="container mx-auto px-6 md:px-[60px] lg:px-[100px]">
     
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 lg:gap-8 mb-16">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 lg:gap-8 mb-10">
       
       <!-- Brand Column -->
-      <div class="col-span-2 lg:col-span-1 space-y-6">
+      <div class="col-span-2 lg:col-span-1 space-y-4">
         <a href="/" class="block">
-          <img src={siteData.logo} alt={siteData.name} class="h-12 w-auto brightness-0 invert" />
+          <img src={siteData.logo} alt={siteData.name} class="h-10 w-auto brightness-0 invert" />
         </a>
-        <p class="text-[#CBD5E0] font-heading text-lg leading-relaxed max-w-sm">
+        <p class="text-[#CBD5E0] font-heading text-base leading-relaxed max-w-sm">
           Asesoría legal integral en Guanacaste, comprometidos con la defensa de sus derechos y el éxito de sus proyectos empresariales.
         </p>
       </div>
 
       <!-- Navigation -->
       <div>
-        <h3 class="font-heading text-[#AF9232] text-sm uppercase tracking-[0.15em] mb-6">SERVICIOS</h3>
-        <ul class="space-y-4">
+        <h3 class="font-heading text-[#AF9232] text-xs uppercase tracking-[0.15em] mb-4">SERVICIOS</h3>
+        <ul class="space-y-3">
           {navLinks.map(link => (
             <li>
-              <a href={link.href} class="relative group inline-block py-1">
-                <span class="text-[#CBD5E0] font-light text-base transition-colors duration-300 group-hover:text-[#AF9232]">
+              <a href={link.href} class="relative group inline-block py-0.5">
+                <span class="text-[#CBD5E0] font-light text-sm transition-colors duration-300 group-hover:text-[#AF9232]">
                   {link.text}
                 </span>
                 <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#AF9232] transition-all duration-300 group-hover:w-full"></span>
@@ -51,12 +51,12 @@ const legalLinks = [
 
        <!-- Legal -->
        <div>
-        <h3 class="font-heading text-[#AF9232] text-sm uppercase tracking-[0.15em] mb-6">INFORMACIÓN</h3>
-        <ul class="space-y-4">
+        <h3 class="font-heading text-[#AF9232] text-xs uppercase tracking-[0.15em] mb-4">INFORMACIÓN</h3>
+        <ul class="space-y-3">
           {legalLinks.map(link => (
             <li>
-              <a href={link.href} class="relative group inline-block py-1">
-                <span class="text-[#CBD5E0] font-light text-base transition-colors duration-300 group-hover:text-[#AF9232]">
+              <a href={link.href} class="relative group inline-block py-0.5">
+                <span class="text-[#CBD5E0] font-light text-sm transition-colors duration-300 group-hover:text-[#AF9232]">
                   {link.text}
                 </span>
                 <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#AF9232] transition-all duration-300 group-hover:w-full"></span>
@@ -68,17 +68,17 @@ const legalLinks = [
 
       <!-- Contact -->
       <div class="col-span-2 lg:col-span-1">
-        <h3 class="font-heading text-[#AF9232] text-sm uppercase tracking-[0.15em] mb-6">CONTACTO</h3>
-        <ul class="space-y-6">
+        <h3 class="font-heading text-[#AF9232] text-xs uppercase tracking-[0.15em] mb-4">CONTACTO</h3>
+        <ul class="space-y-4">
            <!-- Phone -->
-           <li class="flex items-start gap-4">
-             <div class="text-[#AF9232] mt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+           <li class="flex items-start gap-3">
+             <div class="text-[#AF9232] mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
              </div>
              <div>
-                <span class="block text-xs uppercase tracking-wider text-gray-500 mb-1">Teléfono</span>
-                <a href={`tel:${siteData.contact.phone.replace(/\s/g, '')}`} class="relative group inline-block py-1">
-                    <span class="text-[#CBD5E0] font-light text-base transition-colors duration-300 group-hover:text-[#AF9232]">
+                <span class="block text-[10px] uppercase tracking-wider text-gray-500 mb-0.5">Teléfono</span>
+                <a href={`tel:${siteData.contact.phone.replace(/\s/g, '')}`} class="relative group inline-block py-0.5">
+                    <span class="text-[#CBD5E0] font-light text-sm transition-colors duration-300 group-hover:text-[#AF9232]">
                     {siteData.contact.phone}
                     </span>
                     <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#AF9232] transition-all duration-300 group-hover:w-full"></span>
@@ -87,14 +87,14 @@ const legalLinks = [
           </li>
 
            <!-- Email -->
-           <li class="flex items-start gap-4">
-             <div class="text-[#AF9232] mt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+           <li class="flex items-start gap-3">
+             <div class="text-[#AF9232] mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
              </div>
              <div>
-                <span class="block text-xs uppercase tracking-wider text-gray-500 mb-1">Email</span>
-                <a href={`mailto:${siteData.contact.email}`} class="relative group inline-block py-1 break-all">
-                    <span class="text-[#CBD5E0] font-light text-base transition-colors duration-300 group-hover:text-[#AF9232]">
+                <span class="block text-[10px] uppercase tracking-wider text-gray-500 mb-0.5">Email</span>
+                <a href={`mailto:${siteData.contact.email}`} class="relative group inline-block py-0.5 break-all">
+                    <span class="text-[#CBD5E0] font-light text-sm transition-colors duration-300 group-hover:text-[#AF9232]">
                     {siteData.contact.email}
                     </span>
                     <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#AF9232] transition-all duration-300 group-hover:w-full"></span>
@@ -103,14 +103,14 @@ const legalLinks = [
           </li>
           
            <!-- Location -->
-           <li class="flex items-start gap-4">
-             <div class="text-[#AF9232] mt-1">
-               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+           <li class="flex items-start gap-3">
+             <div class="text-[#AF9232] mt-0.5">
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
              </div>
              <div>
-                <span class="block text-xs uppercase tracking-wider text-gray-500 mb-1">Ubicación</span>
-                <a href={siteData.contact.maps_link} target="_blank" rel="noopener noreferrer" class="relative group inline-block py-1">
-                    <span class="text-[#CBD5E0] font-light text-base transition-colors duration-300 group-hover:text-[#AF9232]">
+                <span class="block text-[10px] uppercase tracking-wider text-gray-500 mb-0.5">Ubicación</span>
+                <a href={siteData.contact.maps_link} target="_blank" rel="noopener noreferrer" class="relative group inline-block py-0.5">
+                    <span class="text-[#CBD5E0] font-light text-sm transition-colors duration-300 group-hover:text-[#AF9232]">
                     Liberia, Guanacaste
                     </span>
                     <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#AF9232] transition-all duration-300 group-hover:w-full"></span>
@@ -119,13 +119,13 @@ const legalLinks = [
           </li>
 
            <!-- Hours -->
-           <li class="flex items-start gap-4">
-             <div class="text-[#AF9232] mt-1">
-               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+           <li class="flex items-start gap-3">
+             <div class="text-[#AF9232] mt-0.5">
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
              </div>
              <div>
-                <span class="block text-xs uppercase tracking-wider text-gray-500 mb-1">Horario</span>
-                <div class="text-[#CBD5E0] font-light text-base">
+                <span class="block text-[10px] uppercase tracking-wider text-gray-500 mb-0.5">Horario</span>
+                <div class="text-[#CBD5E0] font-light text-sm">
                   <p>Lun - Vie: 8:00 AM - 6:00 PM</p>
                   <p>Sáb: 9:00 AM - 1:00 PM</p>
                 </div>
@@ -138,7 +138,7 @@ const legalLinks = [
     </div>
 
     <!-- Bottom Bar -->
-    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 font-light">
+    <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light">
       <p>&copy; {currentYear} EYM & Asociados. Todos los derechos reservados.</p>
       <p class="mt-2 md:mt-0">Diseñado con excelencia</p>
     </div>
