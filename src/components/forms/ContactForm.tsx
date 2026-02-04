@@ -93,8 +93,8 @@ export default function ContactForm() {
     alert('Gracias por contactarnos. Nos pondremos en contacto pronto.');
   };
 
-  const inputClasses = "w-full bg-[#FAFAFA] border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-[#AF9232] transition-colors font-body text-gray-700";
-  const labelClasses = "block font-heading text-xs uppercase tracking-[0.1em] text-gray-400 mb-2";
+  const inputClasses = "w-full bg-[#FAFAFA] border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-[#AF9232] focus:ring-1 focus:ring-[#AF9232] transition-colors font-body text-gray-700";
+  const labelClasses = "block font-heading text-xs uppercase tracking-[0.1em] text-gray-500 mb-2 font-bold";
 
   return (
     <section className="py-16 md:py-20 bg-white">
@@ -289,8 +289,8 @@ export default function ContactForm() {
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${
                     formData.medioContacto === option 
                       ? 'border-2 border-[#AF9232]' 
-                      : 'border border-gray-200 group-hover:border-gray-300'
-                  }`}>
+                      : 'border border-gray-300 group-hover:border-gray-400'
+                  } group-focus-within:ring-2 group-focus-within:ring-[#AF9232] group-focus-within:ring-offset-2`}>
                     {formData.medioContacto === option && (
                       <div className="w-3 h-3 rounded-full bg-[#AF9232]"></div>
                     )}
@@ -302,13 +302,13 @@ export default function ContactForm() {
                     value={option}
                     checked={formData.medioContacto === option}
                     onChange={handleChange}
-                    className="hidden"
+                    className="sr-only"
                   />
                   
                   <span className={`font-heading text-lg font-normal tracking-wide transition-colors ${
                     formData.medioContacto === option 
                       ? 'text-[#091723]' 
-                      : 'text-[#d1d5db] group-hover:text-gray-400' /* text-gray-300 to match faint gray in image */
+                      : 'text-gray-500 group-hover:text-gray-600'
                   }`}>
                     {option}
                   </span>
@@ -321,7 +321,7 @@ export default function ContactForm() {
           <div className="text-center mt-12">
             <button 
               type="submit" 
-              className="w-full bg-[#AF9232] text-white font-heading uppercase tracking-[0.2em] text-sm py-5 hover:bg-[#967d29] transition-all duration-300 shadow-md hover:shadow-lg"
+              className="w-full bg-[#AF9232] text-white font-heading uppercase tracking-[0.2em] text-sm py-5 hover:bg-[#967d29] focus:outline-none focus:ring-2 focus:ring-[#AF9232] focus:ring-offset-2 transition-all duration-300 shadow-md hover:shadow-lg"
             >
               Enviar Mensaje
             </button>

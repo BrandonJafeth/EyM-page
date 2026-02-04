@@ -9,13 +9,9 @@ interface NavLink {
 interface NavbarMobileProps {
   navLinks: NavLink[];
   currentPath: string;
-  socialLinks: {
-    facebook: string;
-    instagram: string;
-  };
 }
 
-export default function NavbarMobile({ navLinks, currentPath, socialLinks }: NavbarMobileProps) {
+export default function NavbarMobile({ navLinks, currentPath }: NavbarMobileProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -120,47 +116,6 @@ export default function NavbarMobile({ navLinks, currentPath, socialLinks }: Nav
             );
           })}
         </nav>
-
-        {/* Separator */}
-        <div className={`w-12 h-0.5 bg-[#AF9232] opacity-30 mb-8 transition-all duration-700 ${isOpen ? 'translate-y-0 opacity-30' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: '400ms' }}></div>
-
-        {/* Social Links */}
-        <div 
-          className={`flex justify-center gap-8 transition-all duration-700 ${
-            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-          }`}
-          style={{ transitionDelay: '500ms' }}
-        >
-          {socialLinks.instagram && (
-            <a 
-              href={socialLinks.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/60 hover:text-[#AF9232] transition-colors duration-300"
-              aria-label="Instagram"
-            >
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                </svg>
-            </a>
-          )}
-
-          {socialLinks.facebook && (
-            <a 
-              href={socialLinks.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/60 hover:text-[#AF9232] transition-colors duration-300"
-              aria-label="Facebook"
-            >
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-                </svg>
-            </a>
-          )}
-        </div>
       </div>
     </div>
   );
