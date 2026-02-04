@@ -116,19 +116,21 @@ export default function NavbarMobile({ navLinks, currentPath }: NavbarMobileProp
             );
           })}
 
-          {/* Mobile CTA */}
-          <div 
+          {/* Mobile CTA - Removed as per request */}
+          {/* <div 
              className={`mt-12 transition-all duration-700 delay-300
                         ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
           >
             <a 
-              href="/contacto" 
+              href="https://wa.me/50687053112"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={closeMenu}
               className="inline-block border border-accent text-accent font-heading text-sm uppercase tracking-[0.2em] py-4 px-10 hover:bg-accent hover:text-primary transition-colors duration-300"
             >
               Contactar
             </a>
-          </div>
+          </div> */}
 
         </nav>
       </div>
