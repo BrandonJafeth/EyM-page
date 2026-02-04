@@ -5,22 +5,22 @@
     "cta": "AGENDA TU CONSULTA"
   },
   "aboutSummary": {
-    "tagline": "EM & ASOCIADOS",
-    "title": "ACERCA DEL BUFETE",
-    "description": "En EM & Asociados ofrecemos una amplia gama de servicios legales especializados. Con un equipo altamente experimentado, proporcionamos soluciones integrales y personalizadas para satisfacer las necesidades de cada cliente en cada etapa de sus proyectos y operaciones.",
+    "tagline": "TUS ALIADOS LEGALES",
+    "title": "Especialistas con Experiencia<br />que Resuelven",
+    "description": "En EyM & Asociados ofrecemos soluciones legales especializadas con un enfoque humano. Nuestro historial de éxito respalda nuestra capacidad para manejar cualquier desafío legal con profesionalismo e integridad.",
     "cta": "CONOCER AL EQUIPO",
     "stats": [
       {
-        "value": "17+",
-        "label": "Años de experiencia judicial"
+        "value": "350+",
+        "label": "Casos con resultados positivos"
       },
       {
         "value": "100%",
-        "label": "Compromiso y Diligencia"
+        "label": "Acompañamiento de principio a fin"
       },
       {
-        "value": "Integral",
-        "label": "Soluciones Legales"
+        "value": "20+",
+        "label": "Años de experiencia legal"
       }
     ]
   }
