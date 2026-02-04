@@ -24,38 +24,36 @@ const services = (servicesData as ServicesData).especializados;
     </SectionTitle>
 
     <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {services.map((service, index) => (
         <div 
-          class="bg-white p-8 md:p-10 flex flex-col h-full border border-gray-200 hover:shadow-lg transition-shadow duration-300 ease-out fade-in-section"
+          class="bg-white p-6 md:p-10 flex flex-col h-full border border-gray-200 hover:shadow-lg transition-shadow duration-300 ease-out fade-in-section"
           style={`transition-delay: ${index * 100}ms`}
         >
           
           {/* Number */}
-          <div class="font-heading text-accent/80 text-4xl mb-6">
+          <div class="font-heading text-accent/80 text-3xl md:text-4xl mb-4 md:mb-6">
             {(index + 1).toString().padStart(2, '0')}
           </div>
 
           {/* Title */}
-          <h3 class="font-heading text-2xl text-primary mb-6">
+          <h3 class="font-heading text-xl md:text-2xl text-primary mb-4 md:mb-6">
             {service.title}
           </h3>
 
           {/* Divider */}
-          <div class="w-12 h-px bg-accent mb-6"></div>
+          <div class="w-8 md:w-12 h-px bg-accent mb-4 md:mb-6"></div>
 
           {/* Description */}
-          <p class="text-gray-500 font-body font-light text-sm leading-relaxed mb-8 flex-grow">
+          <p class="text-gray-500 font-body font-light text-sm leading-relaxed mb-6 md:mb-8 flex-grow">
             {service.fullDescription || service.shortDescription}
           </p>
 
-          {/* Features List -- Omitted to match clean card look in screenshot, but can keep if user wants detail. Screenshot doesn't show bullet points, just text. I will omit for now to match screenshot "clean" look, or verify. Screenshot 2 shows text paragraphs. Screenshot 1 in previous turn showed bullet points. The latest screenshot (white cards) does NOT show bullet points. It shows a paragraph. I will remove features list to match the "white card" screenshot exactly. */}
-          
           {/* Button */}
-          <div class="mt-auto pt-6">
+          <div class="mt-auto pt-4 md:pt-6">
             <a 
               href="/contacto" 
-              class="block w-full text-center py-3 border border-accent text-accent font-heading text-xs uppercase tracking-[0.15em] hover:bg-accent hover:text-primary transition-all duration-300 font-bold"
+              class="block w-full text-center py-3 border border-accent text-accent font-heading text-[10px] md:text-xs uppercase tracking-[0.15em] hover:bg-accent hover:text-primary transition-all duration-300 font-bold"
             >
               Consultar Ahora
             </a>
