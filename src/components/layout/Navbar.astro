@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import siteDataRaw from '../../data/site.json';
 import type { SiteData } from '../../types';
-import NavbarMobile from './NavbarMobile';
 
 const siteData = siteDataRaw as SiteData;
 
@@ -73,12 +72,126 @@ const headerClass = "fixed top-0 w-full z-50 transition-all duration-300 bg-prim
       </div>
 
       <!-- Mobile Menu Button -->
-      <!-- Se pasa 'client:load' para que el componente React sea interactivo inmediatamente -->
-      <NavbarMobile 
-        client:load 
-        navLinks={links} 
-        currentPath={currentPath} 
-      />
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden relative w-10 h-10 flex items-center justify-center text-white focus:outline-none z-[110]"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        type="button"
+      >
+        <div class="w-6 flex flex-col items-center justify-center gap-1.5 pointer-events-none">
+          <span class="w-full h-0.5 bg-current transition-all duration-300 ease-out origin-center block hamburger-line-1"></span>
+          <span class="w-full h-0.5 bg-current transition-all duration-200 block hamburger-line-2"></span>
+          <span class="w-full h-0.5 bg-current transition-all duration-300 ease-out origin-center block hamburger-line-3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu-overlay"
+    class="fixed inset-0 z-[100] opacity-0 invisible pointer-events-none transition-all duration-500 ease-out"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menú de navegación móvil"
+  >
+      
+    <!-- Background - Dark Navy Corporate -->
+    <div class="absolute inset-0 bg-primary shadow-2xl"></div>
+
+     <!-- Subtle Pattern Overlay -->
+     <div 
+      class="absolute inset-0 opacity-[0.03]"
+      style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"
+    ></div>
+
+    <!-- Content Container -->
+    <div class="relative h-full w-full flex flex-col items-center justify-center px-6">
+      
+      <!-- Main Navigation -->
+      <nav class="flex flex-col items-center space-y-8 mb-16">
+        {links.map((link, index) => {
+          const isActive = link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href);
+          return (
+            <a
+              href={link.href}
+              class:list={[
+                "mobile-nav-link font-heading text-3xl sm:text-5xl font-normal hover:scale-105 origin-center relative transition-all duration-500 transform translate-y-8 opacity-0",
+                isActive ? "text-accent" : "text-white hover:text-accent"
+              ]}
+              style={`transition-delay: ${index * 100}ms`}
+            >
+              {link.text}
+            </a>
+          );
+        })}
+      </nav>
     </div>
   </div>
 </header>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const links = document.querySelectorAll('.mobile-nav-link');
+    const lines = btn?.querySelectorAll('span');
+    
+    if (!btn || !overlay) return;
+
+    let isOpen = false;
+
+    function toggleMenu() {
+      isOpen = !isOpen;
+      
+      if (isOpen) {
+        // Open
+        overlay?.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+        overlay?.classList.add('opacity-100', 'visible');
+        document.body.style.overflow = 'hidden';
+        btn?.setAttribute('aria-expanded', 'true');
+        btn?.setAttribute('aria-label', 'Cerrar menú');
+        
+        // Animate hamburger
+        lines?.[0].classList.add('rotate-45', 'translate-y-2');
+        lines?.[1].classList.add('opacity-0', 'scale-0');
+        lines?.[2].classList.add('-rotate-45', '-translate-y-2');
+        
+        // Animate links
+        links.forEach(link => {
+          link.classList.remove('translate-y-8', 'opacity-0');
+          link.classList.add('translate-y-0', 'opacity-100');
+        });
+
+      } else {
+        // Close
+        overlay?.classList.remove('opacity-100', 'visible');
+        overlay?.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+        document.body.style.overflow = '';
+        btn?.setAttribute('aria-expanded', 'false');
+        btn?.setAttribute('aria-label', 'Abrir menú');
+
+        // Reset hamburger
+        lines?.[0].classList.remove('rotate-45', 'translate-y-2');
+        lines?.[1].classList.remove('opacity-0', 'scale-0');
+        lines?.[2].classList.remove('-rotate-45', '-translate-y-2');
+
+        // Reset links
+        links.forEach(link => {
+          link.classList.add('translate-y-8', 'opacity-0');
+          link.classList.remove('translate-y-0', 'opacity-100');
+        });
+      }
+    }
+
+    btn.addEventListener('click', toggleMenu);
+
+    // Close on link click
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        if (isOpen) toggleMenu();
+      });
+    });
+  });
+</script>

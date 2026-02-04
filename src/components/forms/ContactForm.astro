@@ -1,0 +1,375 @@
+<section class="py-16 md:py-20 bg-white">
+  <div class="container mx-auto px-6 md:px-8 max-w-5xl">
+    <div class="text-center mb-16">
+      <p class="text-primary font-heading text-xs uppercase tracking-[0.2em] mb-4">Contáctanos</p>
+      <h2 class="font-heading text-4xl md:text-5xl text-primary mb-4">Inicia la Conversación</h2>
+      <p class="text-gray-500 font-body font-light text-lg">Completa el formulario y nos pondremos en contacto contigo a la brevedad</p>
+      <div class="w-16 h-px bg-accent mx-auto mt-8"></div>
+    </div>
+
+    <form id="contact-form" class="bg-white p-8 md:p-12 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] border border-gray-100 max-w-4xl mx-auto rounded-md">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 mb-10">
+        <!-- Nombre -->
+        <div>
+          <label for="nombre" class="block font-heading text-xs uppercase tracking-[0.1em] text-gray-500 mb-2 font-bold">Nombre Completo *</label>
+          <input 
+            type="text" 
+            id="nombre" 
+            name="nombre" 
+            placeholder="Tu nombre"
+            class="w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700"
+            required
+          />
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="email" class="block font-heading text-xs uppercase tracking-[0.1em] text-gray-500 mb-2 font-bold">Email *</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="ejemplo@correo.com"
+            class="w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700"
+            required
+          />
+        </div>
+
+        <!-- Teléfono -->
+        <div>
+          <label for="telefono" class="block font-heading text-xs uppercase tracking-[0.1em] text-gray-500 mb-2 font-bold">Teléfono *</label>
+          <input 
+            type="tel" 
+            id="telefono" 
+            name="telefono" 
+            placeholder="+506 0000-0000"
+            class="w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700"
+            required
+          />
+        </div>
+
+        <!-- Provincia -->
+        <div>
+          <label for="provincia" class="block font-heading text-xs uppercase tracking-[0.1em] text-gray-500 mb-2 font-bold">Provincia *</label>
+          <div class="relative">
+            <select 
+              id="provincia" 
+              name="provincia" 
+              class="w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700 appearance-none cursor-pointer"
+              required
+            >
+              <option value="" disabled selected>Seleccionar Provincia...</option>
+              <!-- Options populated by JS -->
+            </select>
+            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cantón -->
+        <div id="canton-wrapper" class="hidden">
+            <label for="canton" class="block font-heading text-xs uppercase tracking-[0.1em] text-gray-500 mb-2 font-bold">Cantón *</label>
+            <div class="relative">
+                <select 
+                id="canton" 
+                name="canton" 
+                class="w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700 appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                required
+                disabled
+                >
+                <option value="" disabled selected>Seleccionar Cantón...</option>
+                </select>
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Distrito -->
+        <div id="distrito-wrapper" class="hidden">
+            <label for="distrito" class="block font-heading text-xs uppercase tracking-[0.1em] text-gray-500 mb-2 font-bold">Distrito *</label>
+            <div class="relative">
+                <select 
+                id="distrito" 
+                name="distrito" 
+                class="w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700 appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                required
+                disabled
+                >
+                <option value="" disabled selected>Seleccionar Distrito...</option>
+                </select>
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Area Legal -->
+        <div>
+          <label for="areaLegal" class="block font-heading text-xs uppercase tracking-[0.1em] text-gray-500 mb-2 font-bold">Área Legal *</label>
+          <div class="relative">
+            <select 
+              id="areaLegal" 
+              name="areaLegal" 
+              class="w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700 appearance-none cursor-pointer"
+            >
+              <option value="" disabled selected>Seleccionar...</option>
+              <option value="civil">Derecho Civil</option>
+              <option value="corporativo">Derecho Corporativo</option>
+              <option value="notarial">Derecho Notarial</option>
+              <option value="penal">Derecho Penal</option>
+              <option value="familia">Derecho de Familia</option>
+              <option value="otro">Otro</option>
+            </select>
+            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Como nos conoció -->
+        <div>
+          <label for="comoConocio" class="block font-heading text-xs uppercase tracking-[0.1em] text-gray-500 mb-2 font-bold">¿Cómo nos conoció? *</label>
+          <div class="relative">
+            <select 
+              id="comoConocio" 
+              name="comoConocio" 
+              class="w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700 appearance-none cursor-pointer"
+            >
+              <option value="" disabled selected>Seleccionar...</option>
+              <option value="google">Búsqueda en Google</option>
+              <option value="redes">Redes Sociales</option>
+              <option value="recomendacion">Recomendación</option>
+              <option value="otro">Otro</option>
+            </select>
+            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preferencia de Contacto -->
+      <div class="mb-10 pt-2">
+        <label class="block font-heading text-xs uppercase tracking-[0.1em] text-gray-500 mb-2 font-bold">Preferencia de Contacto</label>
+        <div id="contact-preference-group" class="flex flex-col md:flex-row gap-8 md:gap-16 mt-5">
+            <!-- Correo -->
+            <label class="flex items-center gap-3 cursor-pointer group select-none">
+                <input type="radio" name="medioContacto" value="Correo Electrónico" class="sr-only peer" checked>
+                <div class="w-6 h-6 rounded-full flex items-center justify-center border border-gray-300 group-hover:border-gray-400 peer-checked:border-2 peer-checked:border-accent transition-all duration-300">
+                    <div class="w-3 h-3 rounded-full bg-accent opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                </div>
+                <span class="font-heading text-lg font-normal tracking-wide text-gray-500 group-hover:text-gray-600 peer-checked:text-primary transition-colors">Correo Electrónico</span>
+            </label>
+
+            <!-- Teléfono -->
+            <label class="flex items-center gap-3 cursor-pointer group select-none">
+                <input type="radio" name="medioContacto" value="Llamada Telefónica" class="sr-only peer">
+                <div class="w-6 h-6 rounded-full flex items-center justify-center border border-gray-300 group-hover:border-gray-400 peer-checked:border-2 peer-checked:border-accent transition-all duration-300">
+                    <div class="w-3 h-3 rounded-full bg-accent opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                </div>
+                <span class="font-heading text-lg font-normal tracking-wide text-gray-500 group-hover:text-gray-600 peer-checked:text-primary transition-colors">Llamada Telefónica</span>
+            </label>
+
+            <!-- WhatsApp -->
+            <label class="flex items-center gap-3 cursor-pointer group select-none">
+                <input type="radio" name="medioContacto" value="WhatsApp" class="sr-only peer">
+                <div class="w-6 h-6 rounded-full flex items-center justify-center border border-gray-300 group-hover:border-gray-400 peer-checked:border-2 peer-checked:border-accent transition-all duration-300">
+                    <div class="w-3 h-3 rounded-full bg-accent opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                </div>
+                <span class="font-heading text-lg font-normal tracking-wide text-gray-500 group-hover:text-gray-600 peer-checked:text-primary transition-colors">WhatsApp</span>
+            </label>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="text-center mt-12">
+        <button 
+          type="submit" 
+          class="w-full bg-accent text-white font-heading uppercase tracking-[0.2em] text-sm py-5 hover:brightness-90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 transition-all duration-300 shadow-md hover:shadow-lg"
+        >
+          Enviar Mensaje
+        </button>
+        <p class="mt-6 text-xs text-gray-400 font-heading tracking-widest font-light">Respuesta en 24 horas hábiles</p>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<script>
+    // Interfaces for Type Safety (in JSDoc)
+    /**
+     * @typedef {Object} LocationOption
+     * @property {string} id
+     * @property {string} name
+     */
+     
+    // Module-specific cache to persist across client-side navigations (View Transitions)
+    // Because scripts in Astro are modules (run once), these variables persist.
+    let cachedProvinces: { id: string, name: string }[] | null = null;
+    const cantonCache: Record<string, any> = {};
+    const districtCache: Record<string, any> = {};
+
+    function initContactForm() {
+        const provinciaSelect = document.getElementById('provincia') as HTMLSelectElement | null;
+        const cantonSelect = document.getElementById('canton') as HTMLSelectElement | null;
+        const distritoSelect = document.getElementById('distrito') as HTMLSelectElement | null;
+        
+        const cantonWrapper = document.getElementById('canton-wrapper') as HTMLDivElement | null;
+        const distritoWrapper = document.getElementById('distrito-wrapper') as HTMLDivElement | null;
+        const form = document.getElementById('contact-form') as HTMLFormElement | null;
+
+        // Exit if elements don't exist (not on contact page)
+        if (!provinciaSelect || !cantonSelect || !distritoSelect || !cantonWrapper || !distritoWrapper || !form) {
+            return;
+        }
+
+        async function fetchProvinces(selectElement: HTMLSelectElement) {
+            if (selectElement.options.length > 1) return; // Already populated
+
+            if (!cachedProvinces) {
+                try {
+                const res = await fetch('https://ubicaciones.paginasweb.cr/provincias.json');
+                const data = await res.json();
+                cachedProvinces = Object.entries(data).map(([id, name]) => ({ id, name: name as string }));
+                } catch (err) {
+                    console.error("Error fetching provinces:", err);
+                    return;
+                }
+            }
+            
+            cachedProvinces.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.name;
+                opt.dataset.id = p.id; 
+                opt.textContent = p.name;
+                selectElement.appendChild(opt);
+            });
+        }
+
+        async function loadCantons(provinceId: string) {
+            if (!provinceId || !cantonSelect || !distritoSelect || !distritoWrapper || !cantonWrapper) return;
+
+            // Clear existing
+            cantonSelect.innerHTML = '<option value="" disabled selected>Seleccionar Cantón...</option>';
+            distritoSelect.innerHTML = '<option value="" disabled selected>Seleccionar Distrito...</option>';
+            cantonSelect.disabled = true;
+            distritoSelect.disabled = true;
+            distritoWrapper.classList.add('hidden');
+
+            try {
+                let data;
+                if (cantonCache[provinceId]) {
+                    data = cantonCache[provinceId];
+                } else {
+                    const res = await fetch(`https://ubicaciones.paginasweb.cr/provincia/${provinceId}/cantones.json`);
+                    data = await res.json();
+                    cantonCache[provinceId] = data;
+                }
+
+                const list = Object.entries(data).map(([id, name]) => ({ id, name: name as string }));
+                
+                list.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c.name;
+                    opt.dataset.id = c.id;
+                    opt.textContent = c.name;
+                    cantonSelect.appendChild(opt);
+                });
+
+                cantonSelect.disabled = false;
+                cantonWrapper.classList.remove('hidden');
+                cantonWrapper.classList.add('animate-in', 'fade-in', 'slide-in-from-top-2');
+
+            } catch (err) {
+                console.error("Error fetching cantons:", err);
+            }
+        }
+
+        async function loadDistricts(provinceId: string, cantonId: string) {
+            if (!provinceId || !cantonId || !distritoSelect || !distritoWrapper) return;
+
+            // Clear existing
+            distritoSelect.innerHTML = '<option value="" disabled selected>Seleccionar Distrito...</option>';
+            distritoSelect.disabled = true;
+
+            const cacheKey = `${provinceId}-${cantonId}`;
+
+            try {
+                let data;
+                if (districtCache[cacheKey]) {
+                    data = districtCache[cacheKey];
+                } else {
+                    const res = await fetch(`https://ubicaciones.paginasweb.cr/provincia/${provinceId}/canton/${cantonId}/distritos.json`);
+                    data = await res.json();
+                    districtCache[cacheKey] = data;
+                }
+
+                const list = Object.entries(data).map(([id, name]) => ({ id, name: name as string }));
+                
+                list.forEach(d => {
+                    const opt = document.createElement('option');
+                    opt.value = d.name;
+                    opt.dataset.id = d.id;
+                    opt.textContent = d.name;
+                    distritoSelect.appendChild(opt);
+                });
+
+                distritoSelect.disabled = false;
+                distritoWrapper.classList.remove('hidden');
+                distritoWrapper.classList.add('animate-in', 'fade-in', 'slide-in-from-top-2');
+
+            } catch (err) {
+                console.error("Error fetching districts:", err);
+            }
+        }
+
+
+        // Event Listeners
+        provinciaSelect.addEventListener('change', (e) => {
+            const target = e.target as HTMLSelectElement;
+            const selectedOption = target.options[target.selectedIndex];
+            const provinceId = selectedOption.dataset.id;
+            
+            if (provinceId) {
+                loadCantons(provinceId);
+            }
+        });
+
+        cantonSelect.addEventListener('change', (e) => {
+            const target = e.target as HTMLSelectElement;
+            const selectedOption = target.options[target.selectedIndex];
+            const cantonId = selectedOption.dataset.id;
+            
+            // Need province ID again
+            const provinceOption = provinciaSelect.options[provinciaSelect.selectedIndex];
+            const provinceId = provinceOption.dataset.id;
+
+            if (provinceId && cantonId) {
+                loadDistricts(provinceId, cantonId);
+            }
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            console.log('Form Submitted (Vanilla JS)', data);
+            alert('Gracias por contactarnos. Nos pondremos en contacto pronto.');
+            form.reset();
+            // Reset dynamic fields UI
+            cantonWrapper.classList.add('hidden');
+            distritoWrapper.classList.add('hidden');
+        });
+
+        // Initialize
+        fetchProvinces(provinciaSelect);
+    }
+
+    // Run on initial load and View Transitions navigation
+    document.addEventListener('astro:page-load', initContactForm);
+
+</script>

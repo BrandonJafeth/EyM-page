@@ -1,13 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContactForm from '../components/forms/ContactForm';
+import ContactForm from '../components/forms/ContactForm.astro';
 import Offices from '../components/sections/contact/Offices.astro';
 import FAQ from '../components/sections/contact/FAQ.astro';
 ---
 
 <Layout title="Contacto" description="Contáctenos para asesoría legal en Guanacaste y todo Costa Rica. Agende su consulta hoy.">
   <main class="pt-24 md:pt-32">
-    <ContactForm client:visible />
+    <ContactForm />
     <Offices />
     <FAQ />
   </main>
