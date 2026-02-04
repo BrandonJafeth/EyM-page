@@ -35,11 +35,6 @@ const finalServices = displayedServices.length >= 6 ? displayedServices : allSer
           style={`transition-delay: ${index * 100}ms`}
         >
           <div>
-            <!-- Number -->
-            <div class="font-heading text-accent text-xs md:text-sm mb-4 md:mb-6">
-              {(index + 1).toString().padStart(2, '0')}
-            </div>
-
             <!-- Title -->
             <h3 class="font-heading text-xl md:text-2xl lg:text-3xl text-white mb-4 md:mb-6 leading-tight group-hover:text-accent transition-colors duration-300">
               {service.title}

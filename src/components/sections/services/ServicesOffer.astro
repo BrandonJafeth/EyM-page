@@ -17,7 +17,7 @@ const finalServices = (servicesData as ServicesData).oferta;
     >
       <div class="w-20 h-1 bg-accent mb-6"></div>
       <p class="text-gray-500 font-body text-sm md:text-base font-light max-w-2xl">
-        Nos especializamos en ofrecer servicios legales integrales en las siguientes áreas
+        Presentamos nuestras áreas de práctica más solicitadas. Sin embargo, nuestro equipo multidisciplinario está capacitado para asesorarle en una amplia variedad de trámites y procesos legales adicionales según sus necesidades específicas.
       </p>
     </SectionTitle>
 
@@ -28,11 +28,7 @@ const finalServices = (servicesData as ServicesData).oferta;
           class="bg-primary p-6 md:p-10 flex flex-col h-full fade-in-section hover:shadow-2xl transition-shadow duration-300 rounded-sm"
           style={`transition-delay: ${index * 100}ms`}
         >
-          <!-- Number -->
-          <div class="font-heading text-accent text-4xl md:text-5xl lg:text-6xl font-light mb-4 md:mb-6 opacity-90">
-            {(index + 1).toString().padStart(2, '0')}
-          </div>
-
+          
           <!-- Title -->
           <h3 class="font-heading text-2xl md:text-3xl lg:text-[2.5rem] text-white mb-6 md:mb-8 leading-tight font-normal">
             {service.title.replace('Derecho ', '')}
