@@ -6,7 +6,10 @@ import SectionTitle from '../../common/SectionTitle.astro';
 const { class: className } = Astro.props;
 
 // Use the specialized services list
-const services = (servicesData as ServicesData).especializados;
+const targetIds = ['bienes-raices', 'comercial', 'inmobiliario', 'bancario', 'fiscal', 'patrimonio'];
+const data = servicesData as ServicesData;
+const detailedServices = data.detailed_services || [];
+const services = detailedServices.filter((s) => targetIds.includes(s.id));
 ---
 
 <section class:list={["py-24", className || "bg-white"]}>

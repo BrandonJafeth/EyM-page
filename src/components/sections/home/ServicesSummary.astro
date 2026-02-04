@@ -1,19 +1,12 @@
 ---
 import servicesData from '../../../data/services.json';
-import type { ServicesData, Service } from '../../../types';
+import type { ServicesData } from '../../../types';
 import SectionTitle from '../../common/SectionTitle.astro';
 
 const data = servicesData as ServicesData;
 
-// Manually select and order services to match the visual hierarchy request
-const selectedIds = ['comercial', 'bancario', 'fiscal', 'notarial', 'patrimonio', 'bienes-raices'];
-
-// Flatten the data structure to search across all services
-const allServices: Service[] = [...(data.oferta || []), ...(data.especializados || [])];
-const displayedServices = selectedIds.map(id => allServices.find(s => s.id === id)).filter((s): s is Service => Boolean(s));
-
-// Fallback if IDs match fails
-const finalServices = displayedServices.length >= 6 ? displayedServices : allServices.slice(0, 6);
+// Use the landing services list directly
+const finalServices = data.landing_services || [];
 ---
 
 <section class="py-16 md:py-24 bg-primary text-white relative">

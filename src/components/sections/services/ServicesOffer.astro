@@ -4,7 +4,11 @@ import type { ServicesData } from '../../../types';
 import SectionTitle from '../../common/SectionTitle.astro';
 
 // Use the main "oferta" list from structured JSON
-const finalServices = (servicesData as ServicesData).oferta;
+// Filter for specific categories as per design
+const targetIds = ['familia', 'laboral', 'civil', 'notarial', 'aduanal', 'resolucion-conflictos', 'adicionales'];
+const data = servicesData as ServicesData;
+const detailedServices = data.detailed_services || [];
+const finalServices = detailedServices.filter((s) => targetIds.includes(s.id));
 ---
 
 <section class="py-24 bg-white relative">
@@ -22,33 +26,33 @@ const finalServices = (servicesData as ServicesData).oferta;
     </SectionTitle>
 
     <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-16">
       {finalServices.map((service, index) => (
         <div 
-          class="bg-primary p-6 md:p-10 flex flex-col h-full fade-in-section hover:shadow-2xl transition-shadow duration-300 rounded-sm"
+          class="bg-primary p-6 md:p-8 flex flex-col h-full fade-in-section hover:shadow-2xl transition-shadow duration-300 rounded-sm w-full"
           style={`transition-delay: ${index * 100}ms`}
         >
           
           <!-- Title -->
-          <h3 class="font-heading text-2xl md:text-3xl lg:text-[2.5rem] text-white mb-6 md:mb-8 leading-tight font-normal">
+          <h3 class="font-heading text-2xl md:text-3xl lg:text-[2rem] text-white mb-4 md:mb-6 leading-tight font-normal">
             {service.title.replace('Derecho ', '')}
           </h3>
 
           <!-- Divider -->
-          <div class="w-12 md:w-16 h-1 bg-accent mb-6 md:mb-8 opacity-80"></div>
+          <div class="w-10 md:w-12 h-1 bg-accent mb-4 md:mb-6 opacity-80"></div>
 
           <!-- Description -->
-          <p class="text-gray-300 font-body font-light text-sm md:text-base leading-relaxed mb-6 md:mb-8 opacity-90">
+          <p class="text-gray-300 font-body font-light text-sm leading-relaxed mb-6 opacity-90">
             {service.fullDescription}
           </p>
 
           <!-- Features (Bullet points) -->
           {service.features && (
-            <ul class="space-y-2 md:space-y-3 mb-8 md:mb-10">
+            <ul class="space-y-1.5 md:space-y-2 mb-6 md:mb-8">
               {service.features.map(feature => (
-                 <li class="flex items-start gap-3">
-                  <div class="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-accent mt-2 md:mt-2.5 flex-shrink-0"></div>
-                  <span class="text-gray-300 font-body text-sm md:text-[15px] font-light leading-relaxed">{feature}</span>
+                 <li class="flex items-start gap-2.5">
+                  <div class="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-accent mt-2 flex-shrink-0"></div>
+                  <span class="text-gray-300 font-body text-sm font-light leading-relaxed">{feature}</span>
                 </li>
               ))}
             </ul>

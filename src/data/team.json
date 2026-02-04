@@ -1,32 +1,32 @@
-﻿[
+[
   {
     "id": "roy-francisco-espinoza",
     "name": "Lic. Roy Francisco Espinoza Quesada",
     "role": "Socio Fundador",
-    "specialty": "Derecho Corporativo y Penal",
+    "specialty": "Derecho Laboral, Penal y Corporativo",
     "image": "https://assets.cdn.filesafe.space/18B9fYF7TJeFd7SzeM9O/media/66df640536b52535437dabda.jpeg",
-    "shortBio": "Profesional en el área legal con 20 años de experiencia, exjuez y especialista en resolución de conflictos.",
-    "fullBio": "Profesional en el área legal con más de 20 años de experiencia en el ejercicio del derecho, contando con una trayectoria sólida y ampliamente reconocida en la atención, análisis y resolución de distintos tipos de procesos jurídicos. A lo largo de su carrera ha desempeñado funciones clave dentro del ámbito judicial y legal. Su práctica profesional se caracteriza por un enfoque ético, responsable y orientado a resultados, brindando asesoría y representación legal con un alto nivel de compromiso. Posee amplia capacidad para abordar casos complejos en diversas materias, ofreciendo soluciones legales claras, efectivas y adaptadas a las necesidades específicas de cada cliente, siempre priorizando la protección de sus derechos e intereses.",
-    "professionalProfile": "Profesional en el área legal con 20 años de experiencia, capacitado para la resolución de distintos tipos de materia, con una sólida trayectoria en el ejercicio del derecho y amplia experiencia en el ámbito judicial y profesional.",
+    "shortBio": "Exjuez con 17 años de experiencia en el Poder Judicial. Especialista en litigio y resolución alterna de conflictos.",
+    "fullBio": "Profesional con amplia experiencia en el trámite de procesos litigiosos y vasto conocimiento en derecho procesal. Se destaca por su agilidad en la tramitología de procesos comerciales, corporativos y de negocios (bienes muebles e inmuebles). Caracterizado por su responsabilidad, diligencia y confianza en trámites notariales y registrales, con un enfoque claro en la resolución de problemas y la consecución de resultados.",
+    "professionalProfile": "Licenciado en Derecho y Exjuez (materia laboral y genérico) con 17 años de labor en el Poder Judicial. Fundador del Bufete EM & Asociados y Representante legal en diversas materias para empresas de servicios y comerciales.",
     "education": [
       "Licenciatura en Derecho",
-      "Egresado de Programa de Formación Inicial para Aspirantes a la Judicatura"
+      "Egresado de Programa de Formación Inicial para Aspirantes a la Judicatura (FIAJ) - Escuela Judicial"
     ],
     "judicialExperience": [
-      "Exjuez materia laboral y genérico",
-      "Especializado en materia penal de la Escuela Judicial",
+      "Exjuez materia laboral y genérico (17 años en Poder Judicial)",
       "Elegible en Carrera Judicial como Juez 3 Laboral y Juez Genérico"
     ],
     "specialties": [
-      "Derecho Corporativo",
+      "Derecho Laboral",
       "Derecho Penal",
-      "Solución alterna de conflictos",
-      "Derecho Laboral"
+      "Solución Alterna de Conflictos",
+      "Derecho Corporativo y Comercial"
     ],
     "courses": [
+      "Especializado en materia laboral (Escuela Judicial)",
+      "Especializado en materia penal (Escuela Judicial)",
       "Especialista en Solución alterna de conflictos",
-      "Múltiples cursos sobre manejo administrativo y del recurso humano en el poder Judicial",
-      "Seminarios de actualización en Derecho Penal y Procesal Penal"
+      "Manejo administrativo y del recurso humano en el Poder Judicial"
     ],
     "contact": {
       "email": "bufete.emyasociados@gmail.com",
@@ -49,20 +49,14 @@
     ],
     "judicialExperience": [],
     "specialties": [
-      "Derecho Notarial y Registral",
-      "Derecho Inmobiliario",
-      "Propiedad Intelectual",
-      "Derecho Comercial"
+      "Derecho Notarial",
+      "Derecho Registral",
+      "Derecho Corporativo"
     ],
-    "courses": [
-      "Actualización en Derecho Notarial",
-      "Seminario de Derecho Registral Inmobiliario",
-      "Curso de Prevención de Legitimación de Capitales"
-    ],
+    "courses": [],
     "contact": {
-      "email": "bufete.emyasociados@gmail.com",
-      "phone": "8705-3112",
-      "whatsapp": "8705-3112"
+      "email": "consultas@emyasociados.net",
+      "phone": "+506 8705-3112"
     }
   }
 ]

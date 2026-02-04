@@ -1,4 +1,7 @@
 ---
+import homeData from '../../../data/home.json';
+
+const { hero } = homeData;
 ---
 
 <section class="relative w-full h-screen min-h-175 overflow-hidden bg-primary">
@@ -23,12 +26,12 @@
     <div class="max-w-200 fade-in-up">
       <!-- Main Headline -->
       <h1 class="font-heading text-[32px] md:text-[64px] leading-[1.15] text-white font-normal mb-4 md:mb-6 tracking-[-0.01em] drop-shadow-md">
-        Excelencia Legal<br />con Enfoque Humano
+        <span set:html={hero.title.replace(/\n/g, '<br/>')} />
       </h1>
 
       <!-- Subheadline -->
       <p class="font-heading text-sm md:text-[19px] leading-relaxed text-secondary font-normal mb-6 md:mb-8 max-w-125 drop-shadow-sm">
-        Defendemos sus derechos con integridad y profesionalismo desde hace más de 20 años
+        {hero.subtitle}
       </p>
 
       <!-- CTA -->
@@ -36,7 +39,7 @@
         href="/contacto" 
         class="group inline-block font-heading text-xs md:text-base text-white bg-transparent border border-white px-8 py-3 md:px-10 md:py-4 rounded-xs tracking-widest uppercase transition-all duration-300 hover:bg-white hover:text-primary"
       >
-        AGENDA TU CONSULTA
+        {hero.cta}
       </a>
     </div>
   </div>

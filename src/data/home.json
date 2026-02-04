@@ -1,26 +1,26 @@
 {
   "hero": {
-    "title": "Excelencia Legal con Enfoque Humano",
-    "subtitle": "Defendemos sus derechos con integridad y profesionalismo desde hace más de 20 años",
+    "title": "OFRECEMOS SOLUCIONES, PREVENIMOS RIESGOS",
+    "subtitle": "Especialistas en derecho civil, procesal, laboral, comercial, familia, notarial y resolución de conflictos. Experiencia y compromiso a su servicio.",
     "cta": "AGENDA TU CONSULTA"
   },
   "aboutSummary": {
-    "tagline": "TUS ALIADOS LEGALES",
-    "title": "Especialistas con Experiencia que Resuelven",
-    "description": "En EyM & Asociados ofrecemos soluciones legales especializadas con un enfoque humano. Nuestro historial de éxito respalda nuestra capacidad para manejar cualquier desafío legal con profesionalismo e integridad.",
+    "tagline": "EM & ASOCIADOS",
+    "title": "ACERCA DEL BUFETE",
+    "description": "En EM & Asociados ofrecemos una amplia gama de servicios legales especializados. Con un equipo altamente experimentado, proporcionamos soluciones integrales y personalizadas para satisfacer las necesidades de cada cliente en cada etapa de sus proyectos y operaciones.",
     "cta": "CONOCER AL EQUIPO",
     "stats": [
       {
-        "value": "350+",
-        "label": "Casos con resultados positivos"
+        "value": "17+",
+        "label": "Años de experiencia judicial"
       },
       {
         "value": "100%",
-        "label": "Acompañamiento de principio a fin"
+        "label": "Compromiso y Diligencia"
       },
       {
-        "value": "20+",
-        "label": "Años de experiencia legal"
+        "value": "Integral",
+        "label": "Soluciones Legales"
       }
     ]
   }
