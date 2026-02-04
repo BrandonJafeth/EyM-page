@@ -1,11 +1,13 @@
 ---
 import servicesData from '../../../data/services.json';
 
+const { class: className } = Astro.props;
+
 // Use the specialized services list
 const services = servicesData.especializados;
 ---
 
-<section class="py-24 bg-white">
+<section class:list={["py-24", className || "bg-white"]}>
   <div class="container mx-auto px-6 md:px-[100px]">
     
     <!-- Section Title -->

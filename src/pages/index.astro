@@ -2,9 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/home/Hero.astro';
 import AboutSummary from '../components/sections/home/AboutSummary.astro';
-import ServicesSummary from '../components/sections/home/ServicesSummary.astro';
+import ServiceList from '../components/sections/services/ServiceList.astro';
 import ContactSection from '../components/sections/home/ContactSection.astro';
 import siteData from '../data/site.json';
+import ServicesSummary from '../components/sections/home/ServicesSummary.astro';
 ---
 
 <Layout title="Inicio" description="Bufete de Abogados en Guanacaste y Cañas. Asesoría legal experta en Derecho Civil, Corporativo y Notarial.">
@@ -15,7 +16,7 @@ import siteData from '../data/site.json';
 	    <AboutSummary />
     </div>
 
-    <ServicesSummary />
+    <ServicesSummary/>
 
     <ContactSection />
 

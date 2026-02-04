@@ -1,0 +1,109 @@
+---
+import servicesData from '../../../data/services.json';
+
+// Use the main "oferta" list from structured JSON
+const finalServices = servicesData.oferta;
+---
+
+<section class="py-24 bg-white relative">
+  <div class="container mx-auto px-6 md:px-[100px]">
+    
+    <!-- Header -->
+    <div class="mb-16 text-left fade-in-section">
+      <h2 class="font-heading text-4xl md:text-5xl text-[#091723] mb-4 leading-tight">
+        Oferta de Servicios Jurídicos
+      </h2>
+      <div class="w-20 h-[3px] bg-[#AF9232] mb-6"></div>
+      <p class="text-gray-500 font-body text-sm md:text-base font-light max-w-2xl">
+        Nos especializamos en ofrecer servicios legales integrales en las siguientes áreas
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      {finalServices.map((service, index) => (
+        <div 
+          class="bg-[#091723] p-8 md:p-10 flex flex-col h-full fade-in-section hover:shadow-2xl transition-shadow duration-300"
+          style={`transition-delay: ${index * 100}ms`}
+        >
+          <!-- Number -->
+          <div class="font-heading text-[#AF9232] text-5xl md:text-6xl font-light mb-6 opacity-90">
+            {(index + 1).toString().padStart(2, '0')}
+          </div>
+
+          <!-- Title -->
+          <h3 class="font-heading text-3xl md:text-[2.5rem] text-white mb-8 leading-tight font-normal">
+            {service.title.replace('Derecho ', '')}
+          </h3>
+
+          <!-- Divider -->
+          <div class="w-16 h-[3px] bg-[#AF9232] mb-8 opacity-80"></div>
+
+          <!-- Description -->
+          <p class="text-gray-300 font-body font-light text-[15px] md:text-base leading-7 mb-8 opacity-90">
+            {service.fullDescription}
+          </p>
+
+          <!-- Features (Bullet points) -->
+          {service.features && (
+            <ul class="space-y-3 mb-10">
+              {service.features.map(feature => (
+                 <li class="flex items-start gap-3">
+                  <div class="w-1.5 h-1.5 rounded-full bg-[#AF9232] mt-2 flex-shrink-0"></div>
+                  <span class="text-gray-300 font-body text-sm md:text-[15px] font-light leading-relaxed">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <!-- Separator Line -->
+          <div class="w-full h-[1px] bg-gray-800 mb-6 mt-auto"></div>
+
+          <!-- Button -->
+          <div>
+            <a 
+              href={`/servicios#${service.id}`}
+              class="block w-full text-center py-4 border border-[#AF9232] text-[#AF9232] font-heading text-xs uppercase tracking-[0.2em] hover:bg-[#AF9232] hover:text-[#091723] transition-all duration-300"
+            >
+              Consultar Ahora
+            </a>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
+</script>
+
+<style>
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

@@ -115,6 +115,21 @@ export default function NavbarMobile({ navLinks, currentPath }: NavbarMobileProp
               </a>
             );
           })}
+
+          {/* Mobile CTA */}
+          <div 
+             className={`mt-12 transition-all duration-700 delay-300
+                        ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+          >
+            <a 
+              href="/contacto" 
+              onClick={closeMenu}
+              className="inline-block border border-[#AF9232] text-[#AF9232] font-heading text-sm uppercase tracking-[0.2em] py-4 px-10 hover:bg-[#AF9232] hover:text-[#091723] transition-colors duration-300"
+            >
+              Contactar
+            </a>
+          </div>
+
         </nav>
       </div>
     </div>
