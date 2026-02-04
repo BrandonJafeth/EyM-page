@@ -100,7 +100,7 @@ export default function ContactForm() {
     <section className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-6 md:px-8 max-w-5xl">
         <div className="text-center mb-16">
-          <p className="text-[#AF9232] font-heading text-xs uppercase tracking-[0.2em] mb-4">Contáctanos</p>
+          <p className="text-[#091723] font-heading text-xs uppercase tracking-[0.2em] mb-4">Contáctanos</p>
           <h2 className="font-heading text-4xl md:text-5xl text-[#091723] mb-4">Inicia la Conversación</h2>
           <p className="text-gray-500 font-body font-light text-lg">Completa el formulario y nos pondremos en contacto contigo a la brevedad</p>
           <div className="w-16 h-[1px] bg-[#AF9232] mx-auto mt-8"></div>

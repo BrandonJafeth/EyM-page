@@ -1,14 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ServicesHero from '../components/sections/services/ServicesHero.astro';
+import ServicesSummary from '../components/sections/home/ServicesSummary.astro';
+import ServiceList from '../components/sections/services/ServiceList.astro';
+import CTASection from '../components/common/CTASection.astro';
 ---
 
-<Layout title="Servicios" description="Explore nuestros servicios legales: Derecho Civil, Corporativo, Notarial, Laboral y más. Soluciones jurídicas en Costa Rica.">
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4 pt-20">
-      <h1 class="font-heading text-4xl md:text-5xl text-[#091723] mb-8 text-center">Nuestros Servicios</h1>
-      <p class="text-center text-gray-600 max-w-2xl mx-auto">
-        Página en construcción. Aquí encontrará el detalle de nuestras áreas de práctica legal.
-      </p>
-    </div>
-  </section>
+<Layout title="Servicios" description="Descubra nuestra oferta integral de servicios legales en Costa Rica. Derecho Civil, Corporativo, Notarial y más.">
+  <main>
+    <ServicesHero />
+    <ServicesSummary />
+    <ServiceList />
+    <CTASection />
+  </main>
 </Layout>

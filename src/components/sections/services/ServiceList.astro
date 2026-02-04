@@ -1,0 +1,60 @@
+---
+import servicesData from '../../../data/services.json';
+
+// Use the specialized services list
+const services = servicesData.especializados;
+---
+
+<section class="py-24 bg-white">
+  <div class="container mx-auto px-6 md:px-[100px]">
+    
+    <!-- Section Title -->
+    <div class="mb-16">
+      <h2 class="font-heading text-4xl md:text-5xl text-[#091723] mb-6">Servicios Legales Especializados</h2>
+      <div class="w-20 h-[3px] bg-[#AF9232] mb-6"></div>
+      <p class="text-gray-500 font-body font-light text-lg max-w-4xl leading-relaxed">
+        Nos enorgullece ofrecer una amplia gama de servicios legales especializados en diversas áreas del derecho. Con un equipo altamente experimentado y comprometido, nos aseguramos de proporcionar soluciones integrales y personalizadas para satisfacer las necesidades de nuestros clientes en cada etapa de sus proyectos y operaciones.
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service, index) => (
+        <div class="bg-white p-8 md:p-10 flex flex-col h-full border border-gray-200 hover:shadow-lg transition-shadow duration-300 ease-out">
+          
+          {/* Number */}
+          <div class="font-heading text-[#AF9232]/80 text-4xl mb-6">
+            {(index + 1).toString().padStart(2, '0')}
+          </div>
+
+          {/* Title */}
+          <h3 class="font-heading text-2xl text-[#091723] mb-6">
+            {service.title}
+          </h3>
+
+          {/* Divider */}
+          <div class="w-12 h-[1px] bg-[#AF9232] mb-6"></div>
+
+          {/* Description */}
+          <p class="text-gray-500 font-body font-light text-sm leading-relaxed mb-8 flex-grow">
+            {service.fullDescription || service.shortDescription}
+          </p>
+
+          {/* Features List -- Omitted to match clean card look in screenshot, but can keep if user wants detail. Screenshot doesn't show bullet points, just text. I will omit for now to match screenshot "clean" look, or verify. Screenshot 2 shows text paragraphs. Screenshot 1 in previous turn showed bullet points. The latest screenshot (white cards) does NOT show bullet points. It shows a paragraph. I will remove features list to match the "white card" screenshot exactly. */}
+          
+          {/* Button */}
+          <div class="mt-auto pt-6">
+            <a 
+              href="/contacto" 
+              class="block w-full text-center py-3 border border-[#AF9232] text-[#AF9232] font-heading text-xs uppercase tracking-[0.15em] hover:bg-[#AF9232] hover:text-white transition-all duration-300"
+            >
+              Consultar Ahora
+            </a>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
