@@ -8,7 +8,7 @@ const teamImage = "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u
 
 ---
 
-<section class="py-24 bg-[#F9FAFB] relative overflow-hidden">
+<section class="py-16 md:py-24 bg-[#F9FAFB] relative overflow-hidden">
   <div class="container mx-auto px-6 md:px-30">
     
     <SectionTitle
@@ -16,26 +16,26 @@ const teamImage = "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u
       subtitle="CONTÁCTANOS"
       theme="light"
     >
-      <p class="text-gray-600 font-body text-lg max-w-2xl mx-auto">
+      <p class="text-gray-600 font-body text-base md:text-lg max-w-2xl mx-auto">
         El primer contacto gratuito para conocer tu caso y ofrecerte la mejor solución legal
       </p>
 
-      <div class="w-16 h-0.5 bg-accent mx-auto mt-8 opacity-50"></div>
+      <div class="w-16 h-0.5 bg-accent mx-auto mt-6 md:mt-8 opacity-50"></div>
     </SectionTitle>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-stretch max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-stretch max-w-7xl mx-auto">
       
       <!-- Contact Info Column -->
-      <div class="space-y-6 md:space-y-8 fade-in-section flex flex-col justify-center py-8 md:py-10">
+      <div class="space-y-4 md:space-y-8 fade-in-section flex flex-col justify-center py-6 md:py-10">
         
         <!-- Phone Card -->
-        <div class="bg-white p-6 md:p-10 shadow-sm border-l-4 border-accent flex items-center gap-4 md:gap-6 group hover:shadow-md transition-shadow duration-300">
-          <div class="w-12 h-12 md:w-14 md:h-14 rounded-full border border-accent/30 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300 flex-shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="bg-white p-5 md:p-10 shadow-sm border-l-4 border-accent flex items-center gap-4 md:gap-6 group hover:shadow-md transition-shadow duration-300">
+          <div class="w-10 h-10 md:w-14 md:h-14 rounded-full border border-accent/30 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="md:w-6 md:h-6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </div>
           <div>
-            <span class="block font-heading text-xs md:text-sm uppercase tracking-[0.15em] text-gray-500 mb-2 md:mb-3">Teléfono</span>
-            <div class="flex flex-col gap-1 md:gap-2">
+            <span class="block font-heading text-[10px] md:text-sm uppercase tracking-[0.15em] text-gray-500 mb-1 md:mb-3">Teléfono</span>
+            <div class="flex flex-col gap-0 md:gap-2">
               <a href={`tel:${siteData.contact.phone.replace(/\s/g, '')}`} class="font-heading text-lg md:text-2xl text-primary hover:text-accent transition-colors">
                 {siteData.contact.phone}
               </a>
@@ -47,28 +47,28 @@ const teamImage = "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u
         </div>
 
         <!-- Email Card -->
-        <div class="bg-white p-6 md:p-10 shadow-sm border-l-4 border-accent flex items-center gap-4 md:gap-6 group hover:shadow-md transition-shadow duration-300">
-          <div class="w-12 h-12 md:w-14 md:h-14 rounded-full border border-accent/30 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300 flex-shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <div class="bg-white p-5 md:p-10 shadow-sm border-l-4 border-accent flex items-center gap-4 md:gap-6 group hover:shadow-md transition-shadow duration-300">
+          <div class="w-10 h-10 md:w-14 md:h-14 rounded-full border border-accent/30 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="md:w-6 md:h-6"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           </div>
           <div>
-            <span class="block font-heading text-xs md:text-sm uppercase tracking-[0.15em] text-gray-500 mb-2 md:mb-3">Email</span>
-            <a href={`mailto:${siteData.contact.email}`} class="font-heading text-lg md:text-xl lg:text-2xl text-primary hover:text-accent transition-colors break-all">
+            <span class="block font-heading text-[10px] md:text-sm uppercase tracking-[0.15em] text-gray-500 mb-1 md:mb-3">Email</span>
+            <a href={`mailto:${siteData.contact.email}`} class="font-heading text-base md:text-xl lg:text-2xl text-primary hover:text-accent transition-colors break-all">
               {siteData.contact.email}
             </a>
           </div>
         </div>
 
         <!-- Hours Card -->
-        <div class="bg-white p-6 md:p-10 shadow-sm border-l-4 border-accent flex items-center gap-4 md:gap-6 group hover:shadow-md transition-shadow duration-300">
+        <div class="bg-white p-5 md:p-10 shadow-sm border-l-4 border-accent flex items-center gap-4 md:gap-6 group hover:shadow-md transition-shadow duration-300">
            <!-- Clock Icon -->
-           <div class="w-12 h-12 md:w-14 md:h-14 rounded-full border border-accent/30 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300 flex-shrink-0">
-             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+           <div class="w-10 h-10 md:w-14 md:h-14 rounded-full border border-accent/30 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300 flex-shrink-0">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="md:w-6 md:h-6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
            </div> 
            <div>
-            <span class="block font-heading text-xs md:text-sm uppercase tracking-[0.15em] text-gray-500 mb-2 md:mb-3">Horario de Atención</span>
-            <div class="space-y-1 font-body text-primary text-base md:text-lg">
-                <p class="text-sm uppercase tracking-wider text-accent font-bold mb-1">Lunes a Viernes (Cita Previa)</p>
+            <span class="block font-heading text-[10px] md:text-sm uppercase tracking-[0.15em] text-gray-500 mb-1 md:mb-3">Horario de Atención</span>
+            <div class="space-y-1 font-body text-primary text-sm md:text-lg">
+                <p class="text-xs md:text-sm uppercase tracking-wider text-accent font-bold mb-1">Lunes a Viernes (Cita Previa)</p>
                 <div class="flex flex-col gap-1">
                   <p><span class="font-bold">Liberia:</span> 9:00 AM - 5:00 PM</p>
                   <p><span class="font-bold">Cañas:</span> 9:00 AM - 12:00 PM</p>
@@ -80,7 +80,7 @@ const teamImage = "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u
       </div>
 
       <!-- Image Column -->
-      <div class="relative h-full min-h-125 lg:min-h-full w-full fade-in-section delay-200">
+      <div class="relative h-full min-h-[400px] lg:min-h-full w-full fade-in-section delay-200">
         <div class="relative h-full w-full overflow-hidden shadow-2xl">
             <img 
               src={teamImage}
@@ -93,10 +93,10 @@ const teamImage = "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u
     </div>
 
     <!-- Bottom Button - Centered below -->
-    <div class="mt-16 text-center fade-in-section delay-300">
+    <div class="mt-12 md:mt-16 text-center fade-in-section delay-300">
          <a 
           href="/contacto" 
-          class="inline-block px-10 py-4 border border-primary text-primary font-heading text-sm uppercase tracking-[0.2em] hover:bg-primary hover:text-accent transition-colors duration-300 shadow-lg"
+          class="inline-block px-8 py-3 md:px-10 md:py-4 border border-primary text-primary font-heading text-xs md:text-sm uppercase tracking-[0.2em] hover:bg-primary hover:text-accent transition-colors duration-300 shadow-lg"
         >
           Agendar Consulta
         </a>
