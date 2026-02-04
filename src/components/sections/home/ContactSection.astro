@@ -108,6 +108,21 @@ const teamImage = "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u
   </div>
 </section>
 
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
+  });
+</script>
+
 <style>
   .fade-in-section {
     opacity: 0;
