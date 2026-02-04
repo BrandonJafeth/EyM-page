@@ -6,7 +6,6 @@ export interface LandingService {
 }
 
 export interface DetailedService {
-[x: string]: string;
   id: string;
   title: string;
   fullDescription: string;
