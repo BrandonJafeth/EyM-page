@@ -26,22 +26,25 @@ const members = teamData as TeamMember[];
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
       {members.map((member, index) => (
-        <div 
-          class="group flex flex-col fade-in-section" 
+        <a 
+          href={`/equipo/${member.id}`}
+          class="group flex flex-col fade-in-section cursor-pointer" 
           style={`transition-delay: ${index * 100}ms`}
         >
           <!-- Image Container -->
-          <div class="aspect-[3/4] w-full overflow-hidden bg-gray-100 mb-6">
+          <div class="aspect-[3/4] w-full overflow-hidden bg-gray-100 mb-6 relative">
+             <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500 z-10"></div>
              <img 
               src={member.image} 
               alt={member.name} 
+              transition:name={`image-${member.id}`}
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
              />
           </div>
 
           <!-- Content -->
           <div class="text-center px-4">
-            <h3 class="font-heading text-xl text-primary mb-2">
+            <h3 class="font-heading text-xl text-primary mb-2 group-hover:text-accent transition-colors">
               {member.name}
             </h3>
             
@@ -52,11 +55,14 @@ const members = teamData as TeamMember[];
             <p class="text-gray-500 font-body text-sm">
               {member.specialty}
             </p>
+             
+            <span class="inline-block mt-4 text-xs font-bold text-primary border-b border-primary/20 pb-0.5 group-hover:border-accent group-hover:text-accent transition-colors">
+              VER PERFIL COMPLETO
+            </span>
           </div>
-        </div>
+        </a>
       ))}
     </div>
 
   </div>
 </section>
-</style>
