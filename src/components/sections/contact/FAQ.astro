@@ -1,0 +1,73 @@
+---
+const faqs = [
+  {
+    question: "¿Cuánto cuesta la primera consulta?",
+    answer: "Ofrecemos una primera sesión de evaluación gratuita para entender su caso y determinar la mejor estrategia legal. Posteriormente, le presentaremos una propuesta de honorarios transparente y ajustada a sus necesidades."
+  },
+  {
+    question: "¿Atienden casos en otras ciudades de Costa Rica?",
+    answer: "Sí, aunque nuestra sede principal está en Guanacaste (Liberia y Cañas), brindamos representación y asesoría legal en todo el territorio nacional, utilizando herramientas digitales para mantener una comunicación fluida."
+  },
+  {
+    question: "¿Cuánto tiempo toma resolver un caso legal?",
+    answer: "El tiempo varía según la complejidad del asunto y la carga de trabajo de los tribunales o entidades administrativas. En nuestra consulta inicial, le daremos una estimación realista basada en nuestra experiencia."
+  },
+  {
+    question: "¿Ofrecen planes de pago flexibles?",
+    answer: "Entendemos que los procesos legales pueden ser costosos. Por ello, evaluamos cada situación para ofrecer estructuras de pago por etapas o cuotas mensuales, siempre formalizadas mediante un contrato de servicios profesionales."
+  }
+];
+---
+
+<section class="py-24 bg-white">
+  <div class="container mx-auto px-6 md:px-[120px] max-w-4xl">
+    
+    <div class="text-center mb-16">
+      <h2 class="font-heading text-3xl md:text-5xl text-[#091723]">Preguntas Frecuentes</h2>
+      <div class="w-16 h-[1px] bg-[#AF9232] mx-auto mt-6"></div>
+    </div>
+
+    <div class="space-y-6">
+      {faqs.map((faq) => (
+        <details class="group bg-white p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border-l-2 border-[#AF9232] rounded-sm transition-all duration-300 open:shadow-md">
+          <summary class="flex justify-between items-center cursor-pointer list-none text-[#091723] transition-colors hover:text-[#AF9232]">
+            <span class="font-heading text-lg md:text-xl font-light">{faq.question}</span>
+            <span class="transition-transform duration-300 group-open:rotate-180 text-[#AF9232]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </span>
+          </summary>
+          <div class="text-gray-500 font-light leading-relaxed mt-4 text-sm md:text-base animate-slide-down">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  details > summary {
+    list-style: none;
+  }
+  
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Optional simple animation */
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
