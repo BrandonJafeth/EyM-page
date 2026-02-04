@@ -1,62 +1,58 @@
 ---
 import servicesData from '../../../data/services.json';
+import type { ServicesData, Service } from '../../../types';
+import SectionTitle from '../../common/SectionTitle.astro';
+
+const data = servicesData as ServicesData;
 
 // Manually select and order services to match the visual hierarchy request
 const selectedIds = ['comercial', 'bancario', 'fiscal', 'notarial', 'patrimonio', 'bienes-raices'];
 
 // Flatten the data structure to search across all services
-const allServices = [...(servicesData.oferta || []), ...(servicesData.especializados || [])];
-const displayedServices = selectedIds.map(id => allServices.find(s => s.id === id)).filter(Boolean);
+const allServices: Service[] = [...(data.oferta || []), ...(data.especializados || [])];
+const displayedServices = selectedIds.map(id => allServices.find(s => s.id === id)).filter((s): s is Service => Boolean(s));
 
 // Fallback if IDs match fails
 const finalServices = displayedServices.length >= 6 ? displayedServices : allServices.slice(0, 6);
 ---
 
-<section class="py-24 bg-[#091723] text-white relative">
+<section class="py-24 bg-primary text-white relative">
   
-  <div class="container mx-auto px-6 md:px-[120px]">
+  <div class="container mx-auto px-6 md:px-30">
     
-    <!-- Header -->
-    <div class="text-center mb-12 fade-in-section">
-      <div class="flex items-center justify-center gap-4 mb-4">
-        <div class="h-[1px] w-8 md:w-12 bg-[#AF9232] opacity-50"></div>
-        <span class="font-heading text-[#AF9232] uppercase tracking-[0.2em] text-xs md:text-sm">NUESTROS SERVICIOS</span>
-        <div class="h-[1px] w-8 md:w-12 bg-[#AF9232] opacity-50"></div>
-      </div>
-      
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-[1.15]">
-        Soluciones Legales Integrales
-      </h2>
-      
-    </div>
+    <SectionTitle 
+      title="Soluciones Legales Integrales" 
+      subtitle="NUESTROS SERVICIOS" 
+      theme="dark"
+    />
 
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16">
       {finalServices.map((service, index) => (
         <a 
           href={`/servicios#${service.id}`}
-          class="group block h-auto md:h-full md:min-h-[380px] p-6 md:p-12 border border-[#AF9232] hover:bg-white/5 transition-colors duration-500 bg-transparent fade-in-section flex flex-col md:justify-between"
+          class="group block h-auto md:h-full md:min-h-95 p-6 md:p-12 border border-accent hover:bg-white/5 transition-colors duration-500 bg-transparent fade-in-section flex flex-col md:justify-between"
           style={`transition-delay: ${index * 100}ms`}
         >
           <div>
             <!-- Number -->
-            <div class="font-heading text-[#AF9232] text-sm mb-4 md:mb-6">
+            <div class="font-heading text-accent text-sm mb-4 md:mb-6">
               {(index + 1).toString().padStart(2, '0')}
             </div>
 
             <!-- Title -->
-            <h3 class="font-heading text-2xl lg:text-3xl text-white mb-4 md:mb-6 leading-tight group-hover:text-[#AF9232] transition-colors duration-300">
+            <h3 class="font-heading text-2xl lg:text-3xl text-white mb-4 md:mb-6 leading-tight group-hover:text-accent transition-colors duration-300">
               {service.title}
             </h3>
 
             <!-- Description -->
-            <p class="text-[#CBD5E0] font-light leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
+            <p class="text-secondary font-light leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
               {service.shortDescription}
             </p>
           </div>
 
           <!-- Link Arrow -->
-          <div class="flex items-center text-[#AF9232] text-sm tracking-widest uppercase font-heading mt-2 md:mt-auto opacity-80 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300">
+          <div class="flex items-center text-accent text-sm tracking-widest uppercase font-heading mt-2 md:mt-auto opacity-80 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300">
             Conocer más <span class="ml-2">→</span>
           </div>
         </a>
@@ -67,7 +63,7 @@ const finalServices = displayedServices.length >= 6 ? displayedServices : allSer
     <div class="text-center fade-in-section">
       <a 
         href="/servicios" 
-        class="inline-block px-10 py-4 border border-[#AF9232]/50 text-[#AF9232] font-heading text-sm uppercase tracking-[0.15em] hover:bg-[#AF9232] hover:text-[#091723] transition-all duration-300 hover:border-[#AF9232]"
+        class="inline-block px-10 py-4 border border-accent/50 text-accent font-heading text-sm uppercase tracking-[0.15em] hover:bg-accent hover:text-primary transition-all duration-300 hover:border-accent"
       >
         Ver Todos Los Servicios
       </a>
@@ -75,39 +71,3 @@ const finalServices = displayedServices.length >= 6 ? displayedServices : allSer
 
   </div>
 </section>
-
-<style>
-  .fade-in-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-  
-  /* Triggered by global observer in AboutSummary or separate script */
-  .fade-in-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
-<script>
-    // Include observer here too in case AboutSummary isn't present
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target); 
-        }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in-section').forEach(el => {
-        observer.observe(el);
-    });
-</script>

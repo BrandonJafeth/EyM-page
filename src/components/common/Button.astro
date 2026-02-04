@@ -7,13 +7,13 @@ interface Props {
 
 const { href, variant = 'primary', class: className } = Astro.props;
 
-const baseStyles = "inline-flex items-center justify-center px-6 py-3 border text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#AF9232]";
+const baseStyles = "inline-flex items-center justify-center px-6 py-3 border text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent";
 
 const variants = {
-  primary: "bg-[#AF9232] border-transparent text-white hover:bg-[#8F7625] shadow-lg hover:shadow-xl",
-  secondary: "bg-[#091723] border-transparent text-white hover:bg-[#152a3d]",
-  outline: "border-[#AF9232] text-[#AF9232] hover:bg-[#AF9232] hover:text-white",
-  ghost: "border-transparent text-[#091723] hover:bg-gray-100"
+  primary: "bg-accent border-transparent text-white hover:opacity-90 shadow-lg hover:shadow-xl",
+  secondary: "bg-primary border-transparent text-white hover:opacity-90",
+  outline: "border-accent text-accent hover:bg-accent hover:text-white",
+  ghost: "border-transparent text-primary hover:bg-gray-100"
 };
 ---
 

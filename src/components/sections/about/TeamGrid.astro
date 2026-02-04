@@ -1,30 +1,35 @@
 ---
 import teamData from '../../../data/team.json';
+import type { TeamMember } from '../../../types';
+import SectionTitle from '../../common/SectionTitle.astro';
+
+const members = teamData as TeamMember[];
 ---
 
 <section class="py-24 bg-white">
-  <div class="container mx-auto px-6 md:px-[100px]">
+  <div class="container mx-auto px-6 md:px-25">
     
     <!-- Decorative Line -->
-    <div class="flex justify-center mb-8">
-      <div class="w-24 h-[2px] bg-[#AF9232]"></div>
+    <div class="flex justify-center mb-8 fade-in-section">
+      <div class="w-24 h-0.5 bg-accent"></div>
     </div>
-
-    <!-- Header -->
-    <div class="text-center mb-16">
-      <h2 class="font-heading text-4xl md:text-5xl text-[#091723] mb-6">
-        Conozca a Nuestros Abogados
-      </h2>
-      
-      <p class="text-gray-500 font-body font-light text-lg max-w-2xl mx-auto leading-relaxed">
+    
+    <SectionTitle 
+      title="Conozca a Nuestros Abogados"
+      theme="light"
+    >
+       <p class="text-gray-500 font-body font-light text-lg max-w-2xl mx-auto leading-relaxed">
         Cada miembro de nuestro equipo aporta experiencia especializada y un compromiso inquebrantable con la excelencia legal y la satisfacción del cliente.
       </p>
-    </div>
+    </SectionTitle>
 
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      {teamData.map((member) => (
-        <div class="group flex flex-col">
+      {members.map((member, index) => (
+        <div 
+          class="group flex flex-col fade-in-section" 
+          style={`transition-delay: ${index * 100}ms`}
+        >
           <!-- Image Container -->
           <div class="aspect-[3/4] w-full overflow-hidden bg-gray-100 mb-6">
              <img 
@@ -36,11 +41,11 @@ import teamData from '../../../data/team.json';
 
           <!-- Content -->
           <div class="text-center px-4">
-            <h3 class="font-heading text-xl text-[#091723] mb-2">
+            <h3 class="font-heading text-xl text-primary mb-2">
               {member.name}
             </h3>
             
-            <p class="text-[#AF9232] font-heading text-sm mb-1">
+            <p class="text-accent font-heading text-sm mb-1">
               {member.role}
             </p>
 

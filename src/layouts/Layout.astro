@@ -1,5 +1,6 @@
 ---
-import siteData from '../data/site.json';
+import siteDataRaw from '../data/site.json';
+import type { SiteData } from '../types';
 import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
 import WhatsAppFloat from '../components/common/WhatsAppFloat.astro';
@@ -8,6 +9,8 @@ import '../styles/global.css';
 import '@fontsource/antic-didone';
 import '@fontsource/lato';
 import { ClientRouter } from 'astro:transitions';
+
+const siteData = siteDataRaw as SiteData;
 
 interface Props {
 	title: string;
@@ -55,7 +58,7 @@ const socialImageURL = new URL(siteData.logo, siteData.url);
 		
 		<ClientRouter />
 	</head>
-	<body class="font-body bg-[#F9FAFB] text-[#091723] antialiased flex flex-col">
+	<body class="font-body bg-gray-50 text-primary antialiased flex flex-col">
 		<Navbar />
 		<main>
 			<slot />
@@ -64,4 +67,27 @@ const socialImageURL = new URL(siteData.logo, siteData.url);
 		<ScrollToTop />
 		<Footer />
 	</body>
+    
+    <script>
+      document.addEventListener('astro:page-load', () => {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
+        };
+    
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+    
+        document.querySelectorAll('.fade-in-section').forEach(el => {
+          observer.observe(el);
+        });
+      });
+    </script>
 </html>

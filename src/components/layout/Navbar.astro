@@ -1,7 +1,10 @@
 ---
 import { Image } from 'astro:assets';
-import siteData from '../../data/site.json';
+import siteDataRaw from '../../data/site.json';
+import type { SiteData } from '../../types';
 import NavbarMobile from './NavbarMobile';
+
+const siteData = siteDataRaw as SiteData;
 
 const links = [
   { text: 'Inicio', href: '/' },
@@ -14,11 +17,11 @@ const currentPath = Astro.url.pathname;
 const isHomePage = currentPath === '/';
 
 // Always solid background
-const headerClass = "fixed top-0 w-full z-50 transition-all duration-300 bg-[#091723] text-white border-b border-[rgba(203,213,224,0.1)] h-20 shadow-md";
+const headerClass = "fixed top-0 w-full z-50 transition-all duration-300 bg-primary text-white border-b border-secondary/10 h-20 shadow-md";
 ---
 
 <header id="navbar" class={headerClass} data-is-home={isHomePage}>
-  <div class="px-6 md:px-[120px] h-full">
+  <div class="px-6 md:px-30 h-full">
     <div class="flex items-center justify-between h-full transition-all duration-300" id="navbar-container">
       <a href="/" class="flex-shrink-0 group flex items-center gap-4">
         <img 
@@ -40,7 +43,7 @@ const headerClass = "fixed top-0 w-full z-50 transition-all duration-300 bg-[#09
               <span
                 class:list={[
                   "font-heading text-base tracking-[0.5px] font-normal transition-colors",
-                  isActive ? "text-[#AF9232]" : "text-white"
+                  isActive ? "text-accent" : "text-white"
                 ]}
               >
                 {link.text}
@@ -48,7 +51,7 @@ const headerClass = "fixed top-0 w-full z-50 transition-all duration-300 bg-[#09
               {/* Active/Hover underline */}
                <div
                 class:list={[
-                  "absolute bottom-0 left-0 right-0 h-[2px] transition-all duration-300 bg-[#AF9232]",
+                  "absolute bottom-0 left-0 right-0 h-[2px] transition-all duration-300 bg-accent",
                   isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                 ]}
               ></div>
@@ -61,7 +64,7 @@ const headerClass = "fixed top-0 w-full z-50 transition-all duration-300 bg-[#09
       <div class="hidden md:block">
         <a 
           href="/contacto" 
-          class="group font-heading text-base text-white border border-[#AF9232] bg-transparent hover:bg-[#AF9232] hover:text-[#091723] px-8 py-3 rounded-[2px] tracking-[0.05em] transition-all duration-300 cursor-pointer inline-block"
+          class="group font-heading text-base text-white border border-accent bg-transparent hover:bg-accent hover:text-primary px-8 py-3 rounded-xs tracking-[0.05em] transition-all duration-300 cursor-pointer inline-block"
         >
           CONTACTAR
         </a>

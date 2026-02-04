@@ -20,19 +20,19 @@ const faqs = [
 ---
 
 <section class="py-24 bg-white">
-  <div class="container mx-auto px-6 md:px-[120px] max-w-4xl">
+  <div class="container mx-auto px-6 md:px-30 max-w-4xl">
     
     <div class="text-center mb-16">
-      <h2 class="font-heading text-3xl md:text-5xl text-[#091723]">Preguntas Frecuentes</h2>
-      <div class="w-16 h-[1px] bg-[#AF9232] mx-auto mt-6"></div>
+      <h2 class="font-heading text-3xl md:text-5xl text-primary">Preguntas Frecuentes</h2>
+      <div class="w-16 h-px bg-accent mx-auto mt-6"></div>
     </div>
 
     <div class="space-y-6">
       {faqs.map((faq) => (
-        <details class="group bg-white p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border-l-2 border-[#AF9232] rounded-sm transition-all duration-300 open:shadow-md">
-          <summary class="flex justify-between items-center cursor-pointer list-none text-[#091723] transition-colors hover:text-[#AF9232]">
+        <details class="group bg-white p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border-l-2 border-accent rounded-sm transition-all duration-300 open:shadow-md">
+          <summary class="flex justify-between items-center cursor-pointer list-none text-primary transition-colors hover:text-accent">
             <span class="font-heading text-lg md:text-xl font-light">{faq.question}</span>
-            <span class="transition-transform duration-300 group-open:rotate-180 text-[#AF9232]">
+            <span class="transition-transform duration-300 group-open:rotate-180 text-accent">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </span>
           </summary>

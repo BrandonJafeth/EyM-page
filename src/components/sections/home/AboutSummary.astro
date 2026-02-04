@@ -1,4 +1,5 @@
 ---
+import SectionTitle from '../../common/SectionTitle.astro';
 ---
 
 <section class="py-16 md:py-24 bg-white relative overflow-hidden">
@@ -8,29 +9,22 @@
      <span class="font-heading text-[300px] md:text-[600px] text-gray-50 opacity-[0.03] leading-none">E</span>
   </div>
 
-  <div class="container mx-auto px-6 md:px-[120px] relative z-10">
+  <div class="container mx-auto px-6 md:px-30 relative z-10">
     
-    <!-- Section Header -->
-    <div class="text-center mb-12 fade-in-section">
-      <div class="flex items-center justify-center gap-4 mb-4">
-        <div class="h-[1px] w-8 md:w-12 bg-[#AF9232]"></div>
-        <span class="font-heading text-[#091723] uppercase tracking-[0.2em] text-xs md:text-sm">TUS ALIADOS LEGALES</span>
-        <div class="h-[1px] w-8 md:w-12 bg-[#AF9232]"></div>
-      </div>
-      
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl text-[#091723] mb-6 leading-[1.15]">
-        Especialistas con Experiencia<br />que Resuelven
-      </h2>
-      
-      <div class="w-16 h-[2px] bg-[#AF9232] mx-auto opacity-50"></div>
-    </div>
+    <SectionTitle 
+      title="Especialistas con Experiencia<br />que Resuelven" 
+      subtitle="TUS ALIADOS LEGALES" 
+      theme="light"
+    >
+      <div class="w-16 h-0.5 bg-accent mx-auto opacity-50"></div>
+    </SectionTitle>
 
     <!-- Stats Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 max-w-6xl mx-auto mb-20 fade-in-section delay-100">
       
       <!-- Stat 1 -->
       <div class="text-center group">
-        <div class="font-heading text-6xl md:text-7xl lg:text-7xl text-[#AF9232] font-light mb-6 group-hover:scale-105 transition-transform duration-500">
+        <div class="font-heading text-6xl md:text-7xl lg:text-7xl text-accent font-light mb-6 group-hover:scale-105 transition-transform duration-500">
           350+
         </div>
         <div class="text-sm uppercase tracking-[0.1em] text-gray-500 font-body max-w-[200px] mx-auto leading-relaxed">
@@ -40,7 +34,7 @@
 
       <!-- Stat 2 -->
       <div class="text-center group">
-        <div class="font-heading text-6xl md:text-7xl lg:text-7xl text-[#AF9232] font-light mb-6 group-hover:scale-105 transition-transform duration-500">
+        <div class="font-heading text-6xl md:text-7xl lg:text-7xl text-accent font-light mb-6 group-hover:scale-105 transition-transform duration-500">
           100%
         </div>
         <div class="text-sm uppercase tracking-[0.1em] text-gray-500 font-body max-w-[200px] mx-auto leading-relaxed">
@@ -50,7 +44,7 @@
 
       <!-- Stat 3 -->
       <div class="text-center group">
-        <div class="font-heading text-6xl md:text-7xl lg:text-7xl text-[#AF9232] font-light mb-6 group-hover:scale-105 transition-transform duration-500">
+        <div class="font-heading text-6xl md:text-7xl lg:text-7xl text-accent font-light mb-6 group-hover:scale-105 transition-transform duration-500">
           20+
         </div>
         <div class="text-sm uppercase tracking-[0.1em] text-gray-500 font-body max-w-[200px] mx-auto leading-relaxed">
@@ -70,7 +64,7 @@
       <div>
         <a 
           href="/sobre-nosotros" 
-          class="inline-block px-10 py-4 border border-[#091723] text-[#091723] font-heading text-sm uppercase tracking-[0.15em] hover:bg-[#091723] hover:text-[#AF9232] transition-all duration-300"
+          class="inline-block px-10 py-4 border border-primary text-primary font-heading text-sm uppercase tracking-[0.15em] hover:bg-primary hover:text-accent transition-all duration-300"
         >
           Conocer al Equipo
         </a>
@@ -79,38 +73,3 @@
 
   </div>
 </section>
-
-<style>
-  .fade-in-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-  
-  .fade-in-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
-<script>
-  // Simple Intersection Observer for scroll animations
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // Only animate once
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.fade-in-section').forEach(el => {
-    observer.observe(el);
-  });
-</script>

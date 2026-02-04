@@ -1,41 +1,48 @@
 ---
 import servicesData from '../../../data/services.json';
+import type { ServicesData } from '../../../types';
+import SectionTitle from '../../common/SectionTitle.astro';
 
 const { class: className } = Astro.props;
 
 // Use the specialized services list
-const services = servicesData.especializados;
+const services = (servicesData as ServicesData).especializados;
 ---
 
 <section class:list={["py-24", className || "bg-white"]}>
-  <div class="container mx-auto px-6 md:px-[100px]">
+  <div class="container mx-auto px-6 md:px-25">
     
-    <!-- Section Title -->
-    <div class="mb-16">
-      <h2 class="font-heading text-4xl md:text-5xl text-[#091723] mb-6">Servicios Legales Especializados</h2>
-      <div class="w-20 h-[3px] bg-[#AF9232] mb-6"></div>
+    <SectionTitle 
+      title="Servicios Legales Especializados"
+      centered={false}
+      theme="light"
+    >
+      <div class="w-20 h-1 bg-accent mb-6"></div>
       <p class="text-gray-500 font-body font-light text-lg max-w-4xl leading-relaxed">
         Nos enorgullece ofrecer una amplia gama de servicios legales especializados en diversas áreas del derecho. Con un equipo altamente experimentado y comprometido, nos aseguramos de proporcionar soluciones integrales y personalizadas para satisfacer las necesidades de nuestros clientes en cada etapa de sus proyectos y operaciones.
       </p>
-    </div>
+    </SectionTitle>
 
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {services.map((service, index) => (
-        <div class="bg-white p-8 md:p-10 flex flex-col h-full border border-gray-200 hover:shadow-lg transition-shadow duration-300 ease-out">
+        <div 
+          class="bg-white p-8 md:p-10 flex flex-col h-full border border-gray-200 hover:shadow-lg transition-shadow duration-300 ease-out fade-in-section"
+          style={`transition-delay: ${index * 100}ms`}
+        >
           
           {/* Number */}
-          <div class="font-heading text-[#AF9232]/80 text-4xl mb-6">
+          <div class="font-heading text-accent/80 text-4xl mb-6">
             {(index + 1).toString().padStart(2, '0')}
           </div>
 
           {/* Title */}
-          <h3 class="font-heading text-2xl text-[#091723] mb-6">
+          <h3 class="font-heading text-2xl text-primary mb-6">
             {service.title}
           </h3>
 
           {/* Divider */}
-          <div class="w-12 h-[1px] bg-[#AF9232] mb-6"></div>
+          <div class="w-12 h-px bg-accent mb-6"></div>
 
           {/* Description */}
           <p class="text-gray-500 font-body font-light text-sm leading-relaxed mb-8 flex-grow">
@@ -48,7 +55,7 @@ const services = servicesData.especializados;
           <div class="mt-auto pt-6">
             <a 
               href="/contacto" 
-              class="block w-full text-center py-3 border border-[#AF9232] text-[#AF9232] font-heading text-xs uppercase tracking-[0.15em] hover:bg-[#AF9232] hover:text-white transition-all duration-300"
+              class="block w-full text-center py-3 border border-accent text-accent font-heading text-xs uppercase tracking-[0.15em] hover:bg-accent hover:text-primary transition-all duration-300 font-bold"
             >
               Consultar Ahora
             </a>

@@ -93,17 +93,17 @@ export default function ContactForm() {
     alert('Gracias por contactarnos. Nos pondremos en contacto pronto.');
   };
 
-  const inputClasses = "w-full bg-[#FAFAFA] border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-[#AF9232] focus:ring-1 focus:ring-[#AF9232] transition-colors font-body text-gray-700";
+  const inputClasses = "w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700";
   const labelClasses = "block font-heading text-xs uppercase tracking-[0.1em] text-gray-500 mb-2 font-bold";
 
   return (
     <section className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-6 md:px-8 max-w-5xl">
         <div className="text-center mb-16">
-          <p className="text-[#091723] font-heading text-xs uppercase tracking-[0.2em] mb-4">Contáctanos</p>
-          <h2 className="font-heading text-4xl md:text-5xl text-[#091723] mb-4">Inicia la Conversación</h2>
+          <p className="text-primary font-heading text-xs uppercase tracking-[0.2em] mb-4">Contáctanos</p>
+          <h2 className="font-heading text-4xl md:text-5xl text-primary mb-4">Inicia la Conversación</h2>
           <p className="text-gray-500 font-body font-light text-lg">Completa el formulario y nos pondremos en contacto contigo a la brevedad</p>
-          <div className="w-16 h-[1px] bg-[#AF9232] mx-auto mt-8"></div>
+          <div className="w-16 h-px bg-accent mx-auto mt-8"></div>
         </div>
 
         <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] border border-gray-100 max-w-4xl mx-auto rounded-md">
@@ -171,7 +171,7 @@ export default function ContactForm() {
                     <option key={p.id} value={p.name}>{p.name}</option>
                   ))}
                 </select>
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#AF9232]">
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                 </div>
               </div>
@@ -198,7 +198,7 @@ export default function ContactForm() {
                         <option key={c.id} value={c.name}>{c.name}</option>
                     ))}
                     </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#AF9232]">
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                     </div>
                 </div>
@@ -222,7 +222,7 @@ export default function ContactForm() {
                         <option key={d.id} value={d.name}>{d.name}</option>
                     ))}
                     </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#AF9232]">
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                     </div>
                 </div>
@@ -249,7 +249,7 @@ export default function ContactForm() {
                   <option value="familia">Derecho de Familia</option>
                   <option value="otro">Otro</option>
                 </select>
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#AF9232]">
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                 </div>
               </div>
@@ -272,7 +272,7 @@ export default function ContactForm() {
                   <option value="recomendacion">Recomendación</option>
                   <option value="otro">Otro</option>
                 </select>
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#AF9232]">
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                 </div>
               </div>
@@ -288,11 +288,11 @@ export default function ContactForm() {
                   {/* Custom Radio Circle */}
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${
                     formData.medioContacto === option 
-                      ? 'border-2 border-[#AF9232]' 
+                      ? 'border-2 border-accent' 
                       : 'border border-gray-300 group-hover:border-gray-400'
-                  } group-focus-within:ring-2 group-focus-within:ring-[#AF9232] group-focus-within:ring-offset-2`}>
+                  } group-focus-within:ring-2 group-focus-within:ring-accent group-focus-within:ring-offset-2`}>
                     {formData.medioContacto === option && (
-                      <div className="w-3 h-3 rounded-full bg-[#AF9232]"></div>
+                      <div className="w-3 h-3 rounded-full bg-accent"></div>
                     )}
                   </div>
                   
@@ -307,7 +307,7 @@ export default function ContactForm() {
                   
                   <span className={`font-heading text-lg font-normal tracking-wide transition-colors ${
                     formData.medioContacto === option 
-                      ? 'text-[#091723]' 
+                      ? 'text-primary' 
                       : 'text-gray-500 group-hover:text-gray-600'
                   }`}>
                     {option}
@@ -321,7 +321,7 @@ export default function ContactForm() {
           <div className="text-center mt-12">
             <button 
               type="submit" 
-              className="w-full bg-[#AF9232] text-white font-heading uppercase tracking-[0.2em] text-sm py-5 hover:bg-[#967d29] focus:outline-none focus:ring-2 focus:ring-[#AF9232] focus:ring-offset-2 transition-all duration-300 shadow-md hover:shadow-lg"
+              className="w-full bg-accent text-white font-heading uppercase tracking-[0.2em] text-sm py-5 hover:brightness-90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 transition-all duration-300 shadow-md hover:shadow-lg"
             >
               Enviar Mensaje
             </button>

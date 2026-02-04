@@ -50,7 +50,7 @@ export default function NavbarMobile({ navLinks, currentPath }: NavbarMobileProp
         
       {/* Background - Dark Navy Corporate */}
       <div 
-        className="absolute inset-0 bg-[#091723]"
+        className="absolute inset-0 bg-primary"
         aria-hidden="true"
       />
 
@@ -68,7 +68,7 @@ export default function NavbarMobile({ navLinks, currentPath }: NavbarMobileProp
       <div className="absolute top-0 right-0 px-6 py-6 z-50 flex justify-end h-20 items-center">
         <button
           onClick={closeMenu}
-          className="w-12 h-12 flex items-center justify-center text-white hover:text-[#AF9232] transition-colors duration-300 group"
+          className="w-12 h-12 flex items-center justify-center text-white hover:text-accent transition-colors duration-300 group"
           aria-label="Cerrar menú"
           type="button"
         >
@@ -105,8 +105,8 @@ export default function NavbarMobile({ navLinks, currentPath }: NavbarMobileProp
                           transition-all duration-500
                           ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
                           ${isActive 
-                            ? 'text-[#AF9232]'
-                            : 'text-white hover:text-[#AF9232]'
+                            ? 'text-accent'
+                            : 'text-white hover:text-accent'
                           }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
                 aria-current={isActive ? 'page' : undefined}
@@ -124,7 +124,7 @@ export default function NavbarMobile({ navLinks, currentPath }: NavbarMobileProp
             <a 
               href="/contacto" 
               onClick={closeMenu}
-              className="inline-block border border-[#AF9232] text-[#AF9232] font-heading text-sm uppercase tracking-[0.2em] py-4 px-10 hover:bg-[#AF9232] hover:text-[#091723] transition-colors duration-300"
+              className="inline-block border border-accent text-accent font-heading text-sm uppercase tracking-[0.2em] py-4 px-10 hover:bg-accent hover:text-primary transition-colors duration-300"
             >
               Contactar
             </a>

@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  theme?: 'light' | 'dark';
+  centered?: boolean;
+}
+
+const { title, subtitle, theme = 'light', centered = true } = Astro.props;
+
+// Colors
+const titleColor = theme === 'light' ? 'text-primary' : 'text-white';
+const subtitleColor = theme === 'light' ? 'text-primary' : 'text-accent';
+
+// Alignment
+const alignmentClass = centered ? 'text-center' : 'text-left';
+const flexAlignment = centered ? 'justify-center' : 'justify-start';
+---
+
+<div class:list={["mb-12 fade-in-section", alignmentClass]}>
+  {subtitle && (
+    <div class:list={["flex items-center gap-4 mb-4", flexAlignment]}>
+      <div class:list={["h-px w-8 md:w-12 bg-accent", theme === 'dark' ? 'opacity-50' : '']}></div>
+      <span class:list={["font-heading uppercase tracking-[0.2em] text-xs md:text-sm", subtitleColor]}>
+        {subtitle}
+      </span>
+      <div class:list={["h-px w-8 md:w-12 bg-accent", theme === 'dark' ? 'opacity-50' : '']}></div>
+    </div>
+  )}
+  
+  <h2 class:list={["font-heading text-3xl md:text-4xl lg:text-5xl mb-6 leading-[1.15]", titleColor]}>
+    <Fragment set:html={title} />
+  </h2>
+  
+  <slot />
+</div>
