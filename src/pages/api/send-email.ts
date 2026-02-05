@@ -27,25 +27,73 @@ export const POST: APIRoute = async ({ request }) => {
         distrito, 
         areaLegal, 
         comoConocio, 
-        medioContacto 
+        medioContacto,
+        hp_field,
+        form_start_time
     } = body;
 
-    // Validate required fields
-    if (!nombre || !email || !telefono) {
-      return new Response(
-        JSON.stringify({
-          message: "Faltan campos requeridos (Nombre, Email o Teléfono)",
-        }),
-        { 
-          status: 400,
-          headers: { "Content-Type": "application/json" }
-        }
-      );
+    // 1. Anti-Spam Check (Honeypot) - Silent fail
+    if (hp_field) {
+        console.warn(`Spam detected (Honeypot): ${email}`);
+        // Fake success to confuse bots
+        return new Response(
+            JSON.stringify({ message: "Email enviado con éxito" }), 
+            { status: 200, headers: { "Content-Type": "application/json" } }
+        );
     }
 
-    const cleanPhone = telefono.replace(/\D/g, "");
-    const whatsappLink = `https://wa.me/${cleanPhone.length === 8 ? '506' + cleanPhone : cleanPhone}`;
+    // 2. Anti-Spam Check (Time-based Rate Limit)
+    // Check if form was submitted too fast (e.g., < 3 seconds)
+    if (form_start_time) {
+        const startTime = parseInt(form_start_time);
+        const now = Date.now();
+        const diff = now - startTime;
+        
+        if (!isNaN(startTime) && diff < 3000) { // 3 seconds
+             console.warn(`Spam detected (Too fast): ${diff}ms`);
+             return new Response(
+                JSON.stringify({ message: "Envío demasiado rápido. Por favor intenta de nuevo en unos segundos." }), 
+                { status: 429, headers: { "Content-Type": "application/json" } }
+            );
+        }
+    }
 
+    // 3. Validation
+    if (!nombre || nombre.length < 2) {
+        return new Response(
+            JSON.stringify({ message: "Nombre inválido o muy corto." }),
+            { status: 400, headers: { "Content-Type": "application/json" } }
+        );
+    }
+
+    // Regex Check Email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+        return new Response(
+            JSON.stringify({ message: "Correo electrónico inválido." }),
+            { status: 400, headers: { "Content-Type": "application/json" } }
+        );
+    }
+
+    // Check Phone (min 8 digits)
+    const cleanPhone = telefono ? telefono.replace(/\D/g, "") : "";
+    if (cleanPhone.length < 8) {
+        return new Response(
+            JSON.stringify({ message: "El teléfono debe tener al menos 8 dígitos." }),
+            { status: 400, headers: { "Content-Type": "application/json" } }
+        );
+    }
+    
+    // Cookie-Based Rate Limit (Prevention of double submit)
+    const cookieHeader = request.headers.get("cookie");
+    if (cookieHeader && cookieHeader.includes("eym_submitted=true")) {
+         return new Response(
+            JSON.stringify({ message: "Ya has enviado un mensaje recientemente. Espera un momento." }),
+            { status: 429, headers: { "Content-Type": "application/json" } }
+        );       
+    }
+
+    const whatsappLink = `https://wa.me/${cleanPhone.length === 8 ? '506' + cleanPhone : cleanPhone}`;
     const subjectLine = `Nueva Solicitud: ${areaLegal || "General"} - ${nombre}`;
 
     // 1. Email notificación ADMIN
@@ -80,8 +128,8 @@ export const POST: APIRoute = async ({ request }) => {
                     <!-- Body Content -->
                     <tr>
                       <td style="padding: 20px;">
-                        <p style="color: #4b5563; font-size: 14px; line-height: 1.5; margin-bottom: 20px; text-align: center;">
-                          Has recibido un nuevo mensaje a través del formulario de contacto del sitio web.
+                        <p style="color: #4b5563; font-size: 14px; line-height: 1.5; margin-bottom: 20px;">
+                          Has recibido un nuevo mensaje a través del formulario de contacto del sitio web. A continuación, los detalles del cliente potencial:
                         </p>
 
                         <!-- Contact Card (DARK MODE STYLE como foto 1) -->
@@ -242,7 +290,11 @@ export const POST: APIRoute = async ({ request }) => {
       }),
       { 
         status: 200,
-        headers: { "Content-Type": "application/json" }
+        headers: { 
+            "Content-Type": "application/json",
+            // Set cookie for rate limiting (expires in 2 minutes)
+            "Set-Cookie": `eym_submitted=true; Path=/; Max-Age=120; SameSite=Strict`
+        }
       }
     );
 
