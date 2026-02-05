@@ -33,6 +33,7 @@
             class="w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700"
             required
           />
+          <p id="error-nombre" class="hidden text-red-500 text-xs mt-1 font-body"></p>
         </div>
 
         <!-- Email -->
@@ -46,6 +47,7 @@
             class="w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700"
             required
           />
+          <p id="error-email" class="hidden text-red-500 text-xs mt-1 font-body"></p>
         </div>
 
         <!-- Teléfono -->
@@ -59,6 +61,7 @@
             class="w-full bg-gray-50 border border-gray-200 p-4 rounded-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors font-body text-gray-700"
             required
           />
+          <p id="error-telefono" class="hidden text-red-500 text-xs mt-1 font-body"></p>
         </div>
 
         <!-- Provincia -->
@@ -253,6 +256,40 @@
             return;
         }
 
+        const showInputError = (inputId: string, msg: string) => {
+            const input = document.getElementById(inputId);
+            const errorMsg = document.getElementById(`error-${inputId}`);
+            
+            if (input) {
+                input.classList.add('border-red-300', 'bg-red-50');
+                input.classList.remove('border-gray-200', 'bg-gray-50');
+            }
+            if (errorMsg) {
+                errorMsg.textContent = msg;
+                errorMsg.classList.remove('hidden');
+                errorMsg.classList.add('animate-in', 'fade-in', 'slide-in-from-top-1');
+            }
+        };
+
+        const clearErrors = () => {
+            ['nombre', 'email', 'telefono'].forEach(id => {
+                const input = document.getElementById(id);
+                const errorMsg = document.getElementById(`error-${id}`);
+                
+                if (input) {
+                    input.classList.remove('border-red-300', 'bg-red-50');
+                    input.classList.add('border-gray-200', 'bg-gray-50');
+                }
+                if (errorMsg) {
+                    errorMsg.classList.add('hidden');
+                    errorMsg.textContent = '';
+                }
+            });
+            
+            const statusDiv = document.getElementById("form-status");
+            if (statusDiv) statusDiv.classList.add("hidden");
+        };
+
         const showMessage = (msg: string, type: "success" | "error") => {
             const statusDiv = document.getElementById("form-status");
             if (!statusDiv) return;
@@ -260,36 +297,66 @@
             statusDiv.classList.remove("hidden", "bg-green-50", "border-green-200", "text-green-800", "bg-red-50", "border-red-200", "text-red-800");
 
             if (type === "success") {
+                // Get name for personalized message
+                const nombreInput = document.getElementById('nombre') as HTMLInputElement;
+                const primerNombre = nombreInput ? nombreInput.value.split(' ')[0] : 'visitante';
+                
                 statusDiv.classList.add("bg-green-50", "border-green-200", "text-green-800");
-                statusDiv.innerHTML = `<p class="font-bold">¡Mensaje Enviado!</p><p class="text-sm">${msg}</p>`;
+                statusDiv.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="font-bold text-sm md:text-base">Gracias ${primerNombre}, hemos recibido tu mensaje. Te contactaremos pronto.</span>
+                    </div>
+                `;
                 form.reset();
                 // Reset time
                 if (timeInput) timeInput.value = Date.now().toString();
             } else {
                 statusDiv.classList.add("bg-red-50", "border-red-200", "text-red-800");
-                statusDiv.innerHTML = `<p class="font-bold">Error</p><p class="text-sm">${msg}</p>`;
+                 statusDiv.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                        <span class="font-bold">Error:</span> <span class="text-sm">${msg}</span>
+                    </div>
+                `;
             }
             
-            // Auto-scroll to message
-            statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Auto-scroll to message only on global error
+            if (type !== 'success') {
+                statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         };
 
-        const validateForm = (formData: FormData): string | null => {
+        const validateForm = (formData: FormData): boolean => {
+            let isValid = true;
+            clearErrors();
+            
             const nombre = formData.get("nombre") as string;
             const email = formData.get("email") as string;
             const telefono = formData.get("telefono") as string;
             
-            if (nombre.length < 2) return "El nombre es muy corto.";
+            if (nombre.length < 2) {
+                showInputError('nombre', "El nombre es muy corto.");
+                isValid = false;
+            }
             
             // Email regex simple
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) return "El correo electrónico no es válido.";
+            if (!emailRegex.test(email)) {
+                showInputError('email', "El correo electrónico no es válido.");
+                isValid = false;
+            }
 
             // Phone: min 8 digits
             const cleanPhone = telefono.replace(/\D/g, "");
-            if (cleanPhone.length < 8) return "El teléfono debe tener al menos 8 dígitos.";
+            if (cleanPhone.length < 8) {
+                showInputError('telefono', "El teléfono debe tener al menos 8 dígitos.");
+                isValid = false;
+            }
 
-            return null; // Valid
+            return isValid;
         };
 
 
@@ -300,10 +367,10 @@
             const originalBtnText = submitBtn.innerText;
             
             const formData = new FormData(form);
-            const validationError = validateForm(formData);
+            const isValid = validateForm(formData);
 
-            if (validationError) {
-                showMessage(validationError, "error");
+            if (!isValid) {
+                // No need to show global message if fields are highlighted
                 return;
             }
 
@@ -336,7 +403,7 @@
                     throw new Error(result.message || "Error al enviar el formulario");
                 }
 
-                showMessage("Hemos recibido tu mensaje correctamente.", "success");
+                showMessage("Success", "success");
 
             } catch (error: any) {
                 console.error('Error submitting form:', error);
