@@ -1,46 +1,68 @@
-# Astro Starter Kit: Basics
+# EYM & Asociados - Sitio Web Corporativo
 
-```sh
-npm create astro@latest -- --template basics
-```
+Sitio web moderno y profesional para el bufete de abogados **EYM & Asociados**, ubicados en Guanacaste, Costa Rica. Diseñado para proyectar confianza, autoridad y elegancia, optimizado para conversión y posicionamiento local.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Realizado por **[One Out](https://www.instagram.com/one.out_/)**.
 
-## 🚀 Project Structure
+## 🛠 Tecnologías
 
-Inside of your Astro project, you'll see the following folders and files:
+Este proyecto está construido con un stack moderno enfocado en rendimiento (Core Web Vitals) y mantenibilidad:
+
+- **Framework**: [Astro 5](https://astro.build/) (Static Site Generation).
+- **Lenguaje**: TypeScript.
+- **Estilos**: Tailwind CSS.
+- **Fuentes**: Antic Didone (Títulos) y Lato (Cuerpo).
+- **Iconos**: Lucide React.
+- **Animaciones**: CSS Nativo y View Transitions.
+
+## 📂 Estructura del Proyecto
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+├── components/      # Componentes de UI reutilizables (.astro, .tsx)
+│   ├── common/      # Botones, Títulos, Call-to-Actions
+│   ├── layout/      # Navbar, Footer
+│   └── sections/    # Secciones específicas por página (Home, About, etc.)
+├── data/            # Fuente de verdad de contenidos (JSON)
+│   ├── site.json    # Info global (Contacto, Redes, Logo)
+│   ├── services.json # Catálogo de servicios legales
+│   └── team.json    # Perfiles de abogados
+├── layouts/         # Plantillas base de páginas
+├── pages/           # Rutas del sitio (index, contacto, etc.)
+└── styles/          # CSS global
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🚀 Comandos
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
+| Comando                   | Acción                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm install`             | Instala las dependencias                         |
+| `npm run dev`             | Inicia el servidor de desarrollo en `localhost:4321` |
+| `npm run build`           | Compila el sitio para producción en `./dist/`    |
+| `npm run preview`         | Previsualiza el build localmente                 |
 
-## 👀 Want to learn more?
+## ⚙️ Configuración Global
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+La información crítica del sitio (teléfonos, correo, dirección) está centralizada en `src/data/site.json`.
+
+**Ejemplo de configuración:**
+```json
+{
+  "name": "EYM & Asociados",
+  "contact": {
+    "phone": "+506 6021 2971", // Teléfono principal
+    "phone_secondary": "+506 8705 3112",
+    "email": "bufete.emyasociados@gmail.com"
+  }
+}
+```
+
+> **Nota:** Cualquier cambio en el archivo `site.json` se reflejará automáticamente en el Navbar, Footer, Botones de WhatsApp y Secciones de Contacto.
+
+## 📖 Guías de Desarrollo
+
+Para detalles sobre buenas prácticas, estilos y convenciones de código, consulta el archivo [AGENTS.md](./AGENTS.md).
+
+---
+
+© 2026 EYM & Asociados. Desarrollado por [One Out](https://www.instagram.com/one.out_/).
