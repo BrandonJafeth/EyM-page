@@ -39,9 +39,11 @@ const teamImage = "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u
               <a href={`tel:${siteData.contact.phone.replace(/\s/g, '')}`} class="font-heading text-lg md:text-2xl text-primary hover:text-accent transition-colors">
                 {siteData.contact.phone}
               </a>
-               <a href="tel:+50660212971" class="font-heading text-lg md:text-2xl text-primary hover:text-accent transition-colors">
-                +506 6021-2971
-              </a>
+              {siteData.contact.phone_secondary && (
+                 <a href={`tel:${siteData.contact.phone_secondary.replace(/\s/g, '')}`} class="font-heading text-lg md:text-2xl text-primary hover:text-accent transition-colors">
+                  {siteData.contact.phone_secondary}
+                </a>
+              )}
             </div>
           </div>
         </div>

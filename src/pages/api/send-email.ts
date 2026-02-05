@@ -258,7 +258,7 @@ export const POST: APIRoute = async ({ request }) => {
                         </div>
 
                         <p style="color: #6b7280; font-size: 14px;">
-                          Si tienes alguna consulta urgente, puedes llamarnos directamente al <strong>+506 8705 3112</strong>.
+                          Si tienes alguna consulta urgente, puedes llamarnos directamente al <strong>+506 6021 2971</strong> o al <strong>+506 8705 3112</strong>.
                         </p>
                       </td>
                     </tr>
