@@ -1,37 +1,40 @@
 [
   {
     "id": "roy-francisco-espinoza",
-    "name": "Lic. Roy Francisco Espinoza Quesada",
+    "name": "Lic. Roy Espinoza Quesada",
     "role": "Socio Fundador",
-    "specialty": "Derecho Laboral, Penal y Corporativo",
+    "specialty": "Derecho Civil, Laboral y Penal",
     "image": "https://assets.cdn.filesafe.space/18B9fYF7TJeFd7SzeM9O/media/66df640536b52535437dabda.jpeg",
-    "shortBio": "Exjuez con 17 años de experiencia en el Poder Judicial. Especialista en litigio y resolución alterna de conflictos.",
-    "fullBio": "Profesional con amplia experiencia en el trámite de procesos litigiosos y vasto conocimiento en derecho procesal. Se destaca por su agilidad en la tramitología de procesos comerciales, corporativos y de negocios (bienes muebles e inmuebles). Caracterizado por su responsabilidad, diligencia y confianza en trámites notariales y registrales, con un enfoque claro en la resolución de problemas y la consecución de resultados.",
-    "professionalProfile": "Licenciado en Derecho y Exjuez (materia laboral y genérico) con 17 años de labor en el Poder Judicial. Fundador del Bufete EM & Asociados y Representante legal en diversas materias para empresas de servicios y comerciales.",
+    "shortBio": "Abogado litigante y fundador de EYM & Asociados. Exjuez con más de 16 años de experiencia en el Poder Judicial.",
+    "fullBio": "Abogado litigante con una sólida trayectoria de más de 16 años en el Poder Judicial, desempeñándose como Juez y asistente en diversos despachos a nivel nacional. Su experiencia se complementa con su labor como profesor universitario. Actualmente, aplica su vasto conocimiento en Derecho Civil, Laboral y Penal para ofrecer soluciones legales efectivas y éticas.",
+    "professionalProfile": "Licenciado en Derecho y Exjuez con especialización en materia Penal y Laboral. Posee amplia experiencia en la judicatura y docencia universitaria. Fundador de EYM & Asociados, enfocado en brindar asesoría legal integral con altos estándares profesionales.",
     "education": [
-      "Licenciatura en Derecho",
-      "Egresado de Programa de Formación Inicial para Aspirantes a la Judicatura (FIAJ) - Escuela Judicial"
+      "Licenciatura en Derecho - Universidad Metropolitana Castro Carazo (2009-2013)",
+      "Programa de Formación Inicial de Aspirantes a la Judicatura - Escuela Judicial (2015-2016)",
+      "Programa de Formación para Auxiliares Judiciales (Civil) - Escuela Judicial (2008-2009)",
+      "Bachiller en Educación Media - Liceo Miguel Araya Venegas"
     ],
     "judicialExperience": [
-      "Exjuez materia laboral y genérico (17 años en Poder Judicial)",
-      "Elegible en Carrera Judicial como Juez 3 Laboral y Juez Genérico"
+      "Juez y Asistente en el Poder Judicial (2006-2022)",
+      "Especialización Juez 3 Penal y Juez 3 Laboral",
+      "Diplomado en Dirección del Servicio Nacional de Facilitadores Judiciales (OEA)"
     ],
     "specialties": [
+      "Derecho Civil (Litigios y Contratos)",
       "Derecho Laboral",
       "Derecho Penal",
-      "Solución Alterna de Conflictos",
-      "Derecho Corporativo y Comercial"
+      "Derecho Corporativo"
     ],
     "courses": [
-      "Especializado en materia laboral (Escuela Judicial)",
-      "Especializado en materia penal (Escuela Judicial)",
-      "Especialista en Solución alterna de conflictos",
-      "Manejo administrativo y del recurso humano en el Poder Judicial"
+      "Especialización en Materia Penal y Laboral (Escuela Judicial)",
+      "Taller de actualización avanzada en Materia Civil",
+      "Diplomado en Dirección del Servicio Nacional de Facilitadores Judiciales",
+      "Manejo de Sistema de Depósitos Judiciales y Gestión de Despachos"
     ],
     "contact": {
-      "email": "bufete.emyasociados@gmail.com",
-      "phone": "6021-2971",
-      "whatsapp": "8705-3112"
+      "email": "roy.espinozaq@gmail.com",
+      "phone": "+506 8705-3112",
+      "whatsapp": "+506 8705-3112"
     }
   },
   {
