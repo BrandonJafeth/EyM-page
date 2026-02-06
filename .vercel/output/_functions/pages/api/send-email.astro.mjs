@@ -4,7 +4,7 @@ export { renderers } from '../../renderers.mjs';
 const prerender = false;
 const POST = async ({ request }) => {
   try {
-    const apiKey = "re_L89PEPFb_FyHyV57SJEX2HuKFgkE3XbJN";
+    const apiKey = "re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8";
     if (!apiKey) ;
     const resend = new Resend(apiKey);
     const body = await request.json();
@@ -70,7 +70,7 @@ const POST = async ({ request }) => {
     const whatsappLink = `https://wa.me/${cleanPhone.length === 8 ? "506" + cleanPhone : cleanPhone}`;
     const subjectLine = `Nueva Solicitud: ${areaLegal || "General"} - ${nombre}`;
     const emailToAdmin = await resend.emails.send({
-      from: "Notificación Web <info@brandondev.me>",
+      from: "Notificación Web <info@emyasociados.net>",
       to: ["brandoncarrilloalvarez569@gmail.com"],
       replyTo: email,
       subject: subjectLine,
@@ -186,7 +186,7 @@ const POST = async ({ request }) => {
       throw new Error("No se pudo enviar la notificación al administrador: " + emailToAdmin.error.message);
     }
     const emailToClient = await resend.emails.send({
-      from: "EYM & Asociados <info@brandondev.me>",
+      from: "EYM & Asociados <info@emyasociados.net>",
       to: [email],
       // Al correo del cliente
       subject: "Hemos recibido tu solicitud - EYM & Asociados",
