@@ -4,6 +4,14 @@ import type { TeamMember } from '../../../types';
 import SectionTitle from '../../common/SectionTitle.astro';
 
 const members = teamData as TeamMember[];
+
+// Helper to optimize images
+const getOptimizedImage = (url: string) => {
+  if (url.includes('pexels.com')) {
+    return `${url}?auto=compress&cs=tinysrgb&w=800`;
+  }
+  return url;
+};
 ---
 
 <section class="py-16 md:py-24 bg-white">
@@ -35,8 +43,11 @@ const members = teamData as TeamMember[];
           <div class="aspect-[3/4] w-full overflow-hidden bg-gray-100 mb-6 relative">
              <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500 z-10"></div>
              <img 
-              src={member.image} 
+              src={getOptimizedImage(member.image)} 
               alt={member.name} 
+              width="600"
+              height="800"
+              loading="lazy"
               transition:name={`image-${member.id}`}
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
              />
