@@ -23,6 +23,44 @@ const siteTitle = `${title} | ${siteData.name}`;
 const siteDescription = description || `Asesoría legal experta. Ubicados en Liberia, Guanacaste. Contáctanos al ${siteData.contact.phone} para atención inmediata.`;
 const canonicalURL = new URL(Astro.url.pathname, siteData.url);
 const socialImageURL = new URL(siteData.logo, siteData.url);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": siteData.name,
+  "image": siteData.logo,
+  "@id": siteData.url,
+  "url": siteData.url,
+  "telephone": siteData.contact.phone,
+  "email": siteData.contact.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": siteData.contact.address,
+    "addressLocality": "Liberia",
+    "addressRegion": "Guanacaste",
+    "addressCountry": "CR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 10.6317844,
+    "longitude": -85.4396896
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "priceRange": "$$"
+};
 ---
 
 <!doctype html>
@@ -32,6 +70,7 @@ const socialImageURL = new URL(siteData.logo, siteData.url);
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href={siteData.logo} />
 		<meta name="generator" content={Astro.generator} />
+        <meta name="theme-color" content="#091723" />
         
         <!-- Preconnect to external API -->
         <link rel="preconnect" href="https://ubicaciones.paginasweb.cr">
@@ -40,6 +79,8 @@ const socialImageURL = new URL(siteData.logo, siteData.url);
 		<!-- SEO Primary -->
 		<title>{siteTitle}</title>
 		<meta name="description" content={siteDescription} />
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content={siteData.name} />
 		<link rel="canonical" href={canonicalURL} />
 
 		<!-- Open Graph / Facebook -->
@@ -52,6 +93,11 @@ const socialImageURL = new URL(siteData.logo, siteData.url);
 		<!-- Geo-tagging -->
 		<meta name="geo.region" content="CR-G" />
 		<meta name="geo.placename" content="Liberia" />
+		<meta name="geo.position" content="10.6317844;-85.4396896" />
+		<meta name="ICBM" content="10.6317844, -85.4396896" />
+
+		<!-- Schema.org JSON-LD -->
+		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 		
 		<ClientRouter />
 	</head>

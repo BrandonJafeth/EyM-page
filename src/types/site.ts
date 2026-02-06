@@ -10,7 +10,7 @@ export interface SiteData {
     maps_link: string;
   };
   social: {
-    facebook: string;
-    instagram: string;
+    facebook?: string;
+    instagram?: string;
   };
 }
