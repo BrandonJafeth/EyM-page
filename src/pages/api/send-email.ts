@@ -98,7 +98,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // 1. Email notificación ADMIN
     const emailToAdmin = await resend.emails.send({
-      from: "Notificación Web <info@brandondev.me>", 
+      from: "Notificación Web <info@emyasociados.net>", 
       to: ["brandoncarrilloalvarez569@gmail.com"],
       replyTo: email,
       subject: subjectLine,
@@ -219,7 +219,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // 2. Email confirmación CLIENTE
     const emailToClient = await resend.emails.send({
-      from: "EYM & Asociados <info@brandondev.me>",
+      from: "EYM & Asociados <info@emyasociados.net>",
       to: [email], // Al correo del cliente
       subject: "Hemos recibido tu solicitud - EYM & Asociados",
       html: `
