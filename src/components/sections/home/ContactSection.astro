@@ -4,7 +4,7 @@ import siteData from '../../../data/site.json';
 import SectionTitle from '../../common/SectionTitle.astro';
 
 // Image URL from data or existing assets (using the one from Hero for consistency)
-const teamImage = "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/18B9fYF7TJeFd7SzeM9O/media/66df62bbfb53162a111dd1c1.jpeg";
+const teamImage = "https://images.leadconnectorhq.com/image/f_webp/q_80/r_800/u_https://assets.cdn.filesafe.space/18B9fYF7TJeFd7SzeM9O/media/66df62bbfb53162a111dd1c1.jpeg";
 
 ---
 
@@ -87,6 +87,7 @@ const teamImage = "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u
             <img 
               src={teamImage}
               alt="Equipo legal EYM" 
+              loading="lazy"
               class="w-full h-full object-cover object-top transform hover:scale-105 transition-transform duration-700"
             />
         </div>

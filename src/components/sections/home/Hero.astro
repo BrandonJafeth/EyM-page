@@ -4,19 +4,21 @@ import homeData from '../../../data/home.json';
 const { hero } = homeData;
 ---
 
-<section class="relative w-full h-screen min-h-175 overflow-hidden bg-primary">
+<section class="relative w-full h-[100dvh] min-h-175 overflow-hidden bg-primary">
   <!-- Background Image - Fullscreen -->
   <div class="absolute inset-0 z-0">
     <img 
-      src="https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770179184/IMG-20260203-WA0040_glhgv4.jpg" 
+      src="https://res.cloudinary.com/dkwvaxxdw/image/upload/q_auto,f_auto,w_1200/v1770179184/IMG-20260203-WA0040_glhgv4.jpg" 
       alt="Equipo EYM Asociados" 
+      fetchpriority="high"
+      loading="eager"
       class="w-full h-full object-cover object-[center_35%] md:object-center"
     />
     
     <!-- Overlay Gradient - Adjusted for text legibility on mobile -->
     <div 
       class="absolute inset-0" 
-      style="background: linear-gradient(to bottom, transparent 30%, rgba(8, 22, 34, 0.4) 60%, rgba(9, 25, 39, 0.95) 100%);"
+      style="background: linear-gradient(to bottom, transparent 30%, rgba(8, 22, 34, 0.4) 60%, #091723 100%);"
     ></div>
   </div>
 
@@ -37,7 +39,7 @@ const { hero } = homeData;
       <!-- CTA -->
       <a 
         href="/contacto" 
-        class="group inline-block font-heading text-xs md:text-base text-white bg-transparent border border-white px-8 py-3 md:px-10 md:py-4 rounded-xs tracking-widest uppercase transition-all duration-300 hover:bg-white hover:text-primary"
+        class="group inline-block font-heading text-xs md:text-base text-white bg-transparent border border-white px-8 py-3 md:px-10 md:py-4 rounded-xs tracking-widest uppercase transition-colors duration-300 hover:bg-white hover:text-primary"
       >
         {hero.cta}
       </a>
@@ -47,21 +49,26 @@ const { hero } = homeData;
 
 <style>
   .fade-in-up {
-    animation: fadeInUp 1s ease-out forwards;
-    opacity: 0;
-    transform: translateY(20px);
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
   .fade-in-delay {
-    animation: fadeInUp 1s ease-out 0.5s forwards;
-    opacity: 0;
-    transform: translateY(20px);
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
   }
 
   @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.98);
+    }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
   }
 </style>

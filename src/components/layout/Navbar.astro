@@ -24,8 +24,11 @@ const headerClass = "fixed top-0 w-full z-50 transition-all duration-300 bg-prim
     <div class="flex items-center justify-between h-full transition-all duration-300" id="navbar-container">
       <a href="/" class="shrink-0 group flex items-center gap-4">
         <img 
-          src={siteData.logo} 
+          src={siteData.logo.replace('/upload/', '/upload/w_300/')}
           alt={siteData.name} 
+          width="145"
+          height="84"
+          fetchpriority="high"
           class="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
         />
       </a>
