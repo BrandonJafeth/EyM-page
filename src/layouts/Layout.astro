@@ -20,7 +20,7 @@ interface Props {
 const { title, description } = Astro.props;
 
 const siteTitle = `${title} | ${siteData.name}`;
-const siteDescription = description || `Asesoría legal experta. Ubicados en Liberia, Guanacaste. Contáctanos al ${siteData.contact.phone} para atención inmediata.`;
+const siteDescription = description || `Asesoría legal experta. Ubicados en Liberia y Cañas, Guanacaste. Contáctanos al ${siteData.contact.phone} para atención inmediata.`;
 const canonicalURL = new URL(Astro.url.pathname, siteData.url);
 const socialImageURL = new URL(siteData.logo, siteData.url);
 
@@ -40,6 +40,20 @@ const schema = {
     "addressRegion": "Guanacaste",
     "addressCountry": "CR"
   },
+  "areaServed": [
+    {
+        "@type": "City",
+        "name": "Liberia"
+    },
+    {
+        "@type": "City",
+        "name": "Cañas"
+    },
+    {
+        "@type": "AdministrativeArea",
+        "name": "Guanacaste"
+    }
+  ],
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 10.6317844,
