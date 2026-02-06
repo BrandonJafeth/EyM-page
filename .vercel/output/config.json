@@ -2,6 +2,20 @@
 	"version": 3,
 	"routes": [
 		{
+			"src": "^/about$",
+			"headers": {
+				"Location": "/sobre-nosotros"
+			},
+			"status": 301
+		},
+		{
+			"src": "^/about-7151$",
+			"headers": {
+				"Location": "/sobre-nosotros"
+			},
+			"status": 301
+		},
+		{
 			"handle": "filesystem"
 		},
 		{
