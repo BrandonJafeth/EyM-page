@@ -4,7 +4,7 @@
   --color-primary: #091723;
   --color-secondary: #CBD5E0;
   --color-accent: #AF9232;
-  --color-accent-darker: #8F7626; /* Versión más oscura para texto sobre blanco */
+  --color-accent-darker: #7e6922; /* Versión más oscura para texto sobre blanco - WCAG AA pass on white requires ~4.5:1, #7e6922 is darker */
   --color-background: #FFFFFF;
   --color-text-main: #091723;
 

@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import team from '../../data/team.json';
-import { Mail, Phone, MessageCircle, ChevronDown, Award, BookOpen, Briefcase, Gavel, GraduationCap } from 'lucide-react';
+import Icon from '../../components/common/Icon.astro';
 import SectionTitle from '../../components/common/SectionTitle.astro';
 
 export async function getStaticPaths() {
@@ -17,35 +17,30 @@ const sections = [
   {
     id: "profile",
     title: "Perfil Profesional",
-    icon: Briefcase,
     content: member.professionalProfile,
     isList: false
   },
   {
     id: "education",
     title: "Formación Académica",
-    icon: GraduationCap,
     content: member.education,
     isList: true
   },
   {
     id: "judicial",
     title: "Experiencia Judicial",
-    icon: Gavel,
     content: member.judicialExperience,
     isList: true
   },
   {
     id: "specialties",
     title: "Especialidades",
-    icon: Award,
     content: member.specialties,
     isList: true
   },
   {
     id: "courses",
     title: "Cursos y Seminarios",
-    icon: BookOpen,
     content: member.courses,
     isList: true
   }
@@ -116,7 +111,7 @@ const activeSections = sections.filter(section => {
                 <details class="group border border-gray-100 bg-white hover:border-accent/30 transition-all duration-300 open:border-accent/30" open={index === 0}>
                   <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
                     <h3 class="font-heading text-lg text-primary/80 group-open:text-accent transition-colors">{section.title}</h3>
-                    <ChevronDown className="w-5 h-5 text-gray-300 transition-transform duration-300 group-open:rotate-180 group-open:text-accent" />
+                    <Icon name="ChevronDown" size={20} class="text-gray-300 transition-transform duration-300 group-open:rotate-180 group-open:text-accent" />
                   </summary>
                   <div class="px-6 pb-6 animate-in fade-in slide-in-from-top-1 duration-200">
                       {section.isList ? (
@@ -146,14 +141,14 @@ const activeSections = sections.filter(section => {
             <div class="space-y-4 ml-0 md:ml-4">
                 <!-- Email -->
                 <a href={`mailto:${member.contact.email}`} class="flex items-center gap-4 group w-max">
-                  <Mail size={18} className="text-accent" />
+                  <Icon name="Mail" size={18} class="text-accent" />
                   <span class="text-gray-800 font-medium group-hover:text-primary transition-colors">{member.contact.email}</span>
                 </a>
 
                 <!-- Phone -->
                 {member.contact.phone && (
                   <a href={`tel:${member.contact.phone}`} class="flex items-center gap-4 group w-max">
-                     <Phone size={18} className="text-accent" />
+                     <Icon name="Phone" size={18} class="text-accent" />
                     <span class="text-gray-800 font-medium group-hover:text-primary transition-colors">{member.contact.phone}</span>
                   </a>
                 )}
@@ -161,7 +156,7 @@ const activeSections = sections.filter(section => {
                 <!-- Whatsapp -->
                 {member.contact.whatsapp && (
                   <a href={`https://wa.me/506${member.contact.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" class="flex items-center gap-4 group w-max">
-                     <MessageCircle size={18} className="text-accent" />
+                     <Icon name="MessageCircle" size={18} class="text-accent" />
                      <span class="text-gray-800 font-medium group-hover:text-primary transition-colors">{member.contact.whatsapp}</span>
                   </a>
                 )}
