@@ -32,6 +32,10 @@ const socialImageURL = new URL(siteData.logo, siteData.url);
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href={siteData.logo} />
 		<meta name="generator" content={Astro.generator} />
+        
+        <!-- Preconnect to external API -->
+        <link rel="preconnect" href="https://ubicaciones.paginasweb.cr">
+        <link rel="dns-prefetch" href="https://ubicaciones.paginasweb.cr">
 		
 		<!-- SEO Primary -->
 		<title>{siteTitle}</title>

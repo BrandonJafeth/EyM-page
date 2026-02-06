@@ -1,3 +1,17 @@
+---
+// Server-side fetch for Provinces to improve LCP/CLS and remove client-side critical chain
+let provinces: { id: string; name: string }[] = [];
+try {
+  const res = await fetch('https://ubicaciones.paginasweb.cr/provincias.json');
+  if (res.ok) {
+    const data = await res.json();
+    provinces = Object.entries(data).map(([id, name]) => ({ id, name: name as string }));
+  }
+} catch (e) {
+  console.error("Failed to fetch provinces at build time:", e);
+}
+---
+
 <section class="py-16 md:py-20 bg-white">
   <div class="container mx-auto px-6 md:px-8 max-w-5xl">
     <div class="text-center mb-16">
@@ -75,7 +89,9 @@
               required
             >
               <option value="" disabled selected>Seleccionar Provincia...</option>
-              <!-- Options populated by JS -->
+              {provinces.map((p) => (
+                <option value={p.name} data-id={p.id}>{p.name}</option>
+              ))}
             </select>
             <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-accent">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
@@ -232,7 +248,6 @@
      
     // Module-specific cache to persist across client-side navigations (View Transitions)
     // Because scripts in Astro are modules (run once), these variables persist.
-    let cachedProvinces: { id: string, name: string }[] | null = null;
     const cantonCache: Record<string, any> = {};
     const districtCache: Record<string, any> = {};
 
@@ -414,28 +429,7 @@
             }
         });
 
-        async function fetchProvinces(selectElement: HTMLSelectElement) {
-            if (selectElement.options.length > 1) return; // Already populated
 
-            if (!cachedProvinces) {
-                try {
-                const res = await fetch('https://ubicaciones.paginasweb.cr/provincias.json');
-                const data = await res.json();
-                cachedProvinces = Object.entries(data).map(([id, name]) => ({ id, name: name as string }));
-                } catch (err) {
-                    console.error("Error fetching provinces:", err);
-                    return;
-                }
-            }
-            
-            cachedProvinces.forEach(p => {
-                const opt = document.createElement('option');
-                opt.value = p.name;
-                opt.dataset.id = p.id; 
-                opt.textContent = p.name;
-                selectElement.appendChild(opt);
-            });
-        }
 
         async function loadCantons(provinceId: string) {
             if (!provinceId || !cantonSelect || !distritoSelect || !distritoWrapper || !cantonWrapper) return;
@@ -539,13 +533,8 @@
                 loadDistricts(provinceId, cantonId);
             }
         });
-
-
-        // Initialize
-        fetchProvinces(provinciaSelect);
     }
 
-    // Run on initial load and View Transitions navigation
     document.addEventListener('astro:page-load', initContactForm);
 
 </script>
