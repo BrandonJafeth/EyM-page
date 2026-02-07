@@ -1,24 +1,30 @@
 ---
 ---
 
-<section class="relative h-[75vh] min-h-150 flex items-center justify-center overflow-hidden">
+<section class="relative h-[90dvh] min-h-150 flex items-end justify-center overflow-hidden pb-20 md:pb-32">
   <!-- Background Image -->
   <div class="absolute inset-0 z-0">
-    <img 
-      src="https://images.pexels.com/photos/5673483/pexels-photo-5673483.jpeg?auto=compress&cs=tinysrgb&w=1920" 
-      alt="Equipo profesional de abogados EYM & Asociados" 
-      width="1920"
-      height="1280"
-      class="w-full h-full object-cover object-top"
-      fetchpriority="high"
-      loading="eager"
-    />
-    <!-- Subtle dark overlay only for text readability -->
-    <div class="absolute inset-0 bg-primary/20"></div>
+    <picture>
+      <source media="(max-width: 768px)" srcset="https://res.cloudinary.com/dkwvaxxdw/image/upload/q_100,f_auto/v1770505321/_MG_0167_jc6yjy.jpg" />
+      <img 
+        src="https://res.cloudinary.com/dkwvaxxdw/image/upload/q_100,f_auto/v1770504445/_MG_0214_i4nc4v.jpg"  
+        alt="Equipo profesional de abogados EYM & Asociados" 
+        width="1920"
+        height="1280"
+        class="w-full h-full object-cover object-[center_25%]"
+        fetchpriority="high"
+        loading="eager"
+      />
+    </picture>
+    <!-- Gradient Overlay for text readability at bottom -->
+    <div 
+      class="absolute inset-0" 
+      style="background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.6) 70%, #000000 100%);"
+    ></div>
   </div>
 
   <!-- Content -->
-  <div class="relative z-10 container mx-auto px-6 text-center max-w-4xl pt-16 md:pt-20">
+  <div class="relative z-10 container mx-auto px-6 text-center max-w-4xl">
     
     <div class="mb-4 md:mb-6 fade-in-up">
         <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-white mb-4 md:mb-6 leading-tight drop-shadow-lg">
