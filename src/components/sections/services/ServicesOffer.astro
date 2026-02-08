@@ -64,10 +64,10 @@ const finalServices = detailedServices.filter((s) => targetIds.includes(s.id));
           <!-- Button -->
           <div>
             <a 
-              href="/contacto"
+              href={`/servicios/${service.id}`}
               class="block w-full text-center py-3 md:py-4 border border-accent text-accent font-heading text-[10px] md:text-xs uppercase tracking-[0.2em] hover:bg-accent hover:text-primary transition-all duration-300"
             >
-              Consultar Ahora
+              Más Información
             </a>
           </div>
 

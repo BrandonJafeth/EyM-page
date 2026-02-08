@@ -23,7 +23,7 @@ const finalServices = data.landing_services || [];
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
       {finalServices.map((service, index) => (
         <a 
-          href={`/servicios#${service.id}`}
+          href={`/servicios/${service.id}`}
           class="group block h-auto md:h-full md:min-h-95 p-6 md:p-12 border border-accent hover:bg-white/5 transition-colors duration-500 bg-transparent fade-in-section flex flex-col md:justify-between"
           style={`transition-delay: ${index * 100}ms`}
         >
