@@ -1,0 +1,101 @@
+import 'piccolore';
+import { v as decodeKey } from './chunks/astro/server_Bb7zwkth.mjs';
+import 'clsx';
+import { N as NOOP_MIDDLEWARE_FN } from './chunks/astro-designed-error-pages_D35qU4Mp.mjs';
+import 'es-module-lexer';
+
+function sanitizeParams(params) {
+  return Object.fromEntries(
+    Object.entries(params).map(([key, value]) => {
+      if (typeof value === "string") {
+        return [key, value.normalize().replace(/#/g, "%23").replace(/\?/g, "%3F")];
+      }
+      return [key, value];
+    })
+  );
+}
+function getParameter(part, params) {
+  if (part.spread) {
+    return params[part.content.slice(3)] || "";
+  }
+  if (part.dynamic) {
+    if (!params[part.content]) {
+      throw new TypeError(`Missing parameter: ${part.content}`);
+    }
+    return params[part.content];
+  }
+  return part.content.normalize().replace(/\?/g, "%3F").replace(/#/g, "%23").replace(/%5B/g, "[").replace(/%5D/g, "]");
+}
+function getSegment(segment, params) {
+  const segmentPath = segment.map((part) => getParameter(part, params)).join("");
+  return segmentPath ? "/" + segmentPath : "";
+}
+function getRouteGenerator(segments, addTrailingSlash) {
+  return (params) => {
+    const sanitizedParams = sanitizeParams(params);
+    let trailing = "";
+    if (addTrailingSlash === "always" && segments.length) {
+      trailing = "/";
+    }
+    const path = segments.map((segment) => getSegment(segment, sanitizedParams)).join("") + trailing;
+    return path || "/";
+  };
+}
+
+function deserializeRouteData(rawRouteData) {
+  return {
+    route: rawRouteData.route,
+    type: rawRouteData.type,
+    pattern: new RegExp(rawRouteData.pattern),
+    params: rawRouteData.params,
+    component: rawRouteData.component,
+    generate: getRouteGenerator(rawRouteData.segments, rawRouteData._meta.trailingSlash),
+    pathname: rawRouteData.pathname || void 0,
+    segments: rawRouteData.segments,
+    prerender: rawRouteData.prerender,
+    redirect: rawRouteData.redirect,
+    redirectRoute: rawRouteData.redirectRoute ? deserializeRouteData(rawRouteData.redirectRoute) : void 0,
+    fallbackRoutes: rawRouteData.fallbackRoutes.map((fallback) => {
+      return deserializeRouteData(fallback);
+    }),
+    isIndex: rawRouteData.isIndex,
+    origin: rawRouteData.origin
+  };
+}
+
+function deserializeManifest(serializedManifest) {
+  const routes = [];
+  for (const serializedRoute of serializedManifest.routes) {
+    routes.push({
+      ...serializedRoute,
+      routeData: deserializeRouteData(serializedRoute.routeData)
+    });
+    const route = serializedRoute;
+    route.routeData = deserializeRouteData(serializedRoute.routeData);
+  }
+  const assets = new Set(serializedManifest.assets);
+  const componentMetadata = new Map(serializedManifest.componentMetadata);
+  const inlinedScripts = new Map(serializedManifest.inlinedScripts);
+  const clientDirectives = new Map(serializedManifest.clientDirectives);
+  const serverIslandNameMap = new Map(serializedManifest.serverIslandNameMap);
+  const key = decodeKey(serializedManifest.key);
+  return {
+    // in case user middleware exists, this no-op middleware will be reassigned (see plugin-ssr.ts)
+    middleware() {
+      return { onRequest: NOOP_MIDDLEWARE_FN };
+    },
+    ...serializedManifest,
+    assets,
+    componentMetadata,
+    inlinedScripts,
+    clientDirectives,
+    routes,
+    serverIslandNameMap,
+    key
+  };
+}
+
+const manifest = deserializeManifest({"hrefRoot":"file:///C:/Freelance/EyM-page/","cacheDir":"file:///C:/Freelance/EyM-page/node_modules/.astro/","outDir":"file:///C:/Freelance/EyM-page/dist/","srcDir":"file:///C:/Freelance/EyM-page/src/","publicDir":"file:///C:/Freelance/EyM-page/public/","buildClientDir":"file:///C:/Freelance/EyM-page/dist/client/","buildServerDir":"file:///C:/Freelance/EyM-page/dist/server/","adapterName":"@astrojs/vercel","routes":[{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"type":"page","component":"_server-islands.astro","params":["name"],"segments":[[{"content":"_server-islands","dynamic":false,"spread":false}],[{"content":"name","dynamic":true,"spread":false}]],"pattern":"^\\/_server-islands\\/([^/]+?)\\/?$","prerender":false,"isIndex":false,"fallbackRoutes":[],"route":"/_server-islands/[name]","origin":"internal","_meta":{"trailingSlash":"ignore"}}},{"file":"about/index.html","links":[],"scripts":[],"styles":[],"routeData":{"type":"redirect","isIndex":false,"route":"/about","pattern":"^\\/about\\/?$","segments":[[{"content":"about","dynamic":false,"spread":false}]],"params":[],"component":"/about","pathname":"/about","prerender":true,"redirect":"/sobre-nosotros","redirectRoute":{"route":"/sobre-nosotros","isIndex":false,"type":"page","pattern":"^\\/sobre-nosotros\\/?$","segments":[[{"content":"sobre-nosotros","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/sobre-nosotros.astro","pathname":"/sobre-nosotros","prerender":true,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}},"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"about-7151/index.html","links":[],"scripts":[],"styles":[],"routeData":{"type":"redirect","isIndex":false,"route":"/about-7151","pattern":"^\\/about-7151\\/?$","segments":[[{"content":"about-7151","dynamic":false,"spread":false}]],"params":[],"component":"/about-7151","pathname":"/about-7151","prerender":true,"redirect":"/sobre-nosotros","redirectRoute":{"route":"/sobre-nosotros","isIndex":false,"type":"page","pattern":"^\\/sobre-nosotros\\/?$","segments":[[{"content":"sobre-nosotros","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/sobre-nosotros.astro","pathname":"/sobre-nosotros","prerender":true,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}},"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"aviso-legal/index.html","links":[],"scripts":[],"styles":[],"routeData":{"route":"/aviso-legal","isIndex":false,"type":"page","pattern":"^\\/aviso-legal\\/?$","segments":[[{"content":"aviso-legal","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/aviso-legal.astro","pathname":"/aviso-legal","prerender":true,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"contacto/index.html","links":[],"scripts":[],"styles":[],"routeData":{"route":"/contacto","isIndex":false,"type":"page","pattern":"^\\/contacto\\/?$","segments":[[{"content":"contacto","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/contacto.astro","pathname":"/contacto","prerender":true,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"privacidad/index.html","links":[],"scripts":[],"styles":[],"routeData":{"route":"/privacidad","isIndex":false,"type":"page","pattern":"^\\/privacidad\\/?$","segments":[[{"content":"privacidad","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/privacidad.astro","pathname":"/privacidad","prerender":true,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"servicios/index.html","links":[],"scripts":[],"styles":[],"routeData":{"route":"/servicios","isIndex":false,"type":"page","pattern":"^\\/servicios\\/?$","segments":[[{"content":"servicios","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/servicios.astro","pathname":"/servicios","prerender":true,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"sobre-nosotros/index.html","links":[],"scripts":[],"styles":[],"routeData":{"route":"/sobre-nosotros","isIndex":false,"type":"page","pattern":"^\\/sobre-nosotros\\/?$","segments":[[{"content":"sobre-nosotros","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/sobre-nosotros.astro","pathname":"/sobre-nosotros","prerender":true,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"terminos/index.html","links":[],"scripts":[],"styles":[],"routeData":{"route":"/terminos","isIndex":false,"type":"page","pattern":"^\\/terminos\\/?$","segments":[[{"content":"terminos","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/terminos.astro","pathname":"/terminos","prerender":true,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"index.html","links":[],"scripts":[],"styles":[],"routeData":{"route":"/","isIndex":true,"type":"page","pattern":"^\\/$","segments":[],"params":[],"component":"src/pages/index.astro","pathname":"/","prerender":true,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"type":"endpoint","isIndex":false,"route":"/_image","pattern":"^\\/_image\\/?$","segments":[[{"content":"_image","dynamic":false,"spread":false}]],"params":[],"component":"node_modules/astro/dist/assets/endpoint/generic.js","pathname":"/_image","prerender":false,"fallbackRoutes":[],"origin":"internal","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"type":"redirect","isIndex":false,"route":"/about","pattern":"^\\/about\\/?$","segments":[[{"content":"about","dynamic":false,"spread":false}]],"params":[],"component":"/about","pathname":"/about","prerender":true,"redirect":"/sobre-nosotros","redirectRoute":{"route":"/sobre-nosotros","isIndex":false,"type":"page","pattern":"^\\/sobre-nosotros\\/?$","segments":[[{"content":"sobre-nosotros","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/sobre-nosotros.astro","pathname":"/sobre-nosotros","prerender":true,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}},"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"type":"redirect","isIndex":false,"route":"/about-7151","pattern":"^\\/about-7151\\/?$","segments":[[{"content":"about-7151","dynamic":false,"spread":false}]],"params":[],"component":"/about-7151","pathname":"/about-7151","prerender":true,"redirect":"/sobre-nosotros","redirectRoute":{"route":"/sobre-nosotros","isIndex":false,"type":"page","pattern":"^\\/sobre-nosotros\\/?$","segments":[[{"content":"sobre-nosotros","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/sobre-nosotros.astro","pathname":"/sobre-nosotros","prerender":true,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}},"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}},{"file":"","links":[],"scripts":[],"styles":[],"routeData":{"route":"/api/send-email","isIndex":false,"type":"endpoint","pattern":"^\\/api\\/send-email\\/?$","segments":[[{"content":"api","dynamic":false,"spread":false}],[{"content":"send-email","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/api/send-email.ts","pathname":"/api/send-email","prerender":false,"fallbackRoutes":[],"distURL":[],"origin":"project","_meta":{"trailingSlash":"ignore"}}}],"site":"https://emyasociados.net","base":"/","trailingSlash":"ignore","compressHTML":true,"componentMetadata":[["C:/Freelance/EyM-page/src/pages/equipo/[id].astro",{"propagation":"in-tree","containsHead":true}],["\u0000@astro-page:src/pages/equipo/[id]@_@astro",{"propagation":"in-tree","containsHead":false}],["\u0000@astrojs-ssr-virtual-entry",{"propagation":"in-tree","containsHead":false}],["C:/Freelance/EyM-page/src/components/sections/about/TeamGrid.astro",{"propagation":"in-tree","containsHead":false}],["C:/Freelance/EyM-page/src/pages/sobre-nosotros.astro",{"propagation":"in-tree","containsHead":true}],["\u0000@astro-page:src/pages/sobre-nosotros@_@astro",{"propagation":"in-tree","containsHead":false}],["C:/Freelance/EyM-page/src/pages/aviso-legal.astro",{"propagation":"none","containsHead":true}],["C:/Freelance/EyM-page/src/pages/contacto.astro",{"propagation":"none","containsHead":true}],["C:/Freelance/EyM-page/src/pages/index.astro",{"propagation":"none","containsHead":true}],["C:/Freelance/EyM-page/src/pages/privacidad.astro",{"propagation":"none","containsHead":true}],["C:/Freelance/EyM-page/src/pages/servicios.astro",{"propagation":"none","containsHead":true}],["C:/Freelance/EyM-page/src/pages/terminos.astro",{"propagation":"none","containsHead":true}]],"renderers":[],"clientDirectives":[["idle","(()=>{var l=(n,t)=>{let i=async()=>{await(await n())()},e=typeof t.value==\"object\"?t.value:void 0,s={timeout:e==null?void 0:e.timeout};\"requestIdleCallback\"in window?window.requestIdleCallback(i,s):setTimeout(i,s.timeout||200)};(self.Astro||(self.Astro={})).idle=l;window.dispatchEvent(new Event(\"astro:idle\"));})();"],["load","(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event(\"astro:load\"));})();"],["media","(()=>{var n=(a,t)=>{let i=async()=>{await(await a())()};if(t.value){let e=matchMedia(t.value);e.matches?i():e.addEventListener(\"change\",i,{once:!0})}};(self.Astro||(self.Astro={})).media=n;window.dispatchEvent(new Event(\"astro:media\"));})();"],["only","(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event(\"astro:only\"));})();"],["visible","(()=>{var a=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value==\"object\"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let l of e)if(l.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=a;window.dispatchEvent(new Event(\"astro:visible\"));})();"]],"entryModules":{"\u0000noop-middleware":"_noop-middleware.mjs","\u0000virtual:astro:actions/noop-entrypoint":"noop-entrypoint.mjs","\u0000@astro-page:src/pages/api/send-email@_@ts":"pages/api/send-email.astro.mjs","\u0000@astro-page:src/pages/aviso-legal@_@astro":"pages/aviso-legal.astro.mjs","\u0000@astro-page:src/pages/contacto@_@astro":"pages/contacto.astro.mjs","\u0000@astro-page:src/pages/equipo/[id]@_@astro":"pages/equipo/_id_.astro.mjs","\u0000@astro-page:src/pages/privacidad@_@astro":"pages/privacidad.astro.mjs","\u0000@astro-page:src/pages/servicios@_@astro":"pages/servicios.astro.mjs","\u0000@astro-page:src/pages/sobre-nosotros@_@astro":"pages/sobre-nosotros.astro.mjs","\u0000@astro-page:src/pages/terminos@_@astro":"pages/terminos.astro.mjs","\u0000@astro-page:src/pages/index@_@astro":"pages/index.astro.mjs","\u0000@astrojs-ssr-virtual-entry":"entry.mjs","\u0000@astro-renderers":"renderers.mjs","\u0000@astro-page:node_modules/astro/dist/assets/endpoint/generic@_@js":"pages/_image.astro.mjs","\u0000@astrojs-ssr-adapter":"_@astrojs-ssr-adapter.mjs","\u0000@astrojs-manifest":"manifest_Mqdr2IWQ.mjs","C:/Freelance/EyM-page/node_modules/astro/dist/assets/services/sharp.js":"chunks/sharp_Cq_l2hIs.mjs","C:/Freelance/EyM-page/src/layouts/Layout.astro?astro&type=script&index=0&lang.ts":"_astro/Layout.astro_astro_type_script_index_0_lang.BuqvC9rA.js","C:/Freelance/EyM-page/src/components/forms/ContactForm.astro?astro&type=script&index=0&lang.ts":"_astro/ContactForm.astro_astro_type_script_index_0_lang.DjPIGwaD.js","C:/Freelance/EyM-page/src/components/layout/Navbar.astro?astro&type=script&index=0&lang.ts":"_astro/Navbar.astro_astro_type_script_index_0_lang.Co1e8Kkz.js","C:/Freelance/EyM-page/src/components/common/ScrollToTop.astro?astro&type=script&index=0&lang.ts":"_astro/ScrollToTop.astro_astro_type_script_index_0_lang.C-jJvkQp.js","C:/Freelance/EyM-page/node_modules/astro/components/ClientRouter.astro?astro&type=script&index=0&lang.ts":"_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js","astro:scripts/before-hydration.js":""},"inlinedScripts":[["C:/Freelance/EyM-page/src/layouts/Layout.astro?astro&type=script&index=0&lang.ts","document.addEventListener(\"astro:page-load\",()=>{const r={root:null,rootMargin:\"0px\",threshold:.1},t=new IntersectionObserver((e,s)=>{e.forEach(o=>{o.isIntersecting&&(o.target.classList.add(\"visible\"),s.unobserve(o.target))})},r);document.querySelectorAll(\".fade-in-section\").forEach(e=>{t.observe(e)})});"],["C:/Freelance/EyM-page/src/components/layout/Navbar.astro?astro&type=script&index=0&lang.ts","document.addEventListener(\"astro:page-load\",()=>{const t=document.getElementById(\"mobile-menu-btn\"),s=document.getElementById(\"mobile-menu-overlay\"),i=document.querySelectorAll(\".mobile-nav-link\"),e=t?.querySelectorAll(\"span\");if(!t||!s)return;let o=!1;function n(){o=!o,o?(t?.setAttribute(\"aria-expanded\",\"true\"),s?.classList.remove(\"opacity-0\",\"invisible\",\"pointer-events-none\"),s?.classList.add(\"opacity-100\",\"visible\",\"pointer-events-auto\"),document.body.style.overflow=\"hidden\",e?.[0].classList.add(\"rotate-45\",\"translate-y-2\"),e?.[1].classList.add(\"opacity-0\"),e?.[2].classList.add(\"-rotate-45\",\"-translate-y-2\"),i.forEach(a=>{a.classList.remove(\"translate-y-8\",\"opacity-0\")})):(t?.setAttribute(\"aria-expanded\",\"false\"),s?.classList.remove(\"opacity-100\",\"visible\",\"pointer-events-auto\"),s?.classList.add(\"opacity-0\",\"invisible\",\"pointer-events-none\"),document.body.style.overflow=\"\",e?.[0].classList.remove(\"rotate-45\",\"translate-y-2\"),e?.[1].classList.remove(\"opacity-0\"),e?.[2].classList.remove(\"-rotate-45\",\"-translate-y-2\"),i.forEach(a=>{a.classList.add(\"translate-y-8\",\"opacity-0\")}))}t.onclick=n,i.forEach(a=>{a.addEventListener(\"click\",()=>{o&&n()})})});"],["C:/Freelance/EyM-page/src/components/common/ScrollToTop.astro?astro&type=script&index=0&lang.ts","function e(){const t=document.getElementById(\"scroll-to-top\");if(!t)return;function o(){t&&(window.scrollY>300?(t.classList.remove(\"opacity-0\",\"invisible\",\"translate-y-4\"),t.classList.add(\"opacity-100\",\"visible\",\"translate-y-0\")):(t.classList.add(\"opacity-0\",\"invisible\",\"translate-y-4\"),t.classList.remove(\"opacity-100\",\"visible\",\"translate-y-0\")))}function i(){window.scrollTo({top:0,behavior:\"smooth\"})}window.addEventListener(\"scroll\",o,{passive:!0}),t.addEventListener(\"click\",i),o()}e();document.addEventListener(\"astro:page-load\",e);"]],"assets":["/_astro/lato-latin-ext-400-normal.CK4GAP86.woff2","/_astro/lato-latin-400-normal.BEhtfm5r.woff2","/_astro/antic-didone-latin-400-normal.OwDE58KO.woff2","/_astro/lato-latin-400-normal.B11PyLys.woff","/_astro/antic-didone-latin-400-normal.B_pRY9kz.woff","/_astro/aviso-legal.DAhpF5UG.css","/favicon.ico","/favicon.svg","/robots.txt","/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js","/_astro/ContactForm.astro_astro_type_script_index_0_lang.DjPIGwaD.js","/about/index.html","/about-7151/index.html","/aviso-legal/index.html","/contacto/index.html","/privacidad/index.html","/servicios/index.html","/sobre-nosotros/index.html","/terminos/index.html","/index.html"],"buildFormat":"directory","checkOrigin":true,"allowedDomains":[],"serverIslandNameMap":[],"key":"LhY57OTUIJg+7RyiDlATEwUctWIZ1uNb+g7xRN9hbD8="});
+if (manifest.sessionConfig) manifest.sessionConfig.driverModule = null;
+
+export { manifest };
