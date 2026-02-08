@@ -22,17 +22,22 @@ const { title, description } = Astro.props;
 const siteTitle = `${title} | ${siteData.name}`;
 const siteDescription = description || `Asesoría legal experta. Ubicados en Liberia y Cañas, Guanacaste. Contáctanos al ${siteData.contact.phone} para atención inmediata.`;
 const canonicalURL = new URL(Astro.url.pathname, siteData.url);
-const socialImageURL = new URL(siteData.logo, siteData.url);
+// Imagen optimizada para compartir en redes (OG Image)
+const socialImageURL = "https://res.cloudinary.com/dkwvaxxdw/image/upload/q_auto,f_auto/v1770504499/_MG_0201_o5v1zp.jpg";
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "LegalService",
   "name": siteData.name,
-  "image": siteData.logo,
+  "image": socialImageURL,
   "@id": siteData.url,
   "url": siteData.url,
   "telephone": siteData.contact.phone,
   "email": siteData.contact.email,
+  "sameAs": [
+    siteData.social.facebook,
+    siteData.social.instagram
+  ],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": siteData.contact.address,
@@ -93,6 +98,7 @@ const schema = {
 		<!-- SEO Primary -->
 		<title>{siteTitle}</title>
 		<meta name="description" content={siteDescription} />
+        <meta name="keywords" content="Abogados Costa Rica, Bufete Guanacaste, Abogados Liberia, Asesoría Legal Cañas, Derecho Civil, Derecho Laboral, Notaría Pública, Trámites Legales, Asesoría Jurídica, EM & Asociados, Roy Espinoza, María Fernanda Mendoza" />
 		<meta name="robots" content="index, follow" />
 		<meta name="author" content={siteData.name} />
 		<link rel="canonical" href={canonicalURL} />

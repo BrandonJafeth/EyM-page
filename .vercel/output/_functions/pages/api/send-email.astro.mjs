@@ -80,7 +80,7 @@ const POST = async ({ request }) => {
           <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Nueva Solicitud - EYM & Asociados</title>
+            <title>Nueva Solicitud - EM & Asociados</title>
           </head>
           <body style="margin: 0; padding: 0; background-color: #f3f4f6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
             <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f3f4f6;">
@@ -92,7 +92,7 @@ const POST = async ({ request }) => {
                     <!-- Header Navy -->
                     <tr>
                       <td style="background-color: #091723; padding: 30px 20px; text-align: center;">
-                        <img src="https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770155113/LOGO_EM_BLANCO_u7ua6f.png" alt="EYM & Asociados" width="140" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+                        <img src="https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770155113/LOGO_EM_BLANCO_u7ua6f.png" alt="EM & Asociados" width="140" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
                         <h1 style="color: #AF9232; margin-top: 15px; margin-bottom: 0; font-family: 'Times New Roman', Times, serif; font-size: 18px; font-weight: normal; text-transform: uppercase; letter-spacing: 2px;">Nueva Solicitud Web</h1>
                       </td>
                     </tr>
@@ -167,8 +167,8 @@ const POST = async ({ request }) => {
                     <tr>
                       <td style="background-color: #091723; padding: 15px; text-align: center;">
                         <p style="color: #9ca3af; font-size: 10px; margin: 0;">
-                          Este correo fue enviado desde el sitio web de EYM & Asociados.<br>
-                          &copy; ${(/* @__PURE__ */ new Date()).getFullYear()} EYM & Asociados.
+                          Este correo fue enviado desde el sitio web de EM & Asociados.<br>
+                          &copy; ${(/* @__PURE__ */ new Date()).getFullYear()} EM & Asociados.
                         </p>
                       </td>
                     </tr>
@@ -186,17 +186,17 @@ const POST = async ({ request }) => {
       throw new Error("No se pudo enviar la notificación al administrador: " + emailToAdmin.error.message);
     }
     const emailToClient = await resend.emails.send({
-      from: "EYM & Asociados <info@emyasociados.net>",
+      from: "EM & Asociados <info@emyasociados.net>",
       to: [email],
       // Al correo del cliente
-      subject: "Hemos recibido tu solicitud - EYM & Asociados",
+      subject: "Hemos recibido tu solicitud - EM & Asociados",
       html: `
         <!DOCTYPE html>
         <html>
           <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Recibido - EYM & Asociados</title>
+            <title>Recibido - EM & Asociados</title>
           </head>
           <body style="margin: 0; padding: 0; background-color: #f3f4f6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
             <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f3f4f6;">
@@ -207,7 +207,7 @@ const POST = async ({ request }) => {
                     <!-- Header -->
                     <tr>
                       <td style="background-color: #091723; padding: 40px 0; text-align: center;">
-                        <img src="https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770155113/LOGO_EM_BLANCO_u7ua6f.png" alt="EYM & Asociados" width="150" style="display: block; margin: 0 auto;">
+                        <img src="https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770155113/LOGO_EM_BLANCO_u7ua6f.png" alt="EM & Asociados" width="150" style="display: block; margin: 0 auto;">
                       </td>
                     </tr>
 
@@ -226,7 +226,7 @@ const POST = async ({ request }) => {
                         </div>
 
                         <p style="color: #6b7280; font-size: 14px;">
-                          Si tienes alguna consulta urgente, puedes llamarnos directamente al <strong>+506 6021 2971</strong> o al <strong>+506 8705 3112</strong>.
+                          Si tienes alguna consulta urgente, puedes llamarnos directamente al <strong>+506 6285 4476</strong> o al <strong>+506 6021 2971</strong>.
                         </p>
                       </td>
                     </tr>
@@ -234,7 +234,7 @@ const POST = async ({ request }) => {
                     <!-- Footer -->
                     <tr>
                       <td style="background-color: #091723; padding: 20px; text-align: center;">
-                        <p style="color: #9ca3af; font-size: 12px; margin: 0;">&copy; ${(/* @__PURE__ */ new Date()).getFullYear()} EYM & Asociados.</p>
+                        <p style="color: #9ca3af; font-size: 12px; margin: 0;">&copy; ${(/* @__PURE__ */ new Date()).getFullYear()} EM & Asociados.</p>
                       </td>
                     </tr>
                   </table>

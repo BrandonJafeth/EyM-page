@@ -5,7 +5,7 @@ interface Props {
 }
 const {
   phoneNumber,
-  message = "Hola, me gustaría agendar una consulta en EYM & Asociados.",
+  message = "Hola, me gustaría agendar una consulta en EM & Asociados.",
 } = Astro.props;
 const cleanPhone = phoneNumber.replace(/[\s\-\(\)]/g, "");
 const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
