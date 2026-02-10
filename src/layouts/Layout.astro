@@ -20,7 +20,7 @@ interface Props {
 const { title, description } = Astro.props;
 
 const siteTitle = `${title} | ${siteData.name}`;
-const siteDescription = description || `Asesoría legal experta. Ubicados en Liberia y Cañas, Guanacaste. Contáctanos al ${siteData.contact.phone} para atención inmediata.`;
+const siteDescription = description || `Bufete de abogados en Costa Rica con sede en Liberia y Cañas, Guanacaste. Asesoría legal experta. Contáctanos al ${siteData.contact.phone}.`;
 const canonicalURL = new URL(Astro.url.pathname, siteData.url);
 // Imagen optimizada para compartir en redes (OG Image)
 const socialImageURL = "https://res.cloudinary.com/dkwvaxxdw/image/upload/q_auto,f_auto/v1770504499/_MG_0201_o5v1zp.jpg";
