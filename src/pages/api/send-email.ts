@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import { Resend } from "resend";
 
 export const prerender = false;
 
@@ -6,11 +7,7 @@ export const prerender = false;
 export const GET: APIRoute = async () => {
     return new Response(JSON.stringify({ 
         status: "active", 
-        timestamp: new Date().toISOString(),
-        env_check: {
-            has_import_meta: !!import.meta.env.RESEND_API_KEY,
-            has_process_env: typeof process !== 'undefined' && !!process.env?.RESEND_API_KEY
-        }
+        timestamp: new Date().toISOString()
     }), {
         status: 200,
         headers: { "Content-Type": "application/json" }
@@ -18,27 +15,13 @@ export const GET: APIRoute = async () => {
 };
 
 export const POST: APIRoute = async ({ request }) => {
-    console.log("-> [START] /api/send-email POST received");
-
     try {
-        // Dynamic import to prevent top-level crashes if dependency issues exist
-        let Resend;
-        try {
-            const module = await import("resend");
-            Resend = module.Resend;
-        } catch (err) {
-            console.error("-> [CRITICAL] Failed to import 'resend' package:", err);
-            return new Response(JSON.stringify({ message: "Error interno: Dependencia faltante" }), { status: 500 });
-        }
-
         // Resolving API Key
-        // Vercel Serverless often puts env vars in process.env, while Astro uses import.meta.env
-        const apiKey = import.meta.env.RESEND_API_KEY || (typeof process !== 'undefined' ? process.env.RESEND_API_KEY : '');
-        
-        console.log(`-> [ENV] API Key present? ${!!apiKey}`);
+        const apiKey = import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY;
 
         if (!apiKey) {
-            return new Response(JSON.stringify({ message: "Error de configuración (API Key)" }), { status: 500 });
+            console.error("-> [ERROR] API Key faltante");
+            return new Response(JSON.stringify({ message: "Error interno: Falta configuración de correo" }), { status: 500 });
         }
 
         const resend = new Resend(apiKey);

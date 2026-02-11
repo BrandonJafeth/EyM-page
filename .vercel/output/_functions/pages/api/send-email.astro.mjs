@@ -1,32 +1,19 @@
+import { Resend } from 'resend';
 export { renderers } from '../../renderers.mjs';
 
 const prerender = false;
 const GET = async () => {
   return new Response(JSON.stringify({
     status: "active",
-    timestamp: (/* @__PURE__ */ new Date()).toISOString(),
-    env_check: {
-      has_import_meta: true,
-      has_process_env: typeof process !== "undefined" && !!process.env?.RESEND_API_KEY
-    }
+    timestamp: (/* @__PURE__ */ new Date()).toISOString()
   }), {
     status: 200,
     headers: { "Content-Type": "application/json" }
   });
 };
 const POST = async ({ request }) => {
-  console.log("-> [START] /api/send-email POST received");
   try {
-    let Resend;
-    try {
-      const module = await import('resend');
-      Resend = module.Resend;
-    } catch (err) {
-      console.error("-> [CRITICAL] Failed to import 'resend' package:", err);
-      return new Response(JSON.stringify({ message: "Error interno: Dependencia faltante" }), { status: 500 });
-    }
     const apiKey = "re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8";
-    console.log(`-> [ENV] API Key present? ${!!apiKey}`);
     if (!apiKey) ;
     const resend = new Resend(apiKey);
     let body;
