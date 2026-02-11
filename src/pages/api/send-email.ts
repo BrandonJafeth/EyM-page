@@ -35,7 +35,9 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Recuperación robusta de la API Key para entornos Vercel / Node
-    const apiKey = process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
+    // Verificamos si 'process' existe para evitar crash en entornos Edge/diferentes
+    const runtimeEnv = typeof process !== 'undefined' ? process.env : {};
+    const apiKey = runtimeEnv.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
 
     if (!apiKey) {
         console.error("ERROR CRÍTICO: RESEND_API_KEY no encontrada en variables de entorno (process.env ni import.meta.env)");
