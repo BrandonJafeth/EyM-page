@@ -1,26 +1,42 @@
 import { Resend } from 'resend';
 export { renderers } from '../../renderers.mjs';
 
+const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "SITE": "https://emyasociados.net", "SSR": true};
 const prerender = false;
 const POST = async ({ request }) => {
-  console.log("Processing POST request to /api/send-email");
+  console.log("-> Iniciando /api/send-email");
   try {
     if (request.method !== "POST") {
       return new Response(JSON.stringify({ message: "Método no permitido" }), { status: 405 });
     }
-    const apiKey = "re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8";
-    if (!apiKey) ;
-    let body = {};
-    try {
-      const rawBody = await request.text();
-      if (!rawBody) {
-        throw new Error("Empty body");
+    const getEnv = (key) => {
+      if (Object.assign(__vite_import_meta_env__, { RESEND_API_KEY: "re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8", OS: process.env.OS })[key]) return Object.assign(__vite_import_meta_env__, { RESEND_API_KEY: "re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8", OS: process.env.OS })[key];
+      try {
+        if (typeof process !== "undefined" && process.env && process.env[key]) {
+          return process.env[key];
+        }
+      } catch (e) {
       }
-      body = JSON.parse(rawBody);
-    } catch (e) {
-      console.error("Error parsing JSON body:", e.message);
+      return "";
+    };
+    const apiKey = getEnv("RESEND_API_KEY");
+    console.log(`-> API Key detectada: ${apiKey ? "SÍ (Longitud: " + apiKey.length + ")" : "NO"}`);
+    if (!apiKey) {
+      console.error("-> CRITICAL: Falta RESEND_API_KEY. Verifica las variables de entorno en Vercel.");
       return new Response(
-        JSON.stringify({ message: "Solicitud inválida (JSON Incorrecto)" }),
+        JSON.stringify({ message: "Error de configuración (Falta API Key)" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
+    }
+    let body;
+    try {
+      const text = await request.text();
+      if (!text) throw new Error("Body vacío");
+      body = JSON.parse(text);
+    } catch (e) {
+      console.error("-> Error parseando JSON:", e);
+      return new Response(
+        JSON.stringify({ message: "Datos enviados inválidos" }),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
@@ -37,145 +53,96 @@ const POST = async ({ request }) => {
       hp_field,
       form_start_time
     } = body;
-    let resend;
-    try {
-      resend = new Resend(apiKey);
-    } catch (e) {
-      console.error("Error initializing Resend client:", e);
-      return new Response(
-        JSON.stringify({ message: "Error interno del servicio de correo" }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
-    }
+    console.log("-> Inicializando Resend...");
+    const resend = new Resend(apiKey);
     if (hp_field) {
-      console.warn(`Spam detected (Honeypot): ${email}`);
-      return new Response(
-        JSON.stringify({ message: "Email enviado con éxito" }),
-        { status: 200, headers: { "Content-Type": "application/json" } }
-      );
+      console.warn("-> Spam detectado (Honeypot)");
+      return new Response(JSON.stringify({ message: "Enviado" }), { status: 200 });
     }
     if (form_start_time) {
-      const startTime = parseInt(String(form_start_time), 10);
-      const now = Date.now();
-      if (!isNaN(startTime)) {
-        const diff = now - startTime;
-        if (diff < 1500) {
-          console.warn(`Spam detected (Too fast): ${diff}ms`);
-          return new Response(
-            JSON.stringify({ message: "Envío demasiado rápido. Intenta de nuevo." }),
-            { status: 429, headers: { "Content-Type": "application/json" } }
-          );
-        }
+      const start = parseInt(String(form_start_time), 10);
+      const diff = Date.now() - start;
+      if (!isNaN(start) && diff < 1e3) {
+        console.warn(`-> Spam detectado (Muy rápido: ${diff}ms)`);
+        return new Response(
+          JSON.stringify({ message: "Envío demasiado rápido. Intenta de nuevo." }),
+          { status: 429, headers: { "Content-Type": "application/json" } }
+        );
       }
     }
-    if (!nombre || String(nombre).trim().length < 2) {
+    if (!nombre || String(nombre).length < 2 || !email || !String(email).includes("@")) {
       return new Response(
-        JSON.stringify({ message: "Nombre muy corto." }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(String(email))) {
-      return new Response(
-        JSON.stringify({ message: "Correo inválido." }),
+        JSON.stringify({ message: "Datos incompletos o inválidos." }),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
     const cleanPhone = telefono ? String(telefono).replace(/\D/g, "") : "";
-    if (cleanPhone.length < 8) {
-      return new Response(
-        JSON.stringify({ message: "Teléfono inválido (min 8 dígitos)." }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
-    }
-    const cookieHeader = request.headers.get("cookie");
-    if (cookieHeader && cookieHeader.includes("eym_submitted=true")) {
-      return new Response(
-        JSON.stringify({ message: "Ya enviaste un mensaje recientemente." }),
-        { status: 429, headers: { "Content-Type": "application/json" } }
-      );
-    }
     const whatsappLink = `https://wa.me/${cleanPhone.length === 8 ? "506" + cleanPhone : cleanPhone}`;
     const subjectLine = `Solicitud Web: ${areaLegal || "General"} - ${nombre}`;
-    try {
-      const { error } = await resend.emails.send({
-        from: "Notificación Web <info@emyasociados.net>",
-        to: ["bufete.emyasociados@gmail.com", "brandoncarrilloalvarez569@gmail.com"],
-        replyTo: email,
-        subject: subjectLine,
-        html: `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <meta charset="utf-8">
-                <style>
-                    body { font-family: sans-serif; background: #f3f4f6; margin: 0; padding: 20px; }
-                    .card { max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-                    h1 { color: #091723; font-size: 18px; margin-top: 0; }
-                    .field { margin-bottom: 10px; }
-                    .label { font-weight: bold; font-size: 12px; color: #666; text-transform: uppercase; }
-                    .value { font-size: 16px; color: #333; }
-                </style>
-            </head>
-            <body>
-                <div class="card">
-                    <h1>Nueva Solicitud Web</h1>
-                    <div class="field"><div class="label">Nombre</div><div class="value">${nombre}</div></div>
-                    <div class="field"><div class="label">Email</div><div class="value">${email}</div></div>
-                    <div class="field"><div class="label">Teléfono</div><div class="value">${telefono} <a href="${whatsappLink}">[WA]</a></div></div>
-                    <div class="field"><div class="label">Ubicación</div><div class="value">${provincia || "-"}, ${canton || "-"}, ${distrito || "-"}</div></div>
-                    <div class="field"><div class="label">Área</div><div class="value">${areaLegal || "-"}</div></div>
-                    <div class="field"><div class="label">Conoció por</div><div class="value">${comoConocio || "-"}</div></div>
+    console.log("-> Intentando enviar correo Admin...");
+    const { data, error } = await resend.emails.send({
+      from: "Notificación Web <info@emyasociados.net>",
+      to: ["bufete.emyasociados@gmail.com", "brandoncarrilloalvarez569@gmail.com"],
+      replyTo: email,
+      subject: subjectLine,
+      html: `
+            <div style="font-family: sans-serif; background: #f4f4f5; padding: 20px;">
+                <div style="max-width: 600px; margin: 0 auto; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #e4e4e7;">
+                    <div style="background: #091723; padding: 20px; text-align: center; color: #fff;">
+                       <h2 style="margin:0; color: #cca43b;">Nueva Solicitud Web</h2>
+                    </div>
+                    <div style="padding: 24px;">
+                        <p style="margin-top:0;"><strong>Cliente:</strong> ${nombre}</p>
+                        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+                        <p><strong>Teléfono:</strong> <a href="tel:${telefono}">${telefono}</a> <a href="${whatsappLink}" style="color: #22c55e; margin-left: 8px; font-weight: bold;">[WhatsApp]</a></p> 
+                        <hr style="border: 0; border-top: 1px solid #e5e5e5; margin: 16px 0;">
+                        <p><strong>Área:</strong> ${areaLegal || "-"}</p>
+                        <p><strong>Ubicación:</strong> ${provincia || "-"}, ${canton || "-"}</p>
+                        <p><strong>Contacto Pref.:</strong> ${medioContacto || "-"}</p>
+                        <p><strong>Fuente:</strong> ${comoConocio || "-"}</p>
+                    </div>
+                    <div style="background: #f9fafb; padding: 12px; text-align: center; font-size: 12px; color: #666;">
+                        EyM & Asociados
+                    </div>
                 </div>
-            </body>
-            </html>
-            `
-      });
-      if (error) {
-        console.error("Resend API returned error:", error);
-        throw new Error(error.message);
-      }
-    } catch (mailError) {
-      console.error("FAILED to send admin email:", mailError);
-      return new Response(
-        JSON.stringify({
-          message: "Error enviando el correo. Por favor contáctanos por WhatsApp."
-        }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
+            </div>
+        `
+    });
+    if (error) {
+      console.error("-> Error Resend API:", error);
+      throw new Error(error.message);
     }
+    console.log("-> Correo Admin enviado OK. ID:", data?.id);
     try {
       await resend.emails.send({
         from: "EM & Asociados <info@emyasociados.net>",
         to: [email],
         subject: "Recibimos tu solicitud - EM & Asociados",
         html: `
-            <div style="font-family: sans-serif; padding: 20px; color: #333;">
-                <h2 style="color: #091723;">Gracias ${String(nombre).split(" ")[0]}</h2>
-                <p>Hemos recibido tu mensaje. Te contactaremos pronto.</p>
-                <p><small>Si es urgente, llama al +506 6021 2971</small></p>
-            </div>
+                <div style="font-family: sans-serif; max-width: 600px; color: #333;">
+                    <h2 style="color: #091723;">Hola ${String(nombre).split(" ")[0]}</h2>
+                    <p>Hemos recibido tu solicitud correctamente. Uno de nuestros abogados revisará tu caso y te contactará pronto.</p>
+                    <p>Si es una emergencia, llámanos: <strong>+506 6021 2971</strong></p>
+                </div>
             `
       });
-    } catch (ignore) {
-      console.warn("Auto-reply failed (non-critical):", ignore);
+    } catch (e) {
+      console.warn("-> Falló Auto-Respuesta (No crítico):", e);
     }
     return new Response(
-      JSON.stringify({ message: "Email enviado con éxito" }),
+      JSON.stringify({ message: "Email enviado con éxito", id: data?.id }),
       {
         status: 200,
-        headers: {
-          "Content-Type": "application/json",
-          "Set-Cookie": `eym_submitted=true; Path=/; Max-Age=120; SameSite=Strict`
-        }
+        headers: { "Content-Type": "application/json" }
       }
     );
   } catch (globalError) {
-    console.error("GLOBAL CRASH in /api/send-email:", globalError);
+    console.error("-> GLOBAL CRASH /api/send-email:", globalError);
     return new Response(
       JSON.stringify({
-        message: "Error crítico del servidor. Intenta de nuevo.",
-        details: globalError.message || String(globalError)
+        message: "Error interno del servidor",
+        debug: globalError.message
+        // Solo para diagnóstico
       }),
       {
         status: 500,
