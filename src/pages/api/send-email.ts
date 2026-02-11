@@ -14,36 +14,42 @@ export const GET: APIRoute = async () => {
     });
 };
 
-const getResendClient = () => {
-    const apiKey = import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY;
-    if (!apiKey) {
-        throw new Error("RESEND_API_KEY no está definida");
-    }
-    return new Resend(apiKey);
-};
-
 export const POST: APIRoute = async ({ request }) => {
-  let body;
   try {
-    body = await request.json();
-  } catch (e) {
-    return new Response(JSON.stringify({ message: "JSON inválido" }), { status: 400 });
-  }
+    const body = await request.json().catch(() => null);
 
-  const { nombre, email, telefono, mensaje, hp_field, areaLegal, provincia, canton, distrito, medioContacto, comoConocio } = body;
+    if (!body) {
+         return new Response(JSON.stringify({ message: "JSON inválido" }), { status: 400 });
+    }
 
-  // Anti-Spam
-  if (hp_field) {
-      return new Response(JSON.stringify({ message: "Enviado" }), { status: 200 });
-  }
+    const { nombre, email, telefono, mensaje, hp_field, areaLegal, provincia, canton, distrito, medioContacto, comoConocio } = body;
 
-  // Validation
-  if (!nombre || !email || !telefono) {
-      return new Response(JSON.stringify({ message: "Faltan campos obligatorios" }), { status: 400 });
-  }
+    // Anti-Spam
+    if (hp_field) {
+        return new Response(JSON.stringify({ message: "Enviado" }), { status: 200 });
+    }
 
-  try {
-    const resend = getResendClient();
+    // Validation
+    if (!nombre || !email || !telefono) {
+        return new Response(JSON.stringify({ message: "Faltan campos obligatorios" }), { status: 400 });
+    }
+
+    // Recuperación robusta de la API Key para entornos Vercel / Node
+    const apiKey = process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
+
+    if (!apiKey) {
+        console.error("ERROR CRÍTICO: RESEND_API_KEY no encontrada en variables de entorno (process.env ni import.meta.env)");
+        return new Response(JSON.stringify({ message: "Error de configuración de servidor" }), { status: 500 });
+    }
+
+    let resend: Resend;
+    try {
+        resend = new Resend(apiKey);
+    } catch (err) {
+         console.error("Error inicializando Resend:", err);
+         return new Response(JSON.stringify({ message: "Error interno (Cliente Email)" }), { status: 500 });
+    }
+
     const { error: adminError } = await resend.emails.send({
       from: "Notificación Web <info@emyasociados.net>", 
       to: ["bufete.emyasociados@gmail.com", "brandoncarrilloalvarez569@gmail.com"],
@@ -108,44 +114,48 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (adminError) {
       console.error('Error enviando al admin:', adminError);
-      return new Response(JSON.stringify({ message: adminError.message }), { status: 500 });
+      return new Response(JSON.stringify({ message: "Error interno (API Email)" }), { status: 500 });
     }
 
-    // Auto-reply (fire & forget)
-    resend.emails.send({
-        from: "EM & Asociados <info@emyasociados.net>",
-        to: [email],
-        subject: "Recibimos tu mensaje - EM & Asociados",
-        html: `
-            <!DOCTYPE html>
-            <html>
-                <body style="font-family: 'Lato', sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
-                    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0;">
-                        <div style="padding: 30px; text-align: center; background-color: #091723;">
-                            <img src="https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770155113/LOGO_EM_BLANCO_u7ua6f.png" alt="EM & Asociados" style="width: 120px;">
-                        </div>
-                        <div style="padding: 40px 30px; text-align: center;">
-                            <h2 style="color: #091723; font-family: 'Times New Roman', serif; margin-bottom: 20px;">Gracias por contactarnos, ${nombre.split(' ')[0]}</h2>
-                            <p style="color: #4a5568; line-height: 1.6; margin-bottom: 30px;">
-                                Hemos recibido tu solicitud de información exitosamente. Nuestro equipo legal revisará tus datos y se pondrá en contacto contigo a la brevedad posible (usualmente en menos de 24 horas hábiles).
-                            </p>
-                            <div style="background-color: #f7fafc; padding: 20px; border-radius: 6px; text-align: left; border: 1px solid #edf2f7;">
-                                <p style="margin: 0; font-size: 12px; text-transform: uppercase; color: #a0aec0; letter-spacing: 1px; font-weight: bold;">TU SOLICITUD:</p>
-                                <p style="margin: 10px 0 5px 0; color: #2d3748;"><strong>Servicio:</strong> ${areaLegal || "Consulta Legal"}</p>
-                                <p style="margin: 0; color: #2d3748;"><strong>Teléfono registrado:</strong> ${telefono}</p>
+    // Auto-reply (Safe execution)
+    try {
+        await resend.emails.send({
+            from: "EM & Asociados <info@emyasociados.net>",
+            to: [email],
+            subject: "Recibimos tu mensaje - EM & Asociados",
+            html: `
+                <!DOCTYPE html>
+                <html>
+                    <body style="font-family: 'Lato', sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
+                        <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0;">
+                            <div style="padding: 30px; text-align: center; background-color: #091723;">
+                                <img src="https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770155113/LOGO_EM_BLANCO_u7ua6f.png" alt="EM & Asociados" style="width: 120px;">
                             </div>
-                            <p style="margin-top: 40px; font-size: 13px; color: #718096;">
-                                Si tienes alguna consulta urgente, puedes llamarnos directamente al <strong>+506 6021 2971</strong> o al <strong>+506 8705 3112</strong>.
-                            </p>
+                            <div style="padding: 40px 30px; text-align: center;">
+                                <h2 style="color: #091723; font-family: 'Times New Roman', serif; margin-bottom: 20px;">Gracias por contactarnos, ${nombre.split(' ')[0]}</h2>
+                                <p style="color: #4a5568; line-height: 1.6; margin-bottom: 30px;">
+                                    Hemos recibido tu solicitud de información exitosamente. Nuestro equipo legal revisará tus datos y se pondrá en contacto contigo a la brevedad posible.
+                                </p>
+                                <div style="background-color: #f7fafc; padding: 20px; border-radius: 6px; text-align: left; border: 1px solid #edf2f7;">
+                                    <p style="margin: 0; font-size: 12px; text-transform: uppercase; color: #a0aec0; letter-spacing: 1px; font-weight: bold;">TU SOLICITUD:</p>
+                                    <p style="margin: 10px 0 5px 0; color: #2d3748;"><strong>Servicio:</strong> ${areaLegal || "Consulta Legal"}</p>
+                                    <p style="margin: 0; color: #2d3748;"><strong>Teléfono registrado:</strong> ${telefono}</p>
+                                </div>
+                                <p style="margin-top: 40px; font-size: 13px; color: #718096;">
+                                    Urgencias: <strong>+506 6021 2971</strong>
+                                </p>
+                            </div>
+                            <div style="padding: 20px; text-align: center; background-color: #091723; color: white; font-size: 12px;">
+                                <p style="margin:0;">EYM & Asociados - Abogados en Guanacaste</p>
+                            </div>
                         </div>
-                        <div style="padding: 20px; text-align: center; background-color: #091723; color: white; font-size: 12px;">
-                            <p style="margin:0;">EYM & Asociados - Abogados en Guanacaste</p>
-                        </div>
-                    </div>
-                </body>
-            </html>
-            `
-    }).catch(err => console.warn("-> [WARN] Auto-reply failed:", err));
+                    </body>
+                </html>
+                `
+        });
+    } catch (autoReplyError) {
+        console.warn("Aviso: Falló el envío de auto-respuesta:", autoReplyError);
+    }
 
     return new Response(JSON.stringify({ message: "Email enviado con éxito" }), {
         status: 200,
@@ -153,9 +163,10 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
   } catch (e: any) {
+    console.error("ERROR FATAL EN ENDPOINT DE EMAIL:", e);
     return new Response(JSON.stringify({ 
         message: "Error interno del servidor",
-        error: e.message 
+        error: e?.message || "Error desconocido"
     }), { status: 500 });
   }
 };
