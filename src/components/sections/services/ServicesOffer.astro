@@ -5,7 +5,7 @@ import SectionTitle from '../../common/SectionTitle.astro';
 
 // Use the main "oferta" list from structured JSON
 // Filter for specific categories as per design
-const targetIds = ['familia', 'laboral', 'civil', 'notarial', 'aduanal', 'resolucion-conflictos', 'adicionales'];
+const targetIds = ['familia', 'laboral', 'civil', 'penal', 'notarial', 'aduanal', 'resolucion-conflictos', 'adicionales'];
 const data = servicesData as ServicesData;
 const detailedServices = data.detailed_services || [];
 const finalServices = detailedServices.filter((s) => targetIds.includes(s.id));
