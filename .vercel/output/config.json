@@ -36,6 +36,18 @@
 		{
 			"src": "^/api/send-email/?$",
 			"dest": "_render"
+		},
+		{
+			"src": "^/aviso-legal/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/privacidad/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/terminos/?$",
+			"dest": "_render"
 		}
 	]
 }
