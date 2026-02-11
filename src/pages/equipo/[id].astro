@@ -4,6 +4,8 @@ import team from '../../data/team.json';
 import Icon from '../../components/common/Icon.astro';
 import SectionTitle from '../../components/common/SectionTitle.astro';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   return team.map((member) => ({
     params: { id: member.id },

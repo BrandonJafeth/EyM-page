@@ -7,8 +7,12 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://emyasociados.net',
-  output: 'static',
-  adapter: vercel(),
+  output: 'server',
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
   
   // Redirecciones 301 para URLs antiguas
   redirects: {

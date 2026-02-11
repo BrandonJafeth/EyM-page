@@ -1,161 +1,94 @@
-import { Resend } from 'resend';
 export { renderers } from '../../renderers.mjs';
 
-const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "SITE": "https://emyasociados.net", "SSR": true};
 const prerender = false;
+const GET = async () => {
+  return new Response(JSON.stringify({
+    status: "active",
+    timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+    env_check: {
+      has_import_meta: true,
+      has_process_env: typeof process !== "undefined" && !!process.env?.RESEND_API_KEY
+    }
+  }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" }
+  });
+};
 const POST = async ({ request }) => {
-  console.log("-> Iniciando /api/send-email");
+  console.log("-> [START] /api/send-email POST received");
   try {
-    if (request.method !== "POST") {
-      return new Response(JSON.stringify({ message: "Método no permitido" }), { status: 405 });
+    let Resend;
+    try {
+      const module = await import('resend');
+      Resend = module.Resend;
+    } catch (err) {
+      console.error("-> [CRITICAL] Failed to import 'resend' package:", err);
+      return new Response(JSON.stringify({ message: "Error interno: Dependencia faltante" }), { status: 500 });
     }
-    const getEnv = (key) => {
-      if (Object.assign(__vite_import_meta_env__, { RESEND_API_KEY: "re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8", OS: process.env.OS })[key]) return Object.assign(__vite_import_meta_env__, { RESEND_API_KEY: "re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8", OS: process.env.OS })[key];
-      try {
-        if (typeof process !== "undefined" && process.env && process.env[key]) {
-          return process.env[key];
-        }
-      } catch (e) {
-      }
-      return "";
-    };
-    const apiKey = getEnv("RESEND_API_KEY");
-    console.log(`-> API Key detectada: ${apiKey ? "SÍ (Longitud: " + apiKey.length + ")" : "NO"}`);
-    if (!apiKey) {
-      console.error("-> CRITICAL: Falta RESEND_API_KEY. Verifica las variables de entorno en Vercel.");
-      return new Response(
-        JSON.stringify({ message: "Error de configuración (Falta API Key)" }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
-    }
+    const apiKey = "re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8";
+    console.log(`-> [ENV] API Key present? ${!!apiKey}`);
+    if (!apiKey) ;
+    const resend = new Resend(apiKey);
     let body;
     try {
-      const text = await request.text();
-      if (!text) throw new Error("Body vacío");
-      body = JSON.parse(text);
+      body = await request.json();
     } catch (e) {
-      console.error("-> Error parseando JSON:", e);
-      return new Response(
-        JSON.stringify({ message: "Datos enviados inválidos" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      console.error("-> [ERROR] JSON Parse:", e);
+      return new Response(JSON.stringify({ message: "JSON inválido" }), { status: 400 });
     }
-    const {
-      nombre,
-      email,
-      telefono,
-      provincia,
-      canton,
-      distrito,
-      areaLegal,
-      comoConocio,
-      medioContacto,
-      hp_field,
-      form_start_time
-    } = body;
-    console.log("-> Inicializando Resend...");
-    const resend = new Resend(apiKey);
+    const { nombre, email, telefono, mensaje, hp_field, areaLegal, provincia, canton } = body;
     if (hp_field) {
-      console.warn("-> Spam detectado (Honeypot)");
       return new Response(JSON.stringify({ message: "Enviado" }), { status: 200 });
     }
-    if (form_start_time) {
-      const start = parseInt(String(form_start_time), 10);
-      const diff = Date.now() - start;
-      if (!isNaN(start) && diff < 1e3) {
-        console.warn(`-> Spam detectado (Muy rápido: ${diff}ms)`);
-        return new Response(
-          JSON.stringify({ message: "Envío demasiado rápido. Intenta de nuevo." }),
-          { status: 429, headers: { "Content-Type": "application/json" } }
-        );
-      }
+    if (!nombre || !email || !telefono) {
+      return new Response(JSON.stringify({ message: "Faltan campos obligatorios" }), { status: 400 });
     }
-    if (!nombre || String(nombre).length < 2 || !email || !String(email).includes("@")) {
-      return new Response(
-        JSON.stringify({ message: "Datos incompletos o inválidos." }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
-    }
-    const cleanPhone = telefono ? String(telefono).replace(/\D/g, "") : "";
-    const whatsappLink = `https://wa.me/${cleanPhone.length === 8 ? "506" + cleanPhone : cleanPhone}`;
-    const subjectLine = `Solicitud Web: ${areaLegal || "General"} - ${nombre}`;
-    console.log("-> Intentando enviar correo Admin...");
-    const { data, error } = await resend.emails.send({
+    console.log("-> [SEND] Attempting to send Admin email...");
+    const adminMail = await resend.emails.send({
       from: "Notificación Web <info@emyasociados.net>",
       to: ["bufete.emyasociados@gmail.com", "brandoncarrilloalvarez569@gmail.com"],
       replyTo: email,
-      subject: subjectLine,
+      subject: `Nuevo Mensaje Web: ${nombre}`,
       html: `
-            <div style="font-family: sans-serif; background: #f4f4f5; padding: 20px;">
-                <div style="max-width: 600px; margin: 0 auto; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #e4e4e7;">
-                    <div style="background: #091723; padding: 20px; text-align: center; color: #fff;">
-                       <h2 style="margin:0; color: #cca43b;">Nueva Solicitud Web</h2>
-                    </div>
-                    <div style="padding: 24px;">
-                        <p style="margin-top:0;"><strong>Cliente:</strong> ${nombre}</p>
-                        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-                        <p><strong>Teléfono:</strong> <a href="tel:${telefono}">${telefono}</a> <a href="${whatsappLink}" style="color: #22c55e; margin-left: 8px; font-weight: bold;">[WhatsApp]</a></p> 
-                        <hr style="border: 0; border-top: 1px solid #e5e5e5; margin: 16px 0;">
-                        <p><strong>Área:</strong> ${areaLegal || "-"}</p>
-                        <p><strong>Ubicación:</strong> ${provincia || "-"}, ${canton || "-"}</p>
-                        <p><strong>Contacto Pref.:</strong> ${medioContacto || "-"}</p>
-                        <p><strong>Fuente:</strong> ${comoConocio || "-"}</p>
-                    </div>
-                    <div style="background: #f9fafb; padding: 12px; text-align: center; font-size: 12px; color: #666;">
-                        EyM & Asociados
-                    </div>
-                </div>
-            </div>
-        `
-    });
-    if (error) {
-      console.error("-> Error Resend API:", error);
-      throw new Error(error.message);
-    }
-    console.log("-> Correo Admin enviado OK. ID:", data?.id);
-    try {
-      await resend.emails.send({
-        from: "EM & Asociados <info@emyasociados.net>",
-        to: [email],
-        subject: "Recibimos tu solicitud - EM & Asociados",
-        html: `
-                <div style="font-family: sans-serif; max-width: 600px; color: #333;">
-                    <h2 style="color: #091723;">Hola ${String(nombre).split(" ")[0]}</h2>
-                    <p>Hemos recibido tu solicitud correctamente. Uno de nuestros abogados revisará tu caso y te contactará pronto.</p>
-                    <p>Si es una emergencia, llámanos: <strong>+506 6021 2971</strong></p>
+                <div style="font-family: sans-serif; padding: 20px;">
+                    <h2>Nuevo Mensaje de Contacto</h2>
+                    <p><strong>Nombre:</strong> ${nombre}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Teléfono:</strong> ${telefono}</p>
+                    <p><strong>Ubicación:</strong> ${provincia || "-"}, ${canton || "-"}</p>
+                    <p><strong>Asunto:</strong> ${areaLegal || "-"}</p>
                 </div>
             `
-      });
-    } catch (e) {
-      console.warn("-> Falló Auto-Respuesta (No crítico):", e);
+    });
+    if (adminMail.error) {
+      console.error("-> [ERROR] Resend Admin:", adminMail.error);
+      throw new Error(adminMail.error.message);
     }
-    return new Response(
-      JSON.stringify({ message: "Email enviado con éxito", id: data?.id }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" }
-      }
-    );
-  } catch (globalError) {
-    console.error("-> GLOBAL CRASH /api/send-email:", globalError);
-    return new Response(
-      JSON.stringify({
-        message: "Error interno del servidor",
-        debug: globalError.message
-        // Solo para diagnóstico
-      }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" }
-      }
-    );
+    console.log("-> [SUCCESS] Admin email sent:", adminMail.data?.id);
+    resend.emails.send({
+      from: "EM & Asociados <info@emyasociados.net>",
+      to: [email],
+      subject: "Recibimos tu mensaje - EM & Asociados",
+      html: `<p>Hola ${nombre}, hemos recibido tu solicitud. Te contactaremos pronto.</p>`
+    }).catch((err) => console.warn("-> [WARN] Auto-reply failed:", err));
+    return new Response(JSON.stringify({ message: "Email enviado con éxito" }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" }
+    });
+  } catch (e) {
+    console.error("-> [CRITICAL GLOBAL FAILURE]:", e);
+    return new Response(JSON.stringify({
+      message: "Error interno del servidor",
+      error: e.message
+    }), { status: 500 });
   }
 };
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-  __proto__: null,
-  POST,
-  prerender
+    __proto__: null,
+    GET,
+    POST,
+    prerender
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;

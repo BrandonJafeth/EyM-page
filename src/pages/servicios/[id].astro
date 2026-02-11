@@ -4,6 +4,8 @@ import servicesData from '../../data/services.json';
 import SectionTitle from '../../components/common/SectionTitle.astro';
 import Icon from '../../components/common/Icon.astro';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const { detailed_services } = servicesData;
   return detailed_services.map((service) => ({

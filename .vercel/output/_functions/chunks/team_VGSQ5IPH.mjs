@@ -1,0 +1,151 @@
+const teamData = [
+	{
+		id: "roy-francisco-espinoza",
+		name: "Lic. Roy Espinoza Quesada",
+		role: "Socio Fundador",
+		specialty: "Derecho Civil, Laboral y Penal",
+		image: "https://res.cloudinary.com/dkwvaxxdw/image/upload/q_auto,f_auto/v1770504434/_MG_0100_h4lzvr.jpg",
+		shortBio: "Abogado litigante y fundador de EM & Asociados. Exjuez con más de 16 años de experiencia en el Poder Judicial.",
+		fullBio: "Abogado litigante con una sólida trayectoria de más de 16 años en el Poder Judicial, desempeñándose como Juez y asistente en diversos despachos a nivel nacional. Su experiencia se complementa con su labor como profesor universitario. Actualmente, aplica su vasto conocimiento en Derecho Civil, Laboral y Penal para ofrecer soluciones legales efectivas y éticas.",
+		professionalProfile: "Licenciado en Derecho y Exjuez con especialización en materia Penal y Laboral. Posee amplia experiencia en la judicatura y docencia universitaria. Fundador de EM & Asociados, enfocado en brindar asesoría legal integral con altos estándares profesionales.",
+		education: [
+			"Licenciatura en Derecho - Universidad Metropolitana Castro Carazo (2009-2013)",
+			"Programa de especialización como Juez Penal- Escuela Judicial (2015-2016)",
+			"Programa de Especializacion como Juez Laboral - Escuela Judicial (2017-2018)",
+			"Programa de Formación Inicial de Aspirantes a la Judicatura - Escuela Judicial (2015-2016)",
+			"Programa de Formación para Auxiliares Judiciales (Civil) - Escuela Judicial (2008-2009)",
+			"Bachiller en Educación Media - Liceo Miguel Araya Venegas"
+		],
+		judicialExperience: [
+			"Juez y Asistente en el Poder Judicial (2006-2022)",
+			"Especialización Juez 3 Penal y Juez 3 Laboral",
+			"Diplomado en Dirección del Servicio Nacional de Facilitadores Judiciales (OEA)"
+		],
+		specialties: [
+			"Derecho Civil (Litigios y Contratos)",
+			"Derecho Laboral",
+			"Derecho Penal",
+			"Derecho Corporativo"
+		],
+		courses: [
+			"Especialización en Materia Penal y Laboral (Escuela Judicial)",
+			"Taller de actualización avanzada en Materia Civil",
+			"Diplomado en Dirección del Servicio Nacional de Facilitadores Judiciales",
+			"Manejo de Sistema de Depósitos Judiciales y Gestión de Despachos"
+		],
+		contact: {
+			email: "roy.espinozaq@gmail.com",
+			phone: "+506 8705-3112",
+			whatsapp: "+506 8705-3112"
+		}
+	},
+	{
+		id: "maria-fernanda-mendoza",
+		name: "Licda. María Fernanda Mendoza Gámez",
+		role: "Socia Principal",
+		specialty: "Derecho Registral y Notarial",
+		image: "https://res.cloudinary.com/dkwvaxxdw/image/upload/q_auto,f_auto/v1770504349/IMG_3071_btel0z.jpg",
+		shortBio: "Especialista en Derecho Registral y Notarial con enfoque en asesoría corporativa integral.",
+		fullBio: "Abogada y Notaria Pública con amplia experiencia en Derecho Registral, Inmobiliario y Corporativo. Se ha destacado por brindar seguridad jurídica en transacciones complejas y estructuración de negocios. Su enfoque se centra en la prevención de litigios mediante una asesoría notarial rigurosa y detallada.",
+		professionalProfile: "Licenciada en Derecho. Especialista en Derecho Registral y Notarial.",
+		education: [
+			"Licenciatura en Derecho",
+			"Especialidad en Derecho Notarial y Registral"
+		],
+		judicialExperience: [
+		],
+		specialties: [
+			"Derecho Notarial",
+			"Derecho Registral",
+			"Derecho Corporativo"
+		],
+		courses: [
+		],
+		contact: {
+			email: "consultas@emyasociados.net",
+			phone: "+506 6021 2971"
+		}
+	},
+	{
+		id: "daniel-calderon",
+		name: "Daniel Calderón",
+		role: "Asistente Legal",
+		specialty: "Tramitación Jurídica",
+		image: "https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770570855/7ADFD37B-3EF7-419D-97C9-3C2CBC8BDB1F.JPG_wlaqeg.jpg",
+		shortBio: "Estudiante de Derecho, analista preciso en tramitología jurídica y procesos civiles.",
+		fullBio: "Daniel Calderón es Asistente Legal y Estudiante de Derecho. Se destaca por su precisión en tramitología jurídica y posee una amplia trayectoria en la tramitación de procesos civiles en el Poder Judicial. Cuenta con un profundo conocimiento del funcionamiento interno del sistema jurisdiccional costarricense, garantizando eficiencia en los procedimientos administrativos y judiciales.",
+		professionalProfile: "Estudiante de Derecho con sólida experiencia en tramitación judicial civil y procedimientos administrativos.",
+		education: [
+			"Estudiante de Derecho"
+		],
+		judicialExperience: [
+			"Trayectoria en tramitación de procesos civiles en el Poder Judicial"
+		],
+		specialties: [
+			"Tramitación de procedimientos administrativos y judiciales",
+			"Gestión de Procesos Civiles",
+			"Sistema Jurisdiccional Costarricense"
+		],
+		courses: [
+		],
+		contact: {
+			email: "bufete.emyasociados@gmail.com",
+			phone: "+506 6285 4476"
+		}
+	},
+	{
+		id: "carlos-ramirez",
+		name: "Carlos Ramírez",
+		role: "Asesor Financiero e Inmobiliario",
+		specialty: "Banca, Finanzas y Bienes Raíces",
+		image: "https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770571299/_MG_0139_wy0jvt.jpg",
+		shortBio: "Asesor financiero en banca y finanzas, bienes raíces y venta de bienes adjudicados.",
+		fullBio: "Con una sólida experiencia en el sector financiero, Carlos Ramírez se desempeña como asesor experto en banca y finanzas. Su portafolio de servicios incluye asesoría especializada en bienes raíces y venta estratégica de bienes adjudicados, brindando oportunidades de valor a sus clientes.",
+		professionalProfile: "Asesor integral en finanzas y sector inmobiliario.",
+		education: [
+		],
+		judicialExperience: [
+		],
+		specialties: [
+			"Asesoría Financiera",
+			"Banca y Finanzas",
+			"Bienes Raíces",
+			"Bienes Adjudicados"
+		],
+		courses: [
+		],
+		contact: {
+			email: "bufete.emyasociados@gmail.com",
+			phone: "+506 8834 8619"
+		}
+	},
+	{
+		id: "daniela-badilla",
+		name: "Daniela Badilla",
+		role: "Asesora Bancaria e Inmobiliaria",
+		specialty: "Sector Bancario y Bienes Adjudicados",
+		image: "https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770571293/_MG_0125_nzwlph.jpg",
+		shortBio: "Más de 10 años de experiencia en banca y especialista en sector inmobiliario y bienes adjudicados.",
+		fullBio: "Daniela Badilla acumula más de 10 años de experiencia en el sector bancario, combinados con más de 3 años de especialización en el mercado inmobiliario, bienes raíces y gestión de bienes adjudicados. Su formación en administración de empresas respalda su capacidad de gestión y asesoría profesional.",
+		professionalProfile: "Profesional con amplia trayectoria bancaria e inmobiliaria.",
+		education: [
+			"Estudios en Administración de Empresas"
+		],
+		judicialExperience: [
+		],
+		specialties: [
+			"Sector Bancario",
+			"Bienes Raíces",
+			"Bienes Adjudicados",
+			"Sector Inmobiliario"
+		],
+		courses: [
+		],
+		contact: {
+			email: "bufete.emyasociados@gmail.com",
+			phone: "+506 8938 4600"
+		}
+	}
+];
+
+export { teamData as t };
