@@ -1,5 +1,5 @@
-import type { APIRoute } from "astro";
-import { Resend } from "resend";
+import type { APIRoute } from 'astro';
+import { Resend } from 'resend';
 
 export const prerender = false;
 
@@ -14,47 +14,35 @@ export const GET: APIRoute = async () => {
     });
 };
 
+const resend = new Resend(import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY);
+
 export const POST: APIRoute = async ({ request }) => {
-    try {
-        // Resolving API Key
-        const apiKey = import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY;
+  let body;
+  try {
+    body = await request.json();
+  } catch (e) {
+    return new Response(JSON.stringify({ message: "JSON inválido" }), { status: 400 });
+  }
 
-        if (!apiKey) {
-            console.error("-> [ERROR] API Key faltante");
-            return new Response(JSON.stringify({ message: "Error interno: Falta configuración de correo" }), { status: 500 });
-        }
+  const { nombre, email, telefono, mensaje, hp_field, areaLegal, provincia, canton, distrito, medioContacto, comoConocio } = body;
 
-        const resend = new Resend(apiKey);
-        
-        // Parsing Body
-        let body;
-        try {
-            body = await request.json();
-        } catch (e) {
-            console.error("-> [ERROR] JSON Parse:", e);
-            return new Response(JSON.stringify({ message: "JSON inválido" }), { status: 400 });
-        }
+  // Anti-Spam
+  if (hp_field) {
+      return new Response(JSON.stringify({ message: "Enviado" }), { status: 200 });
+  }
 
-        const { nombre, email, telefono, mensaje, hp_field, areaLegal, provincia, canton, distrito, medioContacto, comoConocio } = body;
+  // Validation
+  if (!nombre || !email || !telefono) {
+      return new Response(JSON.stringify({ message: "Faltan campos obligatorios" }), { status: 400 });
+  }
 
-        // Anti-Spam
-        if (hp_field) {
-            return new Response(JSON.stringify({ message: "Enviado" }), { status: 200 });
-        }
-
-        // Validation
-        if (!nombre || !email || !telefono) {
-            return new Response(JSON.stringify({ message: "Faltan campos obligatorios" }), { status: 400 });
-        }
-
-        // Sending Admin Email
-        console.log("-> [SEND] Attempting to send Admin email...");
-        const adminMail = await resend.emails.send({
-            from: "Notificación Web <info@emyasociados.net>", 
-            to: ["bufete.emyasociados@gmail.com", "brandoncarrilloalvarez569@gmail.com"],
-            replyTo: email,
-            subject: `Nuevo Mensaje Web: ${nombre}`,
-            html: `
+  try {
+    const { error: adminError } = await resend.emails.send({
+      from: "Notificación Web <info@emyasociados.net>", 
+      to: ["bufete.emyasociados@gmail.com", "brandoncarrilloalvarez569@gmail.com"],
+      replyTo: email,
+      subject: `Nuevo Mensaje Web: ${nombre}`,
+      html: `
             <!DOCTYPE html>
             <html>
                 <body style="font-family: 'Lato', sans-serif; background-color: #f4f4f4; margin: 0; padding: 10px;">
@@ -109,21 +97,19 @@ export const POST: APIRoute = async ({ request }) => {
                 </body>
             </html>
             `
-        });
+    });
 
-        if (adminMail.error) {
-            console.error("-> [ERROR] Resend Admin:", adminMail.error);
-            throw new Error(adminMail.error.message);
-        }
+    if (adminError) {
+      console.error('Error enviando al admin:', adminError);
+      return new Response(JSON.stringify({ message: adminError.message }), { status: 500 });
+    }
 
-        console.log("-> [SUCCESS] Admin email sent:", adminMail.data?.id);
-
-        // Auto-reply (fire & forget)
-        resend.emails.send({
-            from: "EM & Asociados <info@emyasociados.net>",
-            to: [email],
-            subject: "Recibimos tu mensaje - EM & Asociados",
-            html: `
+    // Auto-reply (fire & forget)
+    resend.emails.send({
+        from: "EM & Asociados <info@emyasociados.net>",
+        to: [email],
+        subject: "Recibimos tu mensaje - EM & Asociados",
+        html: `
             <!DOCTYPE html>
             <html>
                 <body style="font-family: 'Lato', sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
@@ -152,18 +138,17 @@ export const POST: APIRoute = async ({ request }) => {
                 </body>
             </html>
             `
-        }).catch(err => console.warn("-> [WARN] Auto-reply failed:", err));
+    }).catch(err => console.warn("-> [WARN] Auto-reply failed:", err));
 
-        return new Response(JSON.stringify({ message: "Email enviado con éxito" }), {
-            status: 200,
-            headers: { "Content-Type": "application/json" }
-        });
+    return new Response(JSON.stringify({ message: "Email enviado con éxito" }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" }
+    });
 
-    } catch (e: any) {
-        console.error("-> [CRITICAL GLOBAL FAILURE]:", e);
-        return new Response(JSON.stringify({ 
-            message: "Error interno del servidor",
-            error: e.message 
-        }), { status: 500 });
-    }
+  } catch (e: any) {
+    return new Response(JSON.stringify({ 
+        message: "Error interno del servidor",
+        error: e.message 
+    }), { status: 500 });
+  }
 };

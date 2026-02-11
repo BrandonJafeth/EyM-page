@@ -11,27 +11,23 @@ const GET = async () => {
     headers: { "Content-Type": "application/json" }
   });
 };
+const resend = new Resend("re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8");
 const POST = async ({ request }) => {
+  let body;
   try {
-    const apiKey = "re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8";
-    if (!apiKey) ;
-    const resend = new Resend(apiKey);
-    let body;
-    try {
-      body = await request.json();
-    } catch (e) {
-      console.error("-> [ERROR] JSON Parse:", e);
-      return new Response(JSON.stringify({ message: "JSON inválido" }), { status: 400 });
-    }
-    const { nombre, email, telefono, mensaje, hp_field, areaLegal, provincia, canton, distrito, medioContacto, comoConocio } = body;
-    if (hp_field) {
-      return new Response(JSON.stringify({ message: "Enviado" }), { status: 200 });
-    }
-    if (!nombre || !email || !telefono) {
-      return new Response(JSON.stringify({ message: "Faltan campos obligatorios" }), { status: 400 });
-    }
-    console.log("-> [SEND] Attempting to send Admin email...");
-    const adminMail = await resend.emails.send({
+    body = await request.json();
+  } catch (e) {
+    return new Response(JSON.stringify({ message: "JSON inválido" }), { status: 400 });
+  }
+  const { nombre, email, telefono, mensaje, hp_field, areaLegal, provincia, canton, distrito, medioContacto, comoConocio } = body;
+  if (hp_field) {
+    return new Response(JSON.stringify({ message: "Enviado" }), { status: 200 });
+  }
+  if (!nombre || !email || !telefono) {
+    return new Response(JSON.stringify({ message: "Faltan campos obligatorios" }), { status: 400 });
+  }
+  try {
+    const { error: adminError } = await resend.emails.send({
       from: "Notificación Web <info@emyasociados.net>",
       to: ["bufete.emyasociados@gmail.com", "brandoncarrilloalvarez569@gmail.com"],
       replyTo: email,
@@ -92,11 +88,10 @@ const POST = async ({ request }) => {
             </html>
             `
     });
-    if (adminMail.error) {
-      console.error("-> [ERROR] Resend Admin:", adminMail.error);
-      throw new Error(adminMail.error.message);
+    if (adminError) {
+      console.error("Error enviando al admin:", adminError);
+      return new Response(JSON.stringify({ message: adminError.message }), { status: 500 });
     }
-    console.log("-> [SUCCESS] Admin email sent:", adminMail.data?.id);
     resend.emails.send({
       from: "EM & Asociados <info@emyasociados.net>",
       to: [email],
@@ -136,7 +131,6 @@ const POST = async ({ request }) => {
       headers: { "Content-Type": "application/json" }
     });
   } catch (e) {
-    console.error("-> [CRITICAL GLOBAL FAILURE]:", e);
     return new Response(JSON.stringify({
       message: "Error interno del servidor",
       error: e.message
@@ -145,10 +139,10 @@ const POST = async ({ request }) => {
 };
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-    __proto__: null,
-    GET,
-    POST,
-    prerender
+  __proto__: null,
+  GET,
+  POST,
+  prerender
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;
