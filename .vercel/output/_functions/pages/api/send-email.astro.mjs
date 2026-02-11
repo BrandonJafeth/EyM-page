@@ -11,7 +11,10 @@ const GET = async () => {
     headers: { "Content-Type": "application/json" }
   });
 };
-const resend = new Resend("re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8");
+const getResendClient = () => {
+  const apiKey = "re_FCNem85N_Ydgjne8KyvGMk7hrFFJJjRc8";
+  return new Resend(apiKey);
+};
 const POST = async ({ request }) => {
   let body;
   try {
@@ -27,6 +30,7 @@ const POST = async ({ request }) => {
     return new Response(JSON.stringify({ message: "Faltan campos obligatorios" }), { status: 400 });
   }
   try {
+    const resend = getResendClient();
     const { error: adminError } = await resend.emails.send({
       from: "Notificación Web <info@emyasociados.net>",
       to: ["bufete.emyasociados@gmail.com", "brandoncarrilloalvarez569@gmail.com"],

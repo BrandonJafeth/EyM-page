@@ -14,7 +14,13 @@ export const GET: APIRoute = async () => {
     });
 };
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY);
+const getResendClient = () => {
+    const apiKey = import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY;
+    if (!apiKey) {
+        throw new Error("RESEND_API_KEY no está definida");
+    }
+    return new Resend(apiKey);
+};
 
 export const POST: APIRoute = async ({ request }) => {
   let body;
@@ -37,6 +43,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
+    const resend = getResendClient();
     const { error: adminError } = await resend.emails.send({
       from: "Notificación Web <info@emyasociados.net>", 
       to: ["bufete.emyasociados@gmail.com", "brandoncarrilloalvarez569@gmail.com"],
