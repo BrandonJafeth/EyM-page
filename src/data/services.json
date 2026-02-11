@@ -129,6 +129,16 @@
       ]
     },
     {
+      "id": "penal",
+      "title": "Derecho Penal",
+      "fullDescription": "Ofrecemos una defensa técnica rigurosa y comprometida en el ámbito penal. Representamos tanto a imputados como a víctimas en cada etapa del proceso, garantizando el respeto absoluto al debido proceso y los derechos fundamentales, con estrategias legales sólidas y efectivas.",
+      "features": [
+        "Defensa Penal y Litigio",
+        "Representación de Víctimas",
+        "Asesoría en Procesos Penales"
+      ]
+    },
+    {
       "id": "notarial",
       "title": "Derecho Notarial",
       "fullDescription": "Realizamos todo tipo de trámites notariales, garantizando la legalidad y formalidad de los actos y documentos. Asesoramos y gestionamos la legalización de la compra, venta, y transferencia de bienes muebles e inmuebles.",
