@@ -52,7 +52,7 @@ La información crítica del sitio (teléfonos, correo, dirección) está centra
   "contact": {
     "phone": "+506 6021 2971", // Teléfono principal
     "phone_secondary": "+506 8705 3112",
-    "email": "bufete.emyasociados@gmail.com"
+    "email": "info@emyasociados.net"
   }
 }
 ```

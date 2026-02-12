@@ -54,7 +54,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const { error: adminError } = await resend.emails.send({
       from: "Notificación Web <info@emyasociados.net>", 
-      to: ["bufete.emyasociados@gmail.com", "brandoncarrilloalvarez569@gmail.com"],
+      to: ["info@emyasociados.net", "fernanda.mendoza@emyasociados.net", "roy.espinoza@emyasociados.net", "brandoncarrilloalvarez569@gmail.com"],
       replyTo: email,
       subject: `Nuevo Mensaje Web: ${nombre}`,
       html: `

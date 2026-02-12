@@ -25,7 +25,7 @@
 ## ℹ️ Información del Proyecto
 
 **Cliente**: Roy Francisco Espinoza (Bufete EM & Asociados)
-**Contacto**: +506 6021 2971 | +506 8705 3112 | bufete.emyasociados@gmail.com
+**Contacto**: +506 6021 2971 | +506 8705 3112 | info@emyasociados.net
 **Proveedores**: Oscar Zúñiga Sánchez, Brandon Carrillo Álvarez
 **Sitio Actual**: https://emyasociados.net/
 
@@ -144,7 +144,7 @@ Usar componentes de Framework (React) **SOLO** cuando se requiera interactividad
   "contact": {
     "phone": "+506 6021 2971",
     "phone_secondary": "+506 8705 3112",
-    "email": "bufete.emyasociados@gmail.com",
+    "email": "info@emyasociados.net",
     "address": "Liberia, Guanacaste, Costa Rica, de la Municipalidad, 150 metros norte",
     "maps_link": "https://maps.app.goo.gl/KUb3YkGVoomarKmZ7"
   },
