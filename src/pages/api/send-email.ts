@@ -106,7 +106,7 @@ export const POST: APIRoute = async ({ request }) => {
                             </div>
                         </div>
                         <div style="padding: 20px; text-align: center; font-size: 12px; color: #666; background-color: #091723;">
-                            <p>&copy; ${new Date().getFullYear()} EYM & Asociados.</p>
+                            <p>&copy; ${new Date().getFullYear()} EM & Asociados.</p>
                         </div>
                     </div>
                 </body>
@@ -148,7 +148,7 @@ export const POST: APIRoute = async ({ request }) => {
                                 </p>
                             </div>
                             <div style="padding: 20px; text-align: center; background-color: #091723; color: white; font-size: 12px;">
-                                <p style="margin:0;">EYM & Asociados - Abogados en Guanacaste</p>
+                                <p style="margin:0;">EM & Asociados - Abogados en Guanacaste</p>
                             </div>
                         </div>
                     </body>

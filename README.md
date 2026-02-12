@@ -1,6 +1,6 @@
-# EYM & Asociados - Sitio Web Corporativo
+# EM & Asociados - Sitio Web Corporativo
 
-Sitio web moderno y profesional para el bufete de abogados **EYM & Asociados**, ubicados en Guanacaste, Costa Rica. Diseñado para proyectar confianza, autoridad y elegancia, optimizado para conversión y posicionamiento local.
+Sitio web moderno y profesional para el bufete de abogados **EM & Asociados**, ubicados en Guanacaste, Costa Rica. Diseñado para proyectar confianza, autoridad y elegancia, optimizado para conversión y posicionamiento local.
 
 Realizado por **[One Out](https://www.instagram.com/one.out_/)**.
 
@@ -48,7 +48,7 @@ La información crítica del sitio (teléfonos, correo, dirección) está centra
 **Ejemplo de configuración:**
 ```json
 {
-  "name": "EYM & Asociados",
+  "name": "EM & Asociados",
   "contact": {
     "phone": "+506 6021 2971", // Teléfono principal
     "phone_secondary": "+506 8705 3112",
@@ -65,4 +65,4 @@ Para detalles sobre buenas prácticas, estilos y convenciones de código, consul
 
 ---
 
-© 2026 EYM & Asociados. Desarrollado por [One Out](https://www.instagram.com/one.out_/).
+© 2026 EM & Asociados. Desarrollado por [One Out](https://www.instagram.com/one.out_/).

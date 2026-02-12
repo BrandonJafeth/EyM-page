@@ -1,8 +1,8 @@
 # AGENTS.MD - Guía de Buenas Prácticas
-## Proyecto: Landing Page EYM & Asociados (Bufete de Abogados)
+## Proyecto: Landing Page EM & Asociados (Bufete de Abogados)
 
 > **⚠️ INSTRUCCIÓN IMPORTANTE PARA EL AGENTE:**
-> Este documento rige el desarrollo del rediseño del sitio web para EYM & Asociados. Antes de generar código, verifica los requisitos aquí descritos. El objetivo es modernizar la imagen manteniendo la esencia del bufete, proyectando profesionalismo, confianza y credibilidad.
+> Este documento rige el desarrollo del rediseño del sitio web para EM & Asociados. Antes de generar código, verifica los requisitos aquí descritos. El objetivo es modernizar la imagen manteniendo la esencia del bufete, proyectando profesionalismo, confianza y credibilidad.
 
 ---
 
@@ -24,7 +24,7 @@
 
 ## ℹ️ Información del Proyecto
 
-**Cliente**: Roy Francisco Espinoza (Bufete EYM & Asociados)
+**Cliente**: Roy Francisco Espinoza (Bufete EM & Asociados)
 **Contacto**: +506 6021 2971 | +506 8705 3112 | bufete.emyasociados@gmail.com
 **Proveedores**: Oscar Zúñiga Sánchez, Brandon Carrillo Álvarez
 **Sitio Actual**: https://emyasociados.net/
@@ -138,7 +138,7 @@ Usar componentes de Framework (React) **SOLO** cuando se requiera interactividad
 ### site.json
 ```json
 {
-  "name": "EYM & Asociados",
+  "name": "EM & Asociados",
   "url": "https://emyasociados.net",
   "logo": "https://res.cloudinary.com/dkwvaxxdw/image/upload/v1770155113/LOGO_EM_BLANCO_u7ua6f.png",
   "contact": {
@@ -222,7 +222,7 @@ Integrar orgánicamente en Títulos (H1, H2), primer párrafo, alt tags y meta d
 
 ### 2. Estructura de Meta Datos (Astro SEO)
 Cada página debe tener un componente `<Head />` o layout configurado con:
-*   **Title**: `[Servicio/Página] | EYM & Asociados - Abogados en [Ciudad/CR]` (Máx 60 caracteres).
+*   **Title**: `[Servicio/Página] | EM & Asociados - Abogados en [Ciudad/CR]` (Máx 60 caracteres).
 *   **Description**: "Asesoría legal experta en [Servicio]. Ubicados en Guanacaste y Cañas. Contáctanos al +506 8705 3112 para atención inmediata." (Máx 160 caracteres).
 *   **Canonical**: `https://emyasociados.net/[ruta]`. Evitar contenido duplicado.
 *   **Open Graph**: Usar el dominio de producción `https://emyasociados.net` para imágenes y URLs de compartición.
