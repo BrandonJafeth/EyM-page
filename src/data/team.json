@@ -139,5 +139,31 @@
       "email": "info@emyasociados.net",
       "phone": "+506 8938 4600"
     }
+  },
+  {
+    "id": "david-mendoza",
+    "name": "David Mendoza Gámez",
+    "role": "Asistente Legal",
+    "specialty": "Tramitación Administrativa, Laboral y Notarial",
+    "image": "https://res.cloudinary.com/dxrzwnjee/image/upload/v1771519575/yqkouluwypldlwbdefou.avif",
+    "shortBio": "Estudiante de Derecho especializado en tramitación de procedimientos administrativos, laborales y notariales.",
+    "fullBio": "Estudiante de Derecho con experiencia en la gestión y seguimiento de trámites legales en el ámbito privado. Se especializa en la tramitación de procedimientos administrativos, laborales y notariales. Posee conocimiento del procedimiento administrativo y de la normativa laboral, civil y notarial aplicable. Cuenta con conocimiento práctico en la elaboración y revisión de contratos laborales, civiles y otros documentos jurídicos.",
+    "professionalProfile": "Estudiante de Derecho especializado en tramitación jurídica y gestión de procedimientos legales.",
+    "education": [
+      "Estudiante de Derecho"
+    ],
+    "judicialExperience": [],
+    "specialties": [
+      "Procedimientos Administrativos",
+      "Derecho Laboral",
+      "Derecho Notarial",
+      "Elaboración y Revisión de Contratos",
+      "Tramitación de Procedimientos Legales"
+    ],
+    "courses": [],
+    "contact": {
+      "email": "info@emyasociados.net",
+       "phone": "+506 6471 6353"
+    }
   }
 ]
